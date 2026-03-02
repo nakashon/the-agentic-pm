@@ -37,7 +37,8 @@ Single-file [reveal.js](https://revealjs.com/) presentation. All dependencies lo
 
 **Asaf Nakash** — Principal Product Manager, AI Security Posture @ Microsoft Defender. Building AI-powered security products and thinking about what comes next for the PM craft.
 
-- [LinkedIn](https://www.linkedin.com/in/asafnakash/)
+- [LinkedIn](https://www.linkedin.com/in/nakash/)
+- [X](https://x.com/nakashon)
 - [GitHub](https://github.com/nakashon)
 
 ## License
