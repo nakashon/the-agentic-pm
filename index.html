@@ -81,8 +81,8 @@
 /* ─── Cards Grid ─── */
 .card-grid {
   display: grid;
-  gap: 8px;
-  margin-top: 12px;
+  gap: 12px;
+  margin-top: 16px;
 }
 .card-grid.cols-2 { grid-template-columns: 1fr 1fr; }
 .card-grid.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
@@ -92,7 +92,7 @@
   background: var(--card);
   border: 1px solid rgba(255,255,255,0.08);
   border-radius: 14px;
-  padding: 10px 12px;
+  padding: 14px 14px;
   text-align: left;
   backdrop-filter: blur(10px);
   transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
@@ -104,22 +104,22 @@
 }
 
 .card .icon {
-  font-size: 1em;
-  margin-bottom: 4px;
+  font-size: 1.2em;
+  margin-bottom: 6px;
   display: block;
 }
 
 .card h4 {
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 0.62em;
+  font-size: 0.72em;
   font-weight: 600;
   color: #fff;
-  margin: 0 0 3px 0;
+  margin: 0 0 4px 0;
 }
 
 .card p {
-  font-size: 0.44em;
-  line-height: 1.4;
+  font-size: 0.5em;
+  line-height: 1.5;
   color: rgba(255,255,255,0.6);
   margin: 0;
 }
@@ -510,8 +510,8 @@
   text-align: left;
 }
 .emoji-list li {
-  font-size: 0.52em;
-  padding: 3px 0;
+  font-size: 0.58em;
+  padding: 5px 0;
   border-bottom: 1px solid rgba(255,255,255,0.06);
   display: flex;
   align-items: center;
@@ -520,8 +520,8 @@
 }
 .emoji-list li:last-child { border: none; }
 .emoji-list .em {
-  font-size: 1.1em;
-  width: 28px;
+  font-size: 1.3em;
+  width: 32px;
   text-align: center;
   flex-shrink: 0;
 }
@@ -924,12 +924,12 @@
 <section data-bg="pink">
   <div class="tag tag-pink">The New Job</div>
   <h2>What an Agentic PM<br><em>actually</em> does</h2>
-  <ul class="emoji-list" style="max-width:580px;">
-    <li class="fragment fade-up"><span class="em"><i class="fa-solid fa-crosshairs" style="color:var(--accent);"></i></span> <strong>Problem Selection:</strong> Deciding which problem matters most</li>
-    <li class="fragment fade-up"><span class="em"><i class="fa-solid fa-sitemap" style="color:var(--accent2);"></i></span> <strong>Agent Orchestration:</strong> Setting up AI agents to research, prototype, and test</li>
-    <li class="fragment fade-up"><span class="em"><i class="fa-solid fa-scale-balanced" style="color:var(--accent3);"></i></span> <strong>Judgment Calls:</strong> AI gives you 10 options &mdash; knowing which one to ship</li>
-    <li class="fragment fade-up"><span class="em"><i class="fa-solid fa-shield-halved" style="color:var(--accent4);"></i></span> <strong>Guardrails:</strong> Making sure what gets built is safe and aligned</li>
-    <li class="fragment fade-up"><span class="em"><i class="fa-solid fa-people-arrows" style="color:var(--accent);"></i></span> <strong>Stakeholder Trust:</strong> AI can draft a strategy &mdash; it can't sell it to executives</li>
+  <ul class="emoji-list">
+    <li class="fragment fade-up"><span class="em"><i class="fa-solid fa-crosshairs" style="color:var(--accent);"></i></span> <strong>Problem Selection:</strong> Deciding which problem matters most. AI can't tell you what's <em>worth</em> solving.</li>
+    <li class="fragment fade-up"><span class="em"><i class="fa-solid fa-sitemap" style="color:var(--accent2);"></i></span> <strong>Agent Orchestration:</strong> Setting up AI agents to research, prototype, and test &mdash; then reviewing their output critically.</li>
+    <li class="fragment fade-up"><span class="em"><i class="fa-solid fa-scale-balanced" style="color:var(--accent3);"></i></span> <strong>Judgment Calls:</strong> AI gives you 10 options. Knowing which one to ship &mdash; that's still a human skill.</li>
+    <li class="fragment fade-up"><span class="em"><i class="fa-solid fa-shield-halved" style="color:var(--accent4);"></i></span> <strong>Guardrails:</strong> Making sure what gets built is safe, ethical, and aligned with the company mission.</li>
+    <li class="fragment fade-up"><span class="em"><i class="fa-solid fa-people-arrows" style="color:var(--accent);"></i></span> <strong>Stakeholder Trust:</strong> AI can draft a strategy. It can't sell it to a room of skeptical executives.</li>
   </ul>
 </section>
 
@@ -956,11 +956,11 @@
   <div class="tag tag-pink">The Human Edge</div>
   <h2>What <em>can't</em> AI replace?</h2>
   <ul class="emoji-list" style="max-width:550px;">
-    <li class="fragment fade-up"><span class="em"><i class="fa-solid fa-heart" style="color:var(--accent2);"></i></span> <strong>Empathy</strong> &mdash; understanding human pain and joy</li>
+    <li class="fragment fade-up"><span class="em"><i class="fa-solid fa-heart" style="color:var(--accent2);"></i></span> <strong>Empathy</strong> &mdash; truly understanding human pain and joy</li>
     <li class="fragment fade-up"><span class="em"><i class="fa-solid fa-eye" style="color:var(--accent);"></i></span> <strong>Vision</strong> &mdash; imagining a future that doesn't exist yet</li>
     <li class="fragment fade-up"><span class="em"><i class="fa-solid fa-scale-balanced" style="color:var(--accent3);"></i></span> <strong>Ethics</strong> &mdash; deciding what we <em>should</em> build, not just what we <em>can</em></li>
     <li class="fragment fade-up"><span class="em"><i class="fa-solid fa-handshake" style="color:var(--accent4);"></i></span> <strong>Trust</strong> &mdash; building relationships with teams and users</li>
-    <li class="fragment fade-up"><span class="em"><i class="fa-solid fa-brain" style="color:var(--accent);"></i></span> <strong>Judgment</strong> &mdash; making tough calls with incomplete info</li>
+    <li class="fragment fade-up"><span class="em"><i class="fa-solid fa-brain" style="color:var(--accent);"></i></span> <strong>Judgment</strong> &mdash; making tough calls with incomplete information</li>
   </ul>
   <p class="fragment fade-up" style="font-size:0.55em; color:rgba(255,255,255,0.5); margin-top:12px;">
     AI is a <strong style="color:#fff;">power tool</strong>, not a replacement. The best PMs will be those who learn to wield it.
@@ -1008,7 +1008,7 @@
     <div class="card fragment fade-up">
       <span class="icon"><i class="fa-solid fa-magnifying-glass"></i></span>
       <h4>Research at Scale</h4>
-      <p>Analyze thousands of support tickets, reviews, and interviews in seconds to surface patterns no human team could find.</p>
+      <p>Analyze thousands of support tickets and reviews in seconds to surface patterns no human team could find.</p>
     </div>
     <div class="card fragment fade-up">
       <span class="icon"><i class="fa-solid fa-bolt"></i></span>
@@ -1018,12 +1018,12 @@
     <div class="card fragment fade-up">
       <span class="icon"><i class="fa-solid fa-chart-line"></i></span>
       <h4>Predictive Analytics</h4>
-      <p>AI models can predict which features will drive retention before you build them. Fail cheaper, learn faster.</p>
+      <p>AI models can predict which features drive retention before you build them. Fail cheaper, learn faster.</p>
     </div>
     <div class="card fragment fade-up">
       <span class="icon"><i class="fa-solid fa-arrows-spin"></i></span>
       <h4>Always-On Feedback</h4>
-      <p>AI agents continuously monitor user behavior, flag issues, and surface opportunities. The feedback loop never stops.</p>
+      <p>AI agents continuously monitor user behavior and surface opportunities. The feedback loop never stops.</p>
     </div>
   </div>
 </section>
@@ -1127,8 +1127,8 @@ Reveal.initialize({
   progress: true,
   center: true,
   width: 1200,
-  height: 700,
-  margin: 0.04,
+  height: 820,
+  margin: 0.02,
 });
 
 // Apply data-bg as inline background
