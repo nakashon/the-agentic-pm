@@ -81,8 +81,8 @@
 /* ─── Cards Grid ─── */
 .card-grid {
   display: grid;
-  gap: 12px;
-  margin-top: 16px;
+  gap: 8px;
+  margin-top: 12px;
 }
 .card-grid.cols-2 { grid-template-columns: 1fr 1fr; }
 .card-grid.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
@@ -92,7 +92,7 @@
   background: var(--card);
   border: 1px solid rgba(255,255,255,0.08);
   border-radius: 14px;
-  padding: 14px 14px;
+  padding: 10px 12px;
   text-align: left;
   backdrop-filter: blur(10px);
   transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
@@ -104,22 +104,22 @@
 }
 
 .card .icon {
-  font-size: 1.2em;
-  margin-bottom: 6px;
+  font-size: 1em;
+  margin-bottom: 4px;
   display: block;
 }
 
 .card h4 {
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 0.72em;
+  font-size: 0.62em;
   font-weight: 600;
   color: #fff;
-  margin: 0 0 4px 0;
+  margin: 0 0 3px 0;
 }
 
 .card p {
-  font-size: 0.5em;
-  line-height: 1.5;
+  font-size: 0.44em;
+  line-height: 1.4;
   color: rgba(255,255,255,0.6);
   margin: 0;
 }
@@ -154,7 +154,7 @@
 .venn-circle.biz   { background: rgba(255,101,132,0.25); border: 2px solid rgba(255,101,132,0.5); top: 140px; right: 10px; }
 .venn-center {
   position: absolute;
-  top: 170px;
+  top: 140px;
   left: 210px;
   transform: translate(-50%, -50%);
   background: rgba(255,255,255,0.12);
@@ -232,9 +232,9 @@
 /* ─── Loop Diagram ─── */
 .loop-container {
   position: relative;
-  width: 400px;
-  height: 370px;
-  margin: 10px auto;
+  width: 360px;
+  height: 320px;
+  margin: 8px auto;
 }
 .loop-item {
   position: absolute;
@@ -245,8 +245,8 @@
 }
 .loop-item:hover { transform: scale(1.1); }
 .loop-icon {
-  width: 52px;
-  height: 52px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -257,13 +257,13 @@
 }
 .loop-item h4 {
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 0.52em;
+  font-size: 0.48em;
   font-weight: 600;
   color: #fff;
   margin: 0 0 4px;
 }
 .loop-item p {
-  font-size: 0.38em;
+  font-size: 0.34em;
   color: rgba(255,255,255,0.5);
   margin: 0;
   line-height: 1.4;
@@ -274,7 +274,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
-.loop-arrows svg { width: 200px; height: 200px; }
+.loop-arrows svg { width: 170px; height: 170px; }
 
 /* ─── Stakeholder Map ─── */
 .stakeholder-map {
@@ -506,8 +506,8 @@
   text-align: left;
 }
 .emoji-list li {
-  font-size: 0.58em;
-  padding: 5px 0;
+  font-size: 0.52em;
+  padding: 3px 0;
   border-bottom: 1px solid rgba(255,255,255,0.06);
   display: flex;
   align-items: center;
@@ -516,8 +516,8 @@
 }
 .emoji-list li:last-child { border: none; }
 .emoji-list .em {
-  font-size: 1.3em;
-  width: 32px;
+  font-size: 1.1em;
+  width: 28px;
   text-align: center;
   flex-shrink: 0;
 }
@@ -621,7 +621,7 @@
 
 <!-- ═══════════════════════ HOOK ═══════════════════════ -->
 <section data-bg="purple">
-  <div class="big-number" style="font-size:3em;">2025</div>
+  <div class="big-number" style="font-size:3em;">2026</div>
   <h2>A PM wrote a spec last week.<br>An AI agent wrote a better one <span class="highlight">in 4 minutes</span>.</h2>
   <h3 style="font-size:0.75em; max-width:600px; margin:16px auto 0;">
     So what does a product manager actually do now?
@@ -909,7 +909,7 @@
       <p>PM writes a 15-page spec over 2 weeks. Reviews with 3 teams. Engineering estimates 6 sprints. Ships in 3 months. Learns it was wrong after launch.</p>
     </div>
     <div class="card fragment fade-up" style="border-left: 3px solid var(--accent3);">
-      <h4><i class="fa-solid fa-forward" style="color:var(--accent3);"></i> &nbsp;Now (2025)</h4>
+      <h4><i class="fa-solid fa-forward" style="color:var(--accent3);"></i> &nbsp;Now (2026)</h4>
       <p>PM describes the problem to an AI agent. Gets a draft spec + prototype in a day. Tests with users by Thursday. Ships a validated version in 2 weeks. Iterates based on real data.</p>
     </div>
   </div>
@@ -922,12 +922,12 @@
 <section data-bg="pink">
   <div class="tag tag-pink">The New Job</div>
   <h2>What an Agentic PM<br><em>actually</em> does</h2>
-  <ul class="emoji-list">
-    <li class="fragment fade-up"><span class="em"><i class="fa-solid fa-crosshairs" style="color:var(--accent);"></i></span> <strong>Problem Selection:</strong> Deciding which problem matters most. AI can't tell you what's <em>worth</em> solving.</li>
-    <li class="fragment fade-up"><span class="em"><i class="fa-solid fa-sitemap" style="color:var(--accent2);"></i></span> <strong>Agent Orchestration:</strong> Setting up AI agents to research, prototype, and test &mdash; then reviewing their output critically.</li>
-    <li class="fragment fade-up"><span class="em"><i class="fa-solid fa-scale-balanced" style="color:var(--accent3);"></i></span> <strong>Judgment Calls:</strong> AI gives you 10 options. Knowing which one to ship &mdash; that's still a human skill.</li>
-    <li class="fragment fade-up"><span class="em"><i class="fa-solid fa-shield-halved" style="color:var(--accent4);"></i></span> <strong>Guardrails:</strong> Making sure what gets built is safe, ethical, and aligned with the company mission.</li>
-    <li class="fragment fade-up"><span class="em"><i class="fa-solid fa-people-arrows" style="color:var(--accent);"></i></span> <strong>Stakeholder Trust:</strong> AI can draft a strategy. It can't sell it to a room of skeptical executives.</li>
+  <ul class="emoji-list" style="max-width:580px;">
+    <li class="fragment fade-up"><span class="em"><i class="fa-solid fa-crosshairs" style="color:var(--accent);"></i></span> <strong>Problem Selection:</strong> Deciding which problem matters most</li>
+    <li class="fragment fade-up"><span class="em"><i class="fa-solid fa-sitemap" style="color:var(--accent2);"></i></span> <strong>Agent Orchestration:</strong> Setting up AI agents to research, prototype, and test</li>
+    <li class="fragment fade-up"><span class="em"><i class="fa-solid fa-scale-balanced" style="color:var(--accent3);"></i></span> <strong>Judgment Calls:</strong> AI gives you 10 options &mdash; knowing which one to ship</li>
+    <li class="fragment fade-up"><span class="em"><i class="fa-solid fa-shield-halved" style="color:var(--accent4);"></i></span> <strong>Guardrails:</strong> Making sure what gets built is safe and aligned</li>
+    <li class="fragment fade-up"><span class="em"><i class="fa-solid fa-people-arrows" style="color:var(--accent);"></i></span> <strong>Stakeholder Trust:</strong> AI can draft a strategy &mdash; it can't sell it to executives</li>
   </ul>
 </section>
 
@@ -954,11 +954,11 @@
   <div class="tag tag-pink">The Human Edge</div>
   <h2>What <em>can't</em> AI replace?</h2>
   <ul class="emoji-list" style="max-width:550px;">
-    <li class="fragment fade-up"><span class="em"><i class="fa-solid fa-heart" style="color:var(--accent2);"></i></span> <strong>Empathy</strong> &mdash; truly understanding human pain and joy</li>
+    <li class="fragment fade-up"><span class="em"><i class="fa-solid fa-heart" style="color:var(--accent2);"></i></span> <strong>Empathy</strong> &mdash; understanding human pain and joy</li>
     <li class="fragment fade-up"><span class="em"><i class="fa-solid fa-eye" style="color:var(--accent);"></i></span> <strong>Vision</strong> &mdash; imagining a future that doesn't exist yet</li>
     <li class="fragment fade-up"><span class="em"><i class="fa-solid fa-scale-balanced" style="color:var(--accent3);"></i></span> <strong>Ethics</strong> &mdash; deciding what we <em>should</em> build, not just what we <em>can</em></li>
     <li class="fragment fade-up"><span class="em"><i class="fa-solid fa-handshake" style="color:var(--accent4);"></i></span> <strong>Trust</strong> &mdash; building relationships with teams and users</li>
-    <li class="fragment fade-up"><span class="em"><i class="fa-solid fa-brain" style="color:var(--accent);"></i></span> <strong>Judgment</strong> &mdash; making tough calls with incomplete information</li>
+    <li class="fragment fade-up"><span class="em"><i class="fa-solid fa-brain" style="color:var(--accent);"></i></span> <strong>Judgment</strong> &mdash; making tough calls with incomplete info</li>
   </ul>
   <p class="fragment fade-up" style="font-size:0.55em; color:rgba(255,255,255,0.5); margin-top:12px;">
     AI is a <strong style="color:#fff;">power tool</strong>, not a replacement. The best PMs will be those who learn to wield it.
@@ -1102,7 +1102,7 @@
   </h3>
   <p style="font-size:0.75em; margin-top:30px; color:rgba(255,255,255,0.5);">Questions? Let's chat!</p>
   <p style="font-size:0.6em; margin-top:20px; color:rgba(255,255,255,0.45);">
-    <strong>Asaf Nakash</strong> &nbsp;|&nbsp; <a href="https://linkedin.com/in/intasaf" style="color:var(--accent); text-decoration:none;">linkedin.com/in/intasaf</a> &nbsp;|&nbsp; <a href="https://github.com/nakashon" style="color:var(--accent); text-decoration:none;">github.com/nakashon</a>
+    <strong>Asaf Nakash</strong> &nbsp;|&nbsp; <a href="https://www.linkedin.com/in/nakash/" style="color:var(--accent); text-decoration:none;">LinkedIn</a> &nbsp;|&nbsp; <a href="https://x.com/nakashon" style="color:var(--accent); text-decoration:none;">X</a> &nbsp;|&nbsp; <a href="https://github.com/nakashon" style="color:var(--accent); text-decoration:none;">GitHub</a>
   </p>
   <div style="margin-top:30px;">
     <div class="tag tag-purple" style="font-size:0.5em;">Press <kbd style="background:rgba(255,255,255,0.15);padding:2px 6px;border-radius:3px;">Esc</kbd> for slide overview</div>
