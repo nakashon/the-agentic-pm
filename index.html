@@ -1,0 +1,1160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Agentic PM — Product Management in the Age of AI</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/theme/black.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --accent: #6C63FF;
+  --accent2: #FF6584;
+  --accent3: #43E97B;
+  --accent4: #38F9D7;
+  --dark: #0a0a1a;
+  --card: rgba(255,255,255,0.06);
+  --glass: rgba(255,255,255,0.08);
+}
+
+.reveal {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  color: #e0e0e0;
+}
+
+.reveal h1, .reveal h2, .reveal h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  text-transform: none;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.reveal h1 { font-size: 2em; }
+.reveal h2 { font-size: 1.4em; color: #fff; margin-bottom: 8px; }
+.reveal h3 { font-size: 0.9em; color: rgba(255,255,255,0.7); font-weight: 400; }
+
+.reveal .slide-background { background: var(--dark); }
+
+/* ─── Gradient Backgrounds ─── */
+.reveal .slides section[data-bg="hero"] {
+  background: radial-gradient(ellipse at 30% 50%, rgba(108,99,255,0.25) 0%, transparent 60%),
+              radial-gradient(ellipse at 70% 80%, rgba(255,101,132,0.15) 0%, transparent 50%),
+              var(--dark);
+}
+
+.reveal .slides section[data-bg="purple"] {
+  background: radial-gradient(ellipse at 50% 30%, rgba(108,99,255,0.2) 0%, transparent 60%), var(--dark);
+}
+
+.reveal .slides section[data-bg="pink"] {
+  background: radial-gradient(ellipse at 60% 40%, rgba(255,101,132,0.2) 0%, transparent 60%), var(--dark);
+}
+
+.reveal .slides section[data-bg="green"] {
+  background: radial-gradient(ellipse at 40% 50%, rgba(67,233,123,0.15) 0%, transparent 60%), var(--dark);
+}
+
+.reveal .slides section[data-bg="teal"] {
+  background: radial-gradient(ellipse at 50% 50%, rgba(56,249,215,0.15) 0%, transparent 60%), var(--dark);
+}
+
+/* ─── Tag / Pill ─── */
+.tag {
+  display: inline-block;
+  padding: 4px 14px;
+  border-radius: 50px;
+  font-size: 0.55em;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.tag-purple { background: rgba(108,99,255,0.25); color: #a29bfe; }
+.tag-pink   { background: rgba(255,101,132,0.25); color: #ff7eb3; }
+.tag-green  { background: rgba(67,233,123,0.2);   color: #43E97B; }
+.tag-teal   { background: rgba(56,249,215,0.2);   color: #38F9D7; }
+
+/* ─── Cards Grid ─── */
+.card-grid {
+  display: grid;
+  gap: 12px;
+  margin-top: 16px;
+}
+.card-grid.cols-2 { grid-template-columns: 1fr 1fr; }
+.card-grid.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
+.card-grid.cols-4 { grid-template-columns: 1fr 1fr 1fr 1fr; }
+
+.card {
+  background: var(--card);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 14px;
+  padding: 14px 14px;
+  text-align: left;
+  backdrop-filter: blur(10px);
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(108,99,255,0.4);
+  box-shadow: 0 8px 32px rgba(108,99,255,0.15);
+}
+
+.card .icon {
+  font-size: 1.2em;
+  margin-bottom: 6px;
+  display: block;
+}
+
+.card h4 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.72em;
+  font-weight: 600;
+  color: #fff;
+  margin: 0 0 4px 0;
+}
+
+.card p {
+  font-size: 0.5em;
+  line-height: 1.5;
+  color: rgba(255,255,255,0.6);
+  margin: 0;
+}
+
+/* ─── Venn / Diagram ─── */
+.venn-container {
+  position: relative;
+  width: 420px;
+  height: 340px;
+  margin: 15px auto 0;
+}
+.venn-circle {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.65em;
+  font-family: 'Space Grotesk', sans-serif;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+  text-align: center;
+  line-height: 1.3;
+}
+.venn-circle:hover { transform: scale(1.06); }
+.venn-circle.user  { background: rgba(108,99,255,0.35); border: 2px solid rgba(108,99,255,0.6); top: 0; left: 110px; }
+.venn-circle.user:hover { transform: scale(1.06); }
+.venn-circle.tech  { background: rgba(67,233,123,0.25); border: 2px solid rgba(67,233,123,0.5); top: 140px; left: 10px; }
+.venn-circle.biz   { background: rgba(255,101,132,0.25); border: 2px solid rgba(255,101,132,0.5); top: 140px; right: 10px; }
+.venn-center {
+  position: absolute;
+  top: 170px;
+  left: 210px;
+  transform: translate(-50%, -50%);
+  background: rgba(255,255,255,0.12);
+  border: 2px solid rgba(255,255,255,0.3);
+  border-radius: 50%;
+  width: 90px;
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 0.65em;
+  font-family: 'Space Grotesk', sans-serif;
+  color: #fff;
+  z-index: 10;
+  text-align: center;
+  line-height: 1.2;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 0 30px rgba(108,99,255,0.3);
+}
+
+/* ─── Timeline ─── */
+.timeline {
+  display: flex;
+  align-items: flex-start;
+  gap: 0;
+  margin-top: 25px;
+  position: relative;
+}
+.timeline::before {
+  content: '';
+  position: absolute;
+  top: 30px;
+  left: 5%;
+  right: 5%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--accent2), var(--accent3), var(--accent4));
+  border-radius: 2px;
+}
+.timeline-step {
+  flex: 1;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+  padding: 0 6px;
+}
+.timeline-dot {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  margin: 22px auto 12px;
+  border: 3px solid;
+  background: var(--dark);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+.timeline-dot:hover {
+  transform: scale(1.4);
+  box-shadow: 0 0 20px currentColor;
+}
+.timeline-step h4 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.55em;
+  font-weight: 600;
+  color: #fff;
+  margin: 0 0 4px 0;
+}
+.timeline-step p {
+  font-size: 0.42em;
+  color: rgba(255,255,255,0.55);
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* ─── Loop Diagram ─── */
+.loop-container {
+  position: relative;
+  width: 400px;
+  height: 370px;
+  margin: 10px auto;
+}
+.loop-item {
+  position: absolute;
+  width: 110px;
+  text-align: center;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+.loop-item:hover { transform: scale(1.1); }
+.loop-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4em;
+  margin: 0 auto 10px;
+  border: 2px solid;
+}
+.loop-item h4 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.52em;
+  font-weight: 600;
+  color: #fff;
+  margin: 0 0 4px;
+}
+.loop-item p {
+  font-size: 0.38em;
+  color: rgba(255,255,255,0.5);
+  margin: 0;
+  line-height: 1.4;
+}
+.loop-arrows {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.loop-arrows svg { width: 200px; height: 200px; }
+
+/* ─── Stakeholder Map ─── */
+.stakeholder-map {
+  position: relative;
+  width: 600px;
+  height: 320px;
+  margin: 15px auto;
+}
+.stakeholder-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 0.65em;
+  font-family: 'Space Grotesk', sans-serif;
+  color: #fff;
+  z-index: 10;
+  box-shadow: 0 0 40px rgba(108,99,255,0.4);
+  text-align: center;
+  line-height: 1.2;
+}
+.stakeholder-node {
+  position: absolute;
+  text-align: center;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+.stakeholder-node:hover { transform: scale(1.12); }
+.stakeholder-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2em;
+  margin: 0 auto 8px;
+  border: 2px solid rgba(255,255,255,0.15);
+  background: var(--glass);
+  backdrop-filter: blur(6px);
+}
+.stakeholder-node span {
+  font-size: 0.48em;
+  font-weight: 500;
+  color: rgba(255,255,255,0.8);
+}
+
+/* ─── Comparison Cards ─── */
+.compare-container {
+  display: grid;
+  grid-template-columns: 1fr 60px 1fr;
+  align-items: center;
+  gap: 10px;
+  margin-top: 30px;
+}
+.compare-card {
+  background: var(--card);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+  padding: 22px 20px;
+  text-align: left;
+}
+.compare-card h4 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.72em;
+  font-weight: 600;
+  margin: 0 0 10px;
+}
+.compare-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.compare-card li {
+  font-size: 0.5em;
+  color: rgba(255,255,255,0.65);
+  padding: 6px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.compare-card li:last-child { border: none; }
+.compare-card li i { width: 18px; text-align: center; }
+.compare-vs {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 800;
+  font-size: 1em;
+  color: rgba(255,255,255,0.3);
+  text-align: center;
+}
+
+/* ─── Interactive Poll ─── */
+.poll-container {
+  max-width: 600px;
+  margin: 20px auto 0;
+}
+.poll-option {
+  background: var(--card);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 10px;
+  padding: 10px 16px;
+  margin-bottom: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 0.62em;
+}
+.poll-option:hover {
+  border-color: var(--accent);
+  background: rgba(108,99,255,0.1);
+  transform: translateX(6px);
+}
+.poll-option.selected {
+  border-color: var(--accent);
+  background: rgba(108,99,255,0.15);
+}
+.poll-option .letter {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  background: rgba(255,255,255,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.9em;
+  color: var(--accent);
+  flex-shrink: 0;
+}
+.poll-option.selected .letter {
+  background: var(--accent);
+  color: #fff;
+}
+.poll-reveal {
+  margin-top: 12px;
+  padding: 14px;
+  border-radius: 10px;
+  background: rgba(67,233,123,0.1);
+  border: 1px solid rgba(67,233,123,0.3);
+  font-size: 0.55em;
+  color: var(--accent3);
+  display: none;
+  line-height: 1.6;
+}
+.poll-reveal.show { display: block; animation: fadeUp 0.4s ease; }
+
+/* ─── Animations ─── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+.float { animation: float 3s ease-in-out infinite; }
+
+/* ─── Big Number ─── */
+.big-number {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 3em;
+  font-weight: 900;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+  margin: 10px 0;
+}
+
+/* ─── Highlight text ─── */
+.highlight {
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.highlight-green {
+  background: linear-gradient(135deg, var(--accent3), var(--accent4));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── Quote ─── */
+.quote-block {
+  border-left: 4px solid var(--accent);
+  padding: 16px 22px;
+  background: var(--card);
+  border-radius: 0 12px 12px 0;
+  margin: 20px auto;
+  max-width: 700px;
+  text-align: left;
+}
+.quote-block p {
+  font-size: 0.7em;
+  font-style: italic;
+  color: rgba(255,255,255,0.8);
+  margin: 0 0 10px;
+  line-height: 1.6;
+}
+.quote-block cite {
+  font-size: 0.6em;
+  color: rgba(255,255,255,0.4);
+  font-style: normal;
+}
+
+/* ─── Emoji Bullet List ─── */
+.emoji-list {
+  list-style: none;
+  padding: 0;
+  margin: 12px auto;
+  max-width: 600px;
+  text-align: left;
+}
+.emoji-list li {
+  font-size: 0.58em;
+  padding: 5px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: rgba(255,255,255,0.8);
+}
+.emoji-list li:last-child { border: none; }
+.emoji-list .em {
+  font-size: 1.3em;
+  width: 32px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+/* ─── Progress Dots (slide indicator override) ─── */
+.reveal .progress { height: 4px; }
+.reveal .progress span { background: linear-gradient(90deg, var(--accent), var(--accent2)); }
+
+/* ─── Controls ─── */
+.reveal .controls { color: var(--accent); }
+
+/* ─── Fragments ─── */
+.reveal .fragment.fade-up { transition: all 0.4s ease; }
+
+/* ─── Responsive ─── */
+@media (max-width: 800px) {
+  .card-grid.cols-3 { grid-template-columns: 1fr 1fr; }
+  .card-grid.cols-4 { grid-template-columns: 1fr 1fr; }
+}
+
+/* ─── AI Evolution cards ─── */
+.evo-timeline {
+  display: flex;
+  gap: 12px;
+  margin-top: 18px;
+}
+.evo-card {
+  flex: 1;
+  background: var(--card);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+  padding: 20px 16px;
+  text-align: left;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+.evo-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  border-radius: 16px 16px 0 0;
+}
+.evo-card.past::before { background: rgba(255,255,255,0.2); }
+.evo-card.now::before  { background: linear-gradient(90deg, var(--accent), var(--accent2)); }
+.evo-card.future::before { background: linear-gradient(90deg, var(--accent3), var(--accent4)); }
+.evo-card:hover { transform: translateY(-4px); border-color: rgba(108,99,255,0.3); }
+.evo-card .era {
+  font-size: 0.5em;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.4);
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.evo-card h4 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.68em;
+  font-weight: 600;
+  color: #fff;
+  margin: 0 0 10px;
+}
+.evo-card p {
+  font-size: 0.46em;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ─── Slide number ─── */
+.reveal .slide-number {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 14px;
+  color: rgba(255,255,255,0.3);
+  background: transparent;
+}
+</style>
+</head>
+<body>
+
+<div class="reveal">
+<div class="slides">
+
+
+<!-- ═══════════════════════ TITLE ═══════════════════════ -->
+<section data-bg="hero">
+  <div class="tag tag-purple">Welcome</div>
+  <h1>The <span class="highlight">Agentic</span> PM</h1>
+  <h3 style="margin-top: 20px; font-size:0.9em;">Product Management in the Age of AI</h3>
+  <p style="font-size:0.65em; color:rgba(255,255,255,0.6); margin-top: 30px;">
+    <strong>Asaf Nakash</strong> &nbsp;|&nbsp; Principal Product Manager, Microsoft Defender
+  </p>
+  <p style="font-size:0.55em; color:rgba(255,255,255,0.35); margin-top: 20px;">
+    Use <kbd style="background:rgba(255,255,255,0.1);padding:3px 8px;border-radius:4px;">&rarr;</kbd> to navigate &nbsp;|&nbsp; Press <kbd style="background:rgba(255,255,255,0.1);padding:3px 8px;border-radius:4px;">Esc</kbd> for overview
+  </p>
+</section>
+
+<!-- ═══════════════════════ HOOK ═══════════════════════ -->
+<section data-bg="purple">
+  <div class="big-number" style="font-size:3em;">2025</div>
+  <h2>A PM wrote a spec last week.<br>An AI agent wrote a better one <span class="highlight">in 4 minutes</span>.</h2>
+  <h3 style="font-size:0.75em; max-width:600px; margin:16px auto 0;">
+    So what does a product manager actually do now?
+  </h3>
+</section>
+
+<!-- ═══════════════════════ PART 1 DIVIDER ═══════════════════════ -->
+<section data-bg="hero">
+  <div class="tag tag-purple">Part 1</div>
+  <h2 style="font-size:2em;">The <span class="highlight">Foundations</span></h2>
+  <h3 style="font-size:0.85em;">What product management is &mdash; and why it matters more than ever</h3>
+</section>
+
+<!-- ═══════════════════════ POLL ═══════════════════════ -->
+<section data-bg="purple">
+  <div class="tag tag-purple">Let's Start With You</div>
+  <h2>What do you think a<br>Product Manager does?</h2>
+  <div class="poll-container" id="poll1">
+    <div class="poll-option" onclick="selectPoll(this, 'poll1')">
+      <div class="letter">A</div>
+      <span>Manages a team of engineers</span>
+    </div>
+    <div class="poll-option" onclick="selectPoll(this, 'poll1')">
+      <div class="letter">B</div>
+      <span>Decides what to build and why</span>
+    </div>
+    <div class="poll-option" onclick="selectPoll(this, 'poll1')">
+      <div class="letter">C</div>
+      <span>Designs the user interface</span>
+    </div>
+    <div class="poll-option" onclick="selectPoll(this, 'poll1')">
+      <div class="letter">D</div>
+      <span>Tells an AI agent what to build</span>
+    </div>
+    <div class="poll-reveal" id="poll1-reveal">
+      <strong>B is closest &mdash; for now.</strong> A PM doesn't manage people or design UI directly &mdash; they figure out <em>what problems are worth solving</em> and <em>why</em>. But D is where things are heading fast.
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ WHAT IS A PM? ═══════════════════════ -->
+<section data-bg="purple">
+  <div class="tag tag-purple">The Role</div>
+  <h2>So what <em>is</em> a Product Manager?</h2>
+  <div class="quote-block fragment fade-up">
+    <p>"A product manager is the person who identifies the customer need and the larger business objectives that a product or feature will fulfill, articulates what success looks like, and rallies a team to turn that vision into reality."</p>
+    <cite>&mdash; Martin Eriksson, founder of ProductTank</cite>
+  </div>
+  <p class="fragment fade-up" style="font-size:0.72em; color:rgba(255,255,255,0.6); margin-top:14px;">
+    Think of it as the <span class="highlight" style="font-weight:600;">CEO of the product</span> &mdash; without the authority to tell anyone what to do.
+  </p>
+</section>
+
+<!-- ═══════════════════════ VENN DIAGRAM ═══════════════════════ -->
+<section data-bg="purple">
+  <div class="tag tag-purple">The Sweet Spot</div>
+  <h2>Where PM Lives</h2>
+  <div class="venn-container">
+    <div class="venn-circle user">User<br>Desirability</div>
+    <div class="venn-circle tech">Technology<br>Feasibility</div>
+    <div class="venn-circle biz">Business<br>Viability</div>
+    <div class="venn-center float">PM</div>
+  </div>
+  <p style="font-size:0.58em; color:rgba(255,255,255,0.45); margin-top:10px;">
+    A PM sits at the intersection of <strong>user needs</strong>, <strong>technical possibility</strong> and <strong>business goals</strong>
+  </p>
+</section>
+
+<!-- ═══════════════════════ WHY DO WE NEED PMs ═══════════════════════ -->
+<section data-bg="pink">
+  <div class="tag tag-pink">Why It Matters</div>
+  <h2>Why do we need<br>Product Managers?</h2>
+  <div class="card-grid cols-3" style="margin-top:20px;">
+    <div class="card fragment fade-up">
+      <span class="icon"><i class="fa-solid fa-compass"></i></span>
+      <h4>Direction</h4>
+      <p>Without a PM, teams build features nobody asked for. PMs make sure we solve the <em>right</em> problems.</p>
+    </div>
+    <div class="card fragment fade-up">
+      <span class="icon"><i class="fa-solid fa-handshake"></i></span>
+      <h4>Alignment</h4>
+      <p>Engineering, design, marketing, sales &mdash; they all have different goals. PMs keep everyone rowing in the same direction.</p>
+    </div>
+    <div class="card fragment fade-up">
+      <span class="icon"><i class="fa-solid fa-filter"></i></span>
+      <h4>Prioritization</h4>
+      <p>There are always more ideas than time. PMs decide what to do <em>first</em> and what to say <em>no</em> to.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ HOW WE BUILD ═══════════════════════ -->
+<section data-bg="green">
+  <div class="tag tag-green">Building Products</div>
+  <h2>The Classic Product Cycle</h2>
+  <div class="timeline">
+    <div class="timeline-step fragment fade-up">
+      <div class="timeline-dot" style="border-color: var(--accent); color: var(--accent);"></div>
+      <h4>Discover</h4>
+      <p>Talk to users.<br>Understand their<br>problems deeply.</p>
+    </div>
+    <div class="timeline-step fragment fade-up">
+      <div class="timeline-dot" style="border-color: #a29bfe; color: #a29bfe;"></div>
+      <h4>Define</h4>
+      <p>Pick the problem<br>worth solving.<br>Set clear goals.</p>
+    </div>
+    <div class="timeline-step fragment fade-up">
+      <div class="timeline-dot" style="border-color: var(--accent2); color: var(--accent2);"></div>
+      <h4>Design</h4>
+      <p>Sketch solutions.<br>Create prototypes.<br>Test with users.</p>
+    </div>
+    <div class="timeline-step fragment fade-up">
+      <div class="timeline-dot" style="border-color: var(--accent3); color: var(--accent3);"></div>
+      <h4>Develop</h4>
+      <p>Engineers build it.<br>Start small, iterate<br>quickly.</p>
+    </div>
+    <div class="timeline-step fragment fade-up">
+      <div class="timeline-dot" style="border-color: var(--accent4); color: var(--accent4);"></div>
+      <h4>Deliver</h4>
+      <p>Ship to users.<br>Measure results.<br>Learn &amp; repeat.</p>
+    </div>
+  </div>
+  <p class="fragment fade-up" style="font-size:0.5em; color:rgba(255,255,255,0.4); margin-top:18px;">
+    This cycle hasn't changed. But <strong style="color:#fff;">who does each step</strong> is changing fast.
+  </p>
+</section>
+
+<!-- ═══════════════════════ MVP ═══════════════════════ -->
+<section data-bg="green">
+  <div class="tag tag-green">Start Small</div>
+  <h2>The MVP Mindset</h2>
+  <h3 style="font-size:0.85em;">Minimum Viable Product</h3>
+  <div class="compare-container" style="max-width:680px; margin:16px auto 0;">
+    <div class="compare-card fragment fade-up">
+      <h4 style="color: var(--accent2);"><i class="fa-solid fa-xmark"></i> Not an MVP</h4>
+      <ul>
+        <li><i class="fa-solid fa-xmark" style="color:var(--accent2);"></i> A half-finished product</li>
+        <li><i class="fa-solid fa-xmark" style="color:var(--accent2);"></i> Something ugly &amp; broken</li>
+        <li><i class="fa-solid fa-xmark" style="color:var(--accent2);"></i> A prototype with no users</li>
+        <li><i class="fa-solid fa-xmark" style="color:var(--accent2);"></i> A checklist of features</li>
+      </ul>
+    </div>
+    <div class="compare-vs">VS</div>
+    <div class="compare-card fragment fade-up">
+      <h4 style="color: var(--accent3);"><i class="fa-solid fa-check"></i> A Real MVP</h4>
+      <ul>
+        <li><i class="fa-solid fa-check" style="color:var(--accent3);"></i> Solves ONE core problem well</li>
+        <li><i class="fa-solid fa-check" style="color:var(--accent3);"></i> Real users can try it today</li>
+        <li><i class="fa-solid fa-check" style="color:var(--accent3);"></i> Generates real feedback</li>
+        <li><i class="fa-solid fa-check" style="color:var(--accent3);"></i> Teaches you what to do next</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ FEEDBACK LOOPS ═══════════════════════ -->
+<section data-bg="teal">
+  <div class="tag tag-teal">Feedback Loops</div>
+  <h2>The Engine of<br><span class="highlight-green">Great Products</span></h2>
+  <div class="loop-container">
+    <div class="loop-arrows">
+      <svg viewBox="0 0 200 200" fill="none">
+        <path d="M100 30 A70 70 0 0 1 170 100" stroke="rgba(108,99,255,0.4)" stroke-width="2" stroke-dasharray="6 4"/>
+        <path d="M170 100 A70 70 0 0 1 100 170" stroke="rgba(255,101,132,0.4)" stroke-width="2" stroke-dasharray="6 4"/>
+        <path d="M100 170 A70 70 0 0 1 30 100" stroke="rgba(67,233,123,0.4)" stroke-width="2" stroke-dasharray="6 4"/>
+        <path d="M30 100 A70 70 0 0 1 100 30" stroke="rgba(56,249,215,0.4)" stroke-width="2" stroke-dasharray="6 4"/>
+      </svg>
+    </div>
+    <div class="loop-item" style="top: 0; left: 50%; transform: translateX(-50%);">
+      <div class="loop-icon" style="background:rgba(108,99,255,0.15); border-color:rgba(108,99,255,0.5); color:var(--accent);">
+        <i class="fa-solid fa-lightbulb"></i>
+      </div>
+      <h4>Hypothesize</h4>
+      <p>"We believe X will<br>solve problem Y"</p>
+    </div>
+    <div class="loop-item" style="top: 50%; right: 0; transform: translateY(-50%);">
+      <div class="loop-icon" style="background:rgba(255,101,132,0.15); border-color:rgba(255,101,132,0.5); color:var(--accent2);">
+        <i class="fa-solid fa-hammer"></i>
+      </div>
+      <h4>Build</h4>
+      <p>Create the smallest<br>thing to test it</p>
+    </div>
+    <div class="loop-item" style="bottom: 0; left: 50%; transform: translateX(-50%);">
+      <div class="loop-icon" style="background:rgba(67,233,123,0.15); border-color:rgba(67,233,123,0.5); color:var(--accent3);">
+        <i class="fa-solid fa-chart-line"></i>
+      </div>
+      <h4>Measure</h4>
+      <p>Collect data from<br>real users</p>
+    </div>
+    <div class="loop-item" style="top: 50%; left: 0; transform: translateY(-50%);">
+      <div class="loop-icon" style="background:rgba(56,249,215,0.15); border-color:rgba(56,249,215,0.5); color:var(--accent4);">
+        <i class="fa-solid fa-brain"></i>
+      </div>
+      <h4>Learn</h4>
+      <p>Pivot or persevere<br>based on evidence</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ PART 2 DIVIDER ═══════════════════════ -->
+<section data-bg="hero">
+  <div class="tag tag-teal">Part 2</div>
+  <h2 style="font-size:2em;">The <span class="highlight-green">Shift</span></h2>
+  <h3 style="font-size:0.85em;">Everything you just learned is being rewritten &mdash; right now</h3>
+</section>
+
+<!-- ═══════════════════════ THE MOMENT ═══════════════════════ -->
+<section data-bg="purple">
+  <h2>Here's what changed</h2>
+  <div class="card-grid cols-3" style="margin-top:20px;">
+    <div class="card fragment fade-up" style="border-top: 3px solid var(--accent);">
+      <span class="icon"><i class="fa-solid fa-robot"></i></span>
+      <h4>AI Can Build</h4>
+      <p>A junior engineer used to take 2 weeks on a feature. An AI agent can scaffold it in an afternoon. The "develop" step just got 10x faster.</p>
+    </div>
+    <div class="card fragment fade-up" style="border-top: 3px solid var(--accent2);">
+      <span class="icon"><i class="fa-solid fa-magnifying-glass-chart"></i></span>
+      <h4>AI Can Research</h4>
+      <p>Analyzing 10,000 support tickets used to take a team weeks. AI does it in minutes and surfaces patterns humans miss.</p>
+    </div>
+    <div class="card fragment fade-up" style="border-top: 3px solid var(--accent3);">
+      <span class="icon"><i class="fa-solid fa-pen-ruler"></i></span>
+      <h4>AI Can Design</h4>
+      <p>Generate 20 UI variations from a text description. Prototype in hours, not sprints. Test ideas before writing a single line of code.</p>
+    </div>
+  </div>
+  <p class="fragment fade-up" style="font-size:0.6em; color:rgba(255,255,255,0.5); margin-top:16px;">
+    So if AI can do all of this... <strong style="color:#fff;">what's left for the PM?</strong>
+  </p>
+</section>
+
+<!-- ═══════════════════════ AI EVOLUTION ═══════════════════════ -->
+<section data-bg="purple">
+  <div class="tag tag-purple">Evolution</div>
+  <h2>The PM Role is Evolving</h2>
+  <div class="evo-timeline">
+    <div class="evo-card past fragment fade-up">
+      <div class="era">2010s</div>
+      <h4><i class="fa-solid fa-clipboard-list"></i> Traditional PM</h4>
+      <p>Write detailed specs. Long release cycles. Waterfall to Agile transition. Manual analysis of user data. The PM owned the roadmap doc.</p>
+    </div>
+    <div class="evo-card now fragment fade-up">
+      <div class="era">Now</div>
+      <h4><i class="fa-solid fa-bolt"></i> AI-Augmented PM</h4>
+      <p>AI helps summarize user research, draft specs, analyze data patterns, and generate prototypes in minutes. PM still drives decisions.</p>
+    </div>
+    <div class="evo-card future fragment fade-up">
+      <div class="era">Emerging</div>
+      <h4><i class="fa-solid fa-robot"></i> Agentic PM</h4>
+      <p>AI agents autonomously run experiments, analyze results, and propose product changes. PM becomes the strategic orchestrator.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ AGENTIC TEAMS ═══════════════════════ -->
+<section data-bg="teal">
+  <div class="tag tag-teal">Agentic Teams</div>
+  <h2>What are <span class="highlight-green">Agentic Teams</span>?</h2>
+  <div class="card-grid cols-2" style="max-width:680px; margin:16px auto 0;">
+    <div class="card fragment fade-up">
+      <span class="icon"><i class="fa-solid fa-users"></i></span>
+      <h4>Traditional Team</h4>
+      <p>Humans do all the work &mdash; research, design, code, test, ship. PM coordinates everything manually. Bottleneck is always people's time.</p>
+    </div>
+    <div class="card fragment fade-up" style="border-color: rgba(56,249,215,0.3);">
+      <span class="icon"><i class="fa-solid fa-microchip"></i></span>
+      <h4>Agentic Team</h4>
+      <p>AI agents handle routine execution &mdash; coding, testing, data analysis, even drafting specs. Humans focus on <strong>strategy, creativity, and judgment</strong>.</p>
+    </div>
+  </div>
+  <div class="fragment fade-up" style="margin-top:16px;">
+    <div class="quote-block" style="border-left-color: var(--accent4); padding: 12px 18px; margin: 0 auto;">
+      <p>"The best PMs of the future won't write more specs &mdash; they'll orchestrate AI agents, ask better questions, and make the judgment calls machines can't."</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ REAL EXAMPLE ═══════════════════════ -->
+<section data-bg="teal">
+  <div class="tag tag-teal">Real World</div>
+  <h2>What this looks like<br><span class="highlight-green">in practice</span></h2>
+  <div class="card-grid cols-2" style="max-width:700px; margin:16px auto 0;">
+    <div class="card fragment fade-up" style="border-left: 3px solid var(--accent2);">
+      <h4><i class="fa-solid fa-clock-rotate-left" style="color:var(--accent2);"></i> &nbsp;Before (2023)</h4>
+      <p>PM writes a 15-page spec over 2 weeks. Reviews with 3 teams. Engineering estimates 6 sprints. Ships in 3 months. Learns it was wrong after launch.</p>
+    </div>
+    <div class="card fragment fade-up" style="border-left: 3px solid var(--accent3);">
+      <h4><i class="fa-solid fa-forward" style="color:var(--accent3);"></i> &nbsp;Now (2025)</h4>
+      <p>PM describes the problem to an AI agent. Gets a draft spec + prototype in a day. Tests with users by Thursday. Ships a validated version in 2 weeks. Iterates based on real data.</p>
+    </div>
+  </div>
+  <p class="fragment fade-up" style="font-size:0.55em; color:rgba(255,255,255,0.5); margin-top:16px;">
+    The cycle didn't change. <strong style="color:#fff;">The speed changed.</strong> And that changes everything about what PMs should spend time on.
+  </p>
+</section>
+
+<!-- ═══════════════════════ WHAT PMs DO NOW ═══════════════════════ -->
+<section data-bg="pink">
+  <div class="tag tag-pink">The New Job</div>
+  <h2>What an Agentic PM<br><em>actually</em> does</h2>
+  <ul class="emoji-list">
+    <li class="fragment fade-up"><span class="em"><i class="fa-solid fa-crosshairs" style="color:var(--accent);"></i></span> <strong>Problem Selection:</strong> Deciding which problem matters most. AI can't tell you what's <em>worth</em> solving.</li>
+    <li class="fragment fade-up"><span class="em"><i class="fa-solid fa-sitemap" style="color:var(--accent2);"></i></span> <strong>Agent Orchestration:</strong> Setting up AI agents to research, prototype, and test &mdash; then reviewing their output critically.</li>
+    <li class="fragment fade-up"><span class="em"><i class="fa-solid fa-scale-balanced" style="color:var(--accent3);"></i></span> <strong>Judgment Calls:</strong> AI gives you 10 options. Knowing which one to ship &mdash; that's still a human skill.</li>
+    <li class="fragment fade-up"><span class="em"><i class="fa-solid fa-shield-halved" style="color:var(--accent4);"></i></span> <strong>Guardrails:</strong> Making sure what gets built is safe, ethical, and aligned with the company mission.</li>
+    <li class="fragment fade-up"><span class="em"><i class="fa-solid fa-people-arrows" style="color:var(--accent);"></i></span> <strong>Stakeholder Trust:</strong> AI can draft a strategy. It can't sell it to a room of skeptical executives.</li>
+  </ul>
+</section>
+
+<!-- ═══════════════════════ THE TRAP ═══════════════════════ -->
+<section data-bg="pink">
+  <div class="tag tag-pink">The Trap</div>
+  <h2>The biggest mistake PMs<br>make with AI</h2>
+  <div class="quote-block fragment fade-up" style="border-left-color: var(--accent2);">
+    <p>"We can ship 10x faster now!"</p>
+    <cite>&mdash; Every PM after discovering AI coding agents</cite>
+  </div>
+  <div class="fragment fade-up" style="margin-top:20px;">
+    <p style="font-size:0.68em; color:rgba(255,255,255,0.7); max-width:600px; margin:0 auto;">
+      Faster shipping without better <em>problem selection</em> just means you build the wrong thing 10x faster.
+    </p>
+    <p style="font-size:0.68em; color:rgba(255,255,255,0.9); max-width:600px; margin:12px auto 0; font-weight:600;">
+      Speed is the easy part. <span class="highlight">Knowing what to build is the hard part.</span>
+    </p>
+  </div>
+</section>
+
+<!-- ═══════════════════════ WHAT STAYS HUMAN ═══════════════════════ -->
+<section data-bg="pink">
+  <div class="tag tag-pink">The Human Edge</div>
+  <h2>What <em>can't</em> AI replace?</h2>
+  <ul class="emoji-list" style="max-width:550px;">
+    <li class="fragment fade-up"><span class="em"><i class="fa-solid fa-heart" style="color:var(--accent2);"></i></span> <strong>Empathy</strong> &mdash; truly understanding human pain and joy</li>
+    <li class="fragment fade-up"><span class="em"><i class="fa-solid fa-eye" style="color:var(--accent);"></i></span> <strong>Vision</strong> &mdash; imagining a future that doesn't exist yet</li>
+    <li class="fragment fade-up"><span class="em"><i class="fa-solid fa-scale-balanced" style="color:var(--accent3);"></i></span> <strong>Ethics</strong> &mdash; deciding what we <em>should</em> build, not just what we <em>can</em></li>
+    <li class="fragment fade-up"><span class="em"><i class="fa-solid fa-handshake" style="color:var(--accent4);"></i></span> <strong>Trust</strong> &mdash; building relationships with teams and users</li>
+    <li class="fragment fade-up"><span class="em"><i class="fa-solid fa-brain" style="color:var(--accent);"></i></span> <strong>Judgment</strong> &mdash; making tough calls with incomplete information</li>
+  </ul>
+  <p class="fragment fade-up" style="font-size:0.55em; color:rgba(255,255,255,0.5); margin-top:12px;">
+    AI is a <strong style="color:#fff;">power tool</strong>, not a replacement. The best PMs will be those who learn to wield it.
+  </p>
+</section>
+
+<!-- ═══════════════════════ MY FRAMEWORK ═══════════════════════ -->
+<section data-bg="green">
+  <div class="tag tag-green">Framework</div>
+  <h2>The Agentic PM Framework</h2>
+  <div class="timeline">
+    <div class="timeline-step fragment fade-up">
+      <div class="timeline-dot" style="border-color: var(--accent); color: var(--accent);"></div>
+      <h4>Orchestrate</h4>
+      <p>Direct AI agents<br>with clear intent.<br>Set the mission.</p>
+    </div>
+    <div class="timeline-step fragment fade-up">
+      <div class="timeline-dot" style="border-color: #a29bfe; color: #a29bfe;"></div>
+      <h4>Review</h4>
+      <p>Treat AI output<br>as untrusted.<br>Verify everything.</p>
+    </div>
+    <div class="timeline-step fragment fade-up">
+      <div class="timeline-dot" style="border-color: var(--accent2); color: var(--accent2);"></div>
+      <h4>Decide</h4>
+      <p>Make the calls<br>AI can't make.<br>Own the outcome.</p>
+    </div>
+    <div class="timeline-step fragment fade-up">
+      <div class="timeline-dot" style="border-color: var(--accent3); color: var(--accent3);"></div>
+      <h4>Ship</h4>
+      <p>Get it to users<br>fast. Measure<br>real impact.</p>
+    </div>
+    <div class="timeline-step fragment fade-up">
+      <div class="timeline-dot" style="border-color: var(--accent4); color: var(--accent4);"></div>
+      <h4>Learn</h4>
+      <p>Feed results back.<br>Improve the agents.<br>Improve yourself.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ AI SUPERPOWERS ═══════════════════════ -->
+<section data-bg="teal">
+  <div class="tag tag-teal">Superpowers</div>
+  <h2>AI Superpowers for PMs</h2>
+  <div class="card-grid cols-2" style="max-width:680px; margin:16px auto 0;">
+    <div class="card fragment fade-up">
+      <span class="icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+      <h4>Research at Scale</h4>
+      <p>Analyze thousands of support tickets, reviews, and interviews in seconds to surface patterns no human team could find.</p>
+    </div>
+    <div class="card fragment fade-up">
+      <span class="icon"><i class="fa-solid fa-bolt"></i></span>
+      <h4>Rapid Prototyping</h4>
+      <p>Generate working prototypes from descriptions. Test 5 ideas in the time it used to take to debate 1.</p>
+    </div>
+    <div class="card fragment fade-up">
+      <span class="icon"><i class="fa-solid fa-chart-line"></i></span>
+      <h4>Predictive Analytics</h4>
+      <p>AI models can predict which features will drive retention before you build them. Fail cheaper, learn faster.</p>
+    </div>
+    <div class="card fragment fade-up">
+      <span class="icon"><i class="fa-solid fa-arrows-spin"></i></span>
+      <h4>Always-On Feedback</h4>
+      <p>AI agents continuously monitor user behavior, flag issues, and surface opportunities. The feedback loop never stops.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ POLL 2 ═══════════════════════ -->
+<section data-bg="purple">
+  <div class="tag tag-purple">Quick Check</div>
+  <h2>In 5 years, the most valuable<br>PM skill will be...</h2>
+  <div class="poll-container" id="poll2">
+    <div class="poll-option" onclick="selectPoll(this, 'poll2')">
+      <div class="letter">A</div>
+      <span>Writing detailed specs and PRDs</span>
+    </div>
+    <div class="poll-option" onclick="selectPoll(this, 'poll2')">
+      <div class="letter">B</div>
+      <span>Orchestrating AI agents effectively</span>
+    </div>
+    <div class="poll-option" onclick="selectPoll(this, 'poll2')">
+      <div class="letter">C</div>
+      <span>Deep customer empathy and judgment</span>
+    </div>
+    <div class="poll-option" onclick="selectPoll(this, 'poll2')">
+      <div class="letter">D</div>
+      <span>Coding and technical depth</span>
+    </div>
+    <div class="poll-reveal" id="poll2-reveal">
+      <strong>B and C together.</strong> Specs will be auto-generated. Coding is increasingly commoditized. But knowing <em>which problem matters</em> (C) and <em>how to get machines to solve it well</em> (B) &mdash; that combination is the new PM superpower. The PMs who master both will be unstoppable.
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ KEY TAKEAWAYS ═══════════════════════ -->
+<section data-bg="green">
+  <div class="tag tag-green">Recap</div>
+  <h2>Key Takeaways</h2>
+  <div class="card-grid cols-2" style="max-width:680px; margin:14px auto 0;">
+    <div class="card fragment fade-up">
+      <span class="icon"><i class="fa-solid fa-compass"></i></span>
+      <h4>PM = Problem Finder</h4>
+      <p>Not a feature factory. PMs find the right problems &mdash; that job just got more important, not less.</p>
+    </div>
+    <div class="card fragment fade-up">
+      <span class="icon"><i class="fa-solid fa-arrows-spin"></i></span>
+      <h4>Build &rarr; Measure &rarr; Learn</h4>
+      <p>Same loop, 10x faster. AI compresses cycles from months to days. The PM who iterates fastest wins.</p>
+    </div>
+    <div class="card fragment fade-up">
+      <span class="icon"><i class="fa-solid fa-user-astronaut"></i></span>
+      <h4>Orchestrate, Don't Abdicate</h4>
+      <p>AI agents are powerful tools. But the PM still owns the outcome. Review everything. Trust nothing blindly.</p>
+    </div>
+    <div class="card fragment fade-up">
+      <span class="icon"><i class="fa-solid fa-rocket"></i></span>
+      <h4>The Best Time is Now</h4>
+      <p>Every PM who learns to work with AI agents today has a 2-year head start. Start building. Start experimenting.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ RESOURCES ═══════════════════════ -->
+<section data-bg="pink">
+  <div class="tag tag-pink">Keep Learning</div>
+  <h2>Want to dive deeper?</h2>
+  <ul class="emoji-list" style="max-width:580px;">
+    <li><span class="em"><i class="fa-solid fa-book" style="color:var(--accent2);"></i></span> <strong>"Inspired"</strong> by Marty Cagan &mdash; the PM bible</li>
+    <li><span class="em"><i class="fa-solid fa-book" style="color:var(--accent3);"></i></span> <strong>"The Lean Startup"</strong> by Eric Ries &mdash; build, measure, learn</li>
+    <li><span class="em"><i class="fa-solid fa-headphones" style="color:var(--accent);"></i></span> <strong>Lenny's Podcast</strong> &mdash; interviews with top PMs</li>
+    <li><span class="em"><i class="fa-solid fa-robot" style="color:var(--accent4);"></i></span> <strong>Try building something with AI agents</strong> &mdash; best way to learn</li>
+    <li><span class="em"><i class="fa-solid fa-pen-fancy" style="color:var(--accent2);"></i></span> <strong>"Agentic Engineering"</strong> by Andrej Karpathy &mdash; how builders work with AI</li>
+  </ul>
+</section>
+
+<!-- ═══════════════════════ CLOSING ═══════════════════════ -->
+<section data-bg="hero">
+  <h2 style="font-size:2.2em;">The future of PM isn't<br><span class="highlight">AI vs. humans</span></h2>
+  <h3 style="font-size:1em; margin-top:16px;">
+    It's humans who <span class="highlight" style="font-weight:600;">know how to use AI</span> vs. humans who don't.
+  </h3>
+  <p style="font-size:0.75em; margin-top:30px; color:rgba(255,255,255,0.5);">Questions? Let's chat!</p>
+  <p style="font-size:0.6em; margin-top:20px; color:rgba(255,255,255,0.45);">
+    <strong>Asaf Nakash</strong> &nbsp;|&nbsp; <a href="https://linkedin.com/in/intasaf" style="color:var(--accent); text-decoration:none;">linkedin.com/in/intasaf</a> &nbsp;|&nbsp; <a href="https://github.com/nakashon" style="color:var(--accent); text-decoration:none;">github.com/nakashon</a>
+  </p>
+  <div style="margin-top:30px;">
+    <div class="tag tag-purple" style="font-size:0.5em;">Press <kbd style="background:rgba(255,255,255,0.15);padding:2px 6px;border-radius:3px;">Esc</kbd> for slide overview</div>
+  </div>
+</section>
+
+</div><!-- /slides -->
+</div><!-- /reveal -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.js"></script>
+<script>
+Reveal.initialize({
+  hash: true,
+  slideNumber: 'c/t',
+  transition: 'slide',
+  transitionSpeed: 'default',
+  backgroundTransition: 'fade',
+  controls: true,
+  controlsTutorial: true,
+  progress: true,
+  center: true,
+  width: 1200,
+  height: 700,
+  margin: 0.04,
+});
+
+// Apply data-bg as inline background
+document.querySelectorAll('[data-bg]').forEach(el => {
+  const bg = el.getAttribute('data-bg');
+  const styles = {
+    hero: 'radial-gradient(ellipse at 30% 50%, rgba(108,99,255,0.25) 0%, transparent 60%), radial-gradient(ellipse at 70% 80%, rgba(255,101,132,0.15) 0%, transparent 50%), #0a0a1a',
+    purple: 'radial-gradient(ellipse at 50% 30%, rgba(108,99,255,0.2) 0%, transparent 60%), #0a0a1a',
+    pink: 'radial-gradient(ellipse at 60% 40%, rgba(255,101,132,0.2) 0%, transparent 60%), #0a0a1a',
+    green: 'radial-gradient(ellipse at 40% 50%, rgba(67,233,123,0.15) 0%, transparent 60%), #0a0a1a',
+    teal: 'radial-gradient(ellipse at 50% 50%, rgba(56,249,215,0.15) 0%, transparent 60%), #0a0a1a',
+  };
+  if (styles[bg]) {
+    el.setAttribute('data-background', styles[bg]);
+  }
+});
+
+// Reinitialize to pick up data-background
+Reveal.sync();
+
+// Poll interaction
+function selectPoll(el, pollId) {
+  const container = document.getElementById(pollId);
+  container.querySelectorAll('.poll-option').forEach(o => o.classList.remove('selected'));
+  el.classList.add('selected');
+  const reveal = document.getElementById(pollId + '-reveal');
+  reveal.classList.add('show');
+}
+</script>
+</body>
+</html>
