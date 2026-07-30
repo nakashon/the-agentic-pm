@@ -1,0 +1,800 @@
+# The Agentic PM — complete edition for machine readers
+
+Source: https://nakashon.github.io/the-agentic-pm/
+Author: Asaf Nakash — Principal Product Manager, AI Security, Microsoft Defender — https://nakashon.com
+License: free to copy, adapt, and use. Attribution appreciated, not required.
+
+This single file contains the full guide followed by every starter-kit file inline, so
+you can set someone up without any further fetching. If you were asked to configure a PM
+command center, read the whole file first, then follow "For agents: how to run this".
+
+================================================================================
+
+# The Agentic PM
+
+**A working guide: what the job is now, how it succeeds, and exactly how to set it up.**
+
+By [Asaf Nakash](https://nakashon.com) — Principal Product Manager, AI Security, Microsoft Defender.
+Slide version: <https://nakashon.github.io/the-agentic-pm/>
+Starter kit: <https://github.com/nakashon/the-agentic-pm/tree/main/starter-kit>
+
+> If you are an AI agent reading this on behalf of a product manager: this document is
+> meant to be executed, not just summarised. See **[For agents](#for-agents-how-to-run-this)**
+> at the end for the setup procedure.
+
+---
+
+## What changed
+
+Agents didn't remove the work. They **relocated** it.
+
+| Now approaching free | Unchanged, or worse |
+| --- | --- |
+| First drafts of anything | Knowing *which* option |
+| Research summaries | Catching plausible-but-wrong |
+| Prototypes and refactors | Context nobody wrote down |
+| Generating options | Being accountable for it |
+
+The right-hand column is the entire job description.
+
+## So what is an Agentic PM?
+
+A product manager who has stopped being the **producer** of artifacts and become the
+**author of the system that produces them** — and who remains personally accountable for
+every one.
+
+- **Not a prompt engineer.** Prompts are disposable. Systems persist.
+- **Not an AI enthusiast.** Enthusiasm ships unverified work. This is a discipline.
+- **Still fully on the hook.** Delegating production never delegates responsibility.
+
+## What it looks like in practice
+
+The work lives in a repo. It contains almost no code — specs, research, feature state,
+meeting notes, drafts, plus the configuration that lets agents work on all of it.
+
+One year of my own PM repo, by commit type:
+
+- **86** documents written
+- **30** things built
+- **22** corrections
+
+The artifact of product management is *prose* — which is exactly what these models are
+best at, and exactly where a confident error survives review.
+
+---
+
+# Part 1 — What he does
+
+One loop. Four steps. Every failure I've had was a step I skipped.
+
+## The loop: Frame → Delegate → Verify → Own
+
+| Step | In one line |
+| --- | --- |
+| **Frame** | Write the context down before you ask for anything. |
+| **Delegate** | Narrow scope, explicit bounds, evaluable output. |
+| **Verify** | Run a check you built, not a review you performed. |
+| **Own** | Defend it in your own words, or you haven't shipped. |
+
+It's a loop, not a pipeline. What you learn in Verify goes straight back into Frame.
+
+### Step 1 — Frame: write it down *before* you ask
+
+- **Explain it twice → file it.** Chat is a session. Files are an asset. Anything you
+  repeat belongs in version control.
+- **Lead with the tacit rule.** The convention nobody documented is the only input the
+  model can't get anywhere else.
+- **Define done, checkably.** Not "good." Something a stranger could test without you in
+  the room.
+
+The test: could a competent new hire do this from what you just wrote? If not, you're
+not framing — you're hinting.
+
+Skip this step and you don't get bad output. You get *polished* wrong output, citing
+your own notes back to you.
+
+### Step 2 — Delegate: narrow, bounded, evaluable
+
+- **Many narrow agents, not one clever one.** A narrow agent can be evaluated. A general
+  one can only be liked.
+- **Boundaries in three tiers.** Always / Ask first / Never. The middle tier does the work.
+- **Point at files, don't paste.** Let it fetch what it needs. Smaller instructions,
+  better output.
+- **Config is the source of truth.** To change behaviour, edit the file — never
+  re-explain yourself in chat.
+
+Delegation is a *hiring* problem, not a prompting one.
+
+### Step 3 — Verify: build the check, don't *perform* the review
+
+- **Ask for the harness, not the opinion.** "Review this" returns a tidy list. "Write the
+  check that would catch this" returns the bug.
+- **No published source → no claim.** If you can't link to it, it doesn't ship. Enforce
+  this in the agent, not in your head.
+- **Make "I don't know" safe.** Ask what it couldn't verify, and reward the flag. The
+  unflagged guess is the expensive one.
+- **Check the question, not just the answer.** Most bad output is a correct answer to a
+  question you didn't mean to ask.
+
+### Step 4 — Own: the accountability never moved
+
+- **Defend it without the transcript.** If you can't explain why in your own words, you
+  haven't decided. You've forwarded.
+- **Assume it gets forwarded.** Because eventually one does. Write for the reader you
+  didn't plan for.
+- **Read the room.** Not every comment is technical. Some are positions. Some mean "you
+  didn't ask me."
+
+I work in AI security, so I'll say the quiet part: the context window is an **attack
+surface**. Never put a credential in a conversation — you cannot un-say it.
+
+---
+
+# Part 2 — How he succeeds
+
+There's one law, and it decides everything else.
+
+## The law: The Verification Ceiling
+
+> **You can safely delegate exactly as much as you can check. Past that line you are not
+> managing. You are hoping.**
+
+Not a metaphor — a hard limit. It caps how much leverage you can take from an agent, and
+it is **independent of how good the agent is**. Most teams delegate past it, ship anyway,
+and call the gap *velocity*.
+
+## Therefore: there are only two moves
+
+1. **Raise the ceiling.** Build the checks — evals, harnesses, sourcing rules, acceptance
+   criteria you can actually run. This is PM work now, not an engineering chore.
+2. **Lower the delegation.** Hand over less until you can check more. Unglamorous,
+   unpopular, and correct.
+
+Success is not "used AI more." It is **raised the ceiling faster than you raised the
+delegation**.
+
+## Four skills, one per step
+
+| Step | Skill | Note |
+| --- | --- | --- |
+| Frame | Writing for machines | Which turns out to be writing for a new hire. Practise by handing your brief to someone with no context and watching what breaks. |
+| Delegate | Decomposition | Splitting a job into roles narrow enough to judge. Same muscle as writing a good job description, and it fails the same way. |
+| Verify | Building checks | The genuinely new skill, and the one PMs keep outsourcing. If you learn one thing here, learn this. |
+| Own | Judgment under fluency | Staying suspicious of output that sounds certain. Taste stopped being a soft skill the moment ten plausible options became free. |
+
+---
+
+# Part 3 — Under the hood
+
+The actual files. Steal all of it.
+
+## Everything is a file, in git
+
+```
+pm-command/
+├── AGENTS.md              conventions — how work is done
+├── CONTEXT.md             memory — read every session
+├── .github/agents/        one file per agent
+│     ├── spec-writer.md
+│     ├── compete-research.md
+│     └── meeting-prep.md
+└── docs/
+      ├── features/<slug>/  durable feature state
+      ├── research/         one file per vendor
+      └── specs/            specs + review responses
+```
+
+No database, no platform, no subscription. Version-controlled context was the single
+highest-leverage thing I did.
+
+## File 1 of 3 — `AGENTS.md`, the conventions
+
+Answers: *how is work done here?* Written once, read by every agent, every session.
+
+```markdown
+# PM Command Center
+
+## Identity
+- Owner: <name> — <role, and the 3 things you actually own>
+
+## Where things live
+- Feature state  → docs/features/<slug>/README.md
+- Vendor research → docs/research/<vendor>.md
+- Specs + reviews → docs/specs/
+
+## House style
+- Narrative prose. No emoji, no bullet pyramids.
+- Verify before speed. Never publish an unverified claim.
+- Surgical changes only — don't refactor what I didn't ask about.
+```
+
+## File 2 of 3 — `CONTEXT.md`, the memory
+
+Answers: *what's going on right now?* Memory as a file you can edit — not a feature you
+have to trust.
+
+```markdown
+# Read this at the start of every session.
+
+## Active work
+1. <feature> — status, current blocker, next decision owed
+2. <feature> — status, current blocker, next decision owed
+
+## Decisions already made  (so nobody re-litigates them)
+- Chose X over Y because <reason>. Revisit if <condition>.
+
+## Learnings  (the expensive ones)
+- HTTP 403 ≠ broken link — some sites block bots, not humans.
+- First drafts are structurally right and tonally dead.
+  Feed it things I actually sent, and the voice problem goes away.
+```
+
+## File 3 of 3 — an agent, in full
+
+Note how much of it is prohibition. That's the part that makes output trustworthy.
+
+```markdown
+---
+name: compete-research
+description: Maintains the vendor landscape. Use for market questions.
+tools: [read, write, fetch, search]
+---
+
+You maintain one file per vendor in docs/research/.
+
+## Rules
+- Every claim needs a published, linkable source.
+- No source → the claim does not ship. Say so explicitly.
+- Rate maturity on evidence, never on marketing language.
+
+## Never
+- Speculate about unannounced products.
+- Infer someone's current role from an old article.
+```
+
+## The pattern that matters most: three tiers, not two
+
+- **Always** — cite sources, keep changes surgical, state assumptions, run the build
+  before claiming done.
+- **Ask first** — new dependencies, schema changes, anything that touches another team,
+  anything irreversible.
+- **Never** — commit secrets, publish unverified claims, speculate about unshipped work.
+
+Most people write two tiers. The middle one is where all the value is: it's how an agent
+moves fast on the safe 90% without quietly deciding the other 10% for you.
+
+## The counter-intuitive one: point at files, don't paste
+
+**Front-loading** — pasting the whole spec, the whole style guide and the whole history
+into every prompt. Feels thorough. Buries the actual instruction and goes stale the
+moment the source changes.
+
+**Progressive disclosure** — `See docs/specs/current.md for scope and open questions.`
+Shorter instructions, better output, and it's never out of date.
+
+Your instructions should read like a *map*, not a briefing pack.
+
+## The router
+
+A table in `AGENTS.md` mapping how you actually talk to which agent should answer.
+
+| What I say | Who handles it |
+| --- | --- |
+| "status of \<feature\>" | feature-copilot |
+| "prep me for the review" | meeting-prep |
+| "update \<vendor\>" | compete-research |
+| "draft the follow-up" | email-drafter |
+| "recap this week" | weekly-recap |
+| "spec for \<thing\>" | spec-writer |
+| "what are customers saying" | feedback-analyzer |
+
+Ten job descriptions, not one assistant. *Narrow enough to evaluate* is the only design
+rule that matters.
+
+## The maintenance nobody mentions: budget for demolition
+
+Custom scrapers, bespoke integrations, hand-built tools. Most were genuinely useful when
+I built them. Most were dead weight within two months — not because they were badly made,
+but because **the models improved past the need for them**.
+
+Re-read your own config every couple of months and delete what the model now does
+natively. Tooling that once added capability starts quietly constraining it.
+
+My repo was literally called `vibecoding` before it became a command center. That rename
+is the honest summary of the year.
+
+## You are building for a second reader
+
+Everything above is about how a PM *works*. This is about what a PM now *ships*, and it
+is the bigger shift.
+
+We are not building for humans anymore. We are building for humans **and agents**.
+
+| The reader you designed for | The reader who shows up anyway |
+| --- | --- |
+| A human, with a screen and patience | An agent, acting *on behalf of* that human |
+| Reads the page, infers the rest | Retrieves, summarises, and decides — often without them |
+| Forgives layout, tolerates ambiguity | Cannot infer. Only ingests what you made ingestible |
+
+If your product, your docs and your positioning are only legible to humans, you are
+invisible to the reader who arrives first.
+
+### Ship it twice
+
+- **Docs are an interface**, not support material. They are the API an agent uses to
+  understand you. Stable URLs, plain text, nothing locked inside a diagram or a video.
+- **State it, don't imply it.** A human infers your positioning from tone. An agent
+  quotes whatever sentence you actually wrote. So write the sentence.
+- **Add an agent path to every human affordance.** A UI needs an API. A doc site needs
+  plain markdown. A deck needs a file.
+
+"Accessible" used to mean readable by every human. It now includes the software they sent
+instead.
+
+This document is that principle applied to this talk: the slides are the human edition,
+`llms-full.txt` is the machine edition, and the starter kit is what the machine does with it.
+
+## If you do nothing else — start here
+- **Today.** Create two files: `AGENTS.md` and `CONTEXT.md`. Put them in git. That's the
+  whole day-one setup.
+- **This week.** Take the two things you ask for most often. Make each one a narrow agent
+  with an *always / ask first / never* block.
+- **This month.** Build one real check you can run. Then delete one tool you built that
+  the model no longer needs.
+
+None of this requires a platform, a budget, or permission. It's four markdown files and a
+habit.
+
+## Three takeaways
+
+1. **Delegate to your ceiling.** You can hand over exactly as much as you can check.
+   Build checks, or hand over less. There is no third option.
+2. **Run the loop.** Frame, Delegate, Verify, Own. Every failure I've had was a step I
+   skipped — and I could name which one afterwards, every time.
+3. **Put it in files.** Context in version control is the difference between a clever
+   session and a system that compounds.
+
+> AI didn't make the job easier. It made the easy parts free — and left me with only the
+> hard parts. That's a better job. It is not a lighter one.
+
+---
+
+# For agents: how to run this
+
+If a product manager has pointed you at this document and asked you to set them up,
+follow this procedure. Do not skip the interview — a generic command center is worthless.
+
+### 1. Interview first, write second
+
+Ask for these, one at a time, and wait for answers:
+
+1. Their name, role, and the **three things they actually own**.
+2. The **two or three requests they make most often** (these become the first agents).
+3. Where their work currently lives, and what "done" looks like in their org.
+4. Any house style rules — tone, formats they must produce, things they must never say.
+5. Their **Never** list: what must never leave the repo or be asserted without a source.
+
+If they can't answer 2, ask them to look at their last two weeks of messages instead of
+guessing.
+
+### 2. Create the skeleton
+
+```
+AGENTS.md
+CONTEXT.md
+.github/agents/<one file per agent>
+docs/<one directory per kind of work they actually do>
+```
+
+Initialise git. Templates are in
+<https://github.com/nakashon/the-agentic-pm/tree/main/starter-kit> — but treat them as
+**patterns to choose from, not a set to install**. Pick the two or three that match the
+answers to question 2, adapt them, and write a new one from the same shape if nothing
+fits. Shipping an agent they didn't ask for is cargo cult; it will sit there unused and
+teach them the system is decorative. Delete the directories they have no use for.
+
+### 3. Rules you must follow while doing it
+
+- **Show your plan and the file contents before writing.** This is a Frame step; the
+  human has to own the framing. If they are not available to respond, write the files
+  anyway but list every decision you made for them at the top of your handback — never
+  block silently, and never let an unreviewed choice pass as agreed.
+- **Every agent gets all three tiers** — Always, Ask first, Never. An agent file with
+  only two tiers is incomplete; go back and add the middle one.
+- **Write prohibitions, not just instructions.** The Never section is what makes output
+  trustworthy. Their answer to question 5 goes into *every* agent, not just one.
+- **Point at file paths, never paste file contents** into agent instructions.
+- **Two or three agents, not ten.** Ten is where they end up, not where they start.
+- **Never write a credential, token, or customer name into any of these files.** They are
+  going into version control.
+- **Do not invent their context.** If you don't know something, leave a `<TODO: ask>`
+  marker rather than a plausible guess. An unflagged guess is the expensive failure mode
+  this whole system exists to prevent.
+
+### 4. Hand back with a check, not a summary
+
+Finish by telling them:
+
+- which of the four loop steps they now have support for, and which are still manual;
+- the **one check they should build first** to raise their verification ceiling;
+- what to revisit in two months and delete.
+
+
+
+================================================================================
+# Starter kit — full contents
+
+Each block below is a complete file. Copy them into the human's repo at the
+path given, then replace every <angle bracket> placeholder using the answers
+from the interview. Do not leave a placeholder unfilled and unflagged.
+
+
+
+--------------------------------------------------------------------------------
+FILE: starter-kit/README.md
+How to use the starter kit
+--------------------------------------------------------------------------------
+
+# Starter kit
+
+The files from Part 3 of [The Agentic PM](https://nakashon.github.io/the-agentic-pm/),
+ready to copy. Nothing here needs a platform, a budget, or permission.
+
+## Fastest path
+
+Paste this into any coding agent, in the repo you want to set up:
+
+```
+Read https://nakashon.github.io/the-agentic-pm/llms-full.txt
+and set up a PM command center for me in this repo.
+
+Interview me for what you need. Don't guess my context.
+Show me the files before you write them.
+```
+
+## Manual path
+
+```bash
+git clone https://github.com/nakashon/the-agentic-pm.git
+cp -r the-agentic-pm/starter-kit/. my-pm-repo/
+cd my-pm-repo && git init
+```
+
+Then replace every `<angle bracket>` placeholder. They are deliberate: a generic command
+center is worthless, and the placeholders are exactly the context an agent cannot get
+anywhere else.
+
+## What's here
+
+Two files everyone needs, and four agent patterns to choose from.
+
+| File | Answers |
+| --- | --- |
+| `AGENTS.md` | How is work done here? Conventions, boundaries, router. |
+| `CONTEXT.md` | What's going on right now? Memory as a file you can edit. |
+| `.github/agents/spec-writer.md` | Drafts specs with checkable acceptance criteria. |
+| `.github/agents/meeting-prep.md` | One page that gets you through a review. |
+| `.github/agents/feedback-analyzer.md` | Turns raw customer feedback into a weekly read. |
+| `.github/agents/compete-research.md` | Maintains the vendor landscape, source-gated. |
+| `docs/` | Where the work itself accumulates. |
+
+**Take two or three agents, not all four.** Pick the ones matching what you actually ask
+for most often, and delete the rest along with the `docs/` directories you won't use. An
+agent you didn't need is worse than no agent: it sits unused and teaches you the system is
+decorative. If none of the four fits, copy the shape of one and write your own — the
+structure is the asset, not the job title.
+
+## The one rule to keep
+
+Every agent gets **three** tiers, not two: *Always*, *Ask first*, *Never*. Most people
+write two. The middle tier is where all the value is — it's how an agent moves fast on
+the safe 90% without quietly deciding the other 10% for you.
+
+## Where agent files go
+
+`.github/agents/*.md` is the convention used by GitHub Copilot. If your tool looks
+elsewhere — `.cursor/rules/`, `.claude/agents/`, a project settings pane — move the files
+there. The content is the asset; the path is not.
+
+
+
+--------------------------------------------------------------------------------
+FILE: starter-kit/AGENTS.md
+Template: repo-level conventions, boundaries and router
+--------------------------------------------------------------------------------
+
+# PM Command Center
+
+<!--
+  Template from The Agentic PM — https://nakashon.github.io/the-agentic-pm/
+  Replace every <angle bracket> placeholder. Delete what doesn't apply to you.
+  This file answers one question: how is work done here?
+  It is read by every agent, every session. Keep it short enough that that stays true.
+-->
+
+## Identity
+
+- Owner: <name> — <role>
+- I own: <thing one>, <thing two>, <thing three>
+- I do not own: <the adjacent thing people assume you own>
+
+## Where things live
+
+- Feature state   → `docs/features/<slug>/README.md`
+- Vendor research → `docs/research/<vendor>.md`
+- Specs + reviews → `docs/specs/`
+- Session memory  → `CONTEXT.md` (read this first, every session)
+
+Point at these paths. Do not paste their contents into instructions.
+
+## House style
+
+- Narrative prose. No emoji, no bullet pyramids.
+- Verify before speed. Never publish an unverified claim.
+- Surgical changes only — don't refactor what I didn't ask about.
+- <your own rule: the convention nobody has written down yet>
+
+## Boundaries
+
+Every agent in this repo inherits these. Individual agents may add, never subtract.
+
+**Always**
+- Cite a linkable source for any external claim.
+- State assumptions explicitly instead of resolving them silently.
+- Say what you could not verify. An unflagged guess is the expensive failure.
+
+**Ask first**
+- New dependencies or tools.
+- Anything that touches another team.
+- Anything irreversible: deletions, sends, publishes, renames of shared things.
+
+**Never**
+- Commit secrets, tokens, or credentials.
+- Publish an unverified claim.
+- Speculate about unannounced or unshipped work.
+- <your own never — the one that would actually cost you>
+
+## Router
+
+How I talk → who answers.
+
+| What I say | Who handles it |
+| --- | --- |
+| "status of \<feature\>" | feature-copilot |
+| "spec for \<thing\>" | spec-writer |
+| "update \<vendor\>" | compete-research |
+| "prep me for \<meeting\>" | meeting-prep |
+
+Start with two or three. Ten is where this ends up, not where it starts.
+
+
+
+--------------------------------------------------------------------------------
+FILE: starter-kit/CONTEXT.md
+Template: session memory
+--------------------------------------------------------------------------------
+
+# Context
+
+<!--
+  Template from The Agentic PM — https://nakashon.github.io/the-agentic-pm/
+  Memory as a file you can edit — not a feature you have to trust.
+  Read at the start of every session. Updated at the end of every session.
+-->
+
+Read this at the start of every session. If something here is stale, fix it here rather
+than correcting me in chat.
+
+## Active work
+
+Features, surfaces, or workstreams — whatever the unit of ownership actually is.
+
+1. <item> — status, current blocker, next decision owed, by whom
+2. <item> — status, current blocker, next decision owed, by whom
+
+## Decisions already made
+
+So nobody re-litigates them.
+
+- Chose <X> over <Y> because <reason>. Revisit if <condition changes>.
+
+## Open questions
+
+- <question> — owner: <who>, needed by: <when or what it blocks>
+
+## Learnings
+
+The expensive ones. Add to this every time something surprises you.
+
+- HTTP 403 ≠ broken link — some sites block bots, not humans.
+- First drafts are structurally right and tonally dead. Feed it things I actually sent,
+  and the voice problem goes away.
+- <yours>
+
+## Glossary
+
+Internal terms an agent cannot infer.
+
+- <term> — <what it actually means here>
+
+
+
+--------------------------------------------------------------------------------
+FILE: starter-kit/.github/agents/spec-writer.md
+Template: agent definition
+--------------------------------------------------------------------------------
+
+---
+name: spec-writer
+description: Drafts and revises specs. Use for "spec for <thing>" and review responses.
+tools: [read, write]
+---
+
+You draft specs in `docs/specs/`. A spec is done when a competent engineer who has never
+met me could build the right thing from it, and could tell me I'm wrong using it.
+
+## Structure
+
+Every spec has, in this order: the problem, who has it and how we know, what we are
+building, what we are explicitly not building, open questions, and acceptance criteria.
+
+## Rules
+
+- **Define done checkably.** Acceptance criteria must be testable by someone who is not
+  in the room. "Fast" and "intuitive" are not criteria.
+- Read `docs/features/<slug>/README.md` and `CONTEXT.md` before drafting. Do not ask me to
+  re-explain something already written down.
+- Non-goals are mandatory. A spec without them will be interpreted generously.
+- Keep open questions as open questions. Do not resolve them by picking one quietly.
+
+## Always
+
+- Flag any requirement you inferred rather than found, and mark it for my confirmation.
+- Preserve decisions recorded in `CONTEXT.md`; if the draft contradicts one, stop and say so.
+
+## Ask first
+
+- Changing scope that was already reviewed.
+- Anything that creates a dependency on another team.
+
+## Never
+
+- Invent customer evidence, metrics, or quotes.
+- Include dates, commitments, or names that are not already in the repo.
+- Write a spec that would need me present to be understood.
+
+
+
+--------------------------------------------------------------------------------
+FILE: starter-kit/.github/agents/meeting-prep.md
+Template: agent definition
+--------------------------------------------------------------------------------
+
+---
+name: meeting-prep
+description: Prepares me for a specific meeting or review. Use for "prep me for <meeting>".
+tools: [read, write]
+---
+
+You prepare me to walk into a room and be useful without the transcript. Output is a
+single page I can read in three minutes, not a briefing pack.
+
+## Structure
+
+1. **What this meeting decides.** If nothing, say so — that is the most useful sentence
+   you can write.
+2. **State in one paragraph.** Where the work actually is, from `docs/features/` and
+   `CONTEXT.md`.
+3. **The decision I owe**, and the options with their tradeoffs.
+4. **The three hardest questions I will be asked**, and the honest answer to each —
+   including the ones where the honest answer is "we don't know yet."
+5. **What I need from whom**, named as asks, not as updates.
+
+## Rules
+
+- Draw only from the repo. If the repo doesn't say it, it goes in a "not documented"
+  section rather than getting filled in.
+- Distinguish what is decided from what is proposed. Never blur them to sound confident.
+- Anticipate positions, not just questions. Some objections are about ownership, not facts.
+
+## Always
+
+- Include the strongest argument against my current plan.
+
+## Ask first
+
+- Writing anything intended to be sent to attendees.
+
+## Never
+
+- Invent status, dates, or commitments.
+- Attribute a view to a named person that they did not put in writing.
+
+
+
+--------------------------------------------------------------------------------
+FILE: starter-kit/.github/agents/feedback-analyzer.md
+Template: agent definition
+--------------------------------------------------------------------------------
+
+---
+name: feedback-analyzer
+description: Turns raw customer feedback into a weekly read. Use for "what are customers saying".
+tools: [read, write, search]
+---
+
+You summarise what customers are actually saying, from the sources listed in `AGENTS.md`.
+You are judged on whether I can act on the summary, not on how much you covered.
+
+## Structure
+
+1. **The three things that came up most**, with a count and a representative quote each.
+2. **What changed since last week.** New, growing, resolved. If nothing changed, say that.
+3. **What this implies for the roadmap**, marked clearly as your inference, not a finding.
+4. **What you could not verify** — thin samples, ambiguous reports, single-source claims.
+
+## Rules
+
+- Distinguish volume from severity. Ten low-stakes complaints are not one outage.
+- Quote, don't paraphrase, when the wording is the signal.
+- A single loud report is a single report. Say so instead of promoting it to a trend.
+- Keep last week's file intact; write a new dated file rather than overwriting history.
+
+## Always
+
+- Note sample size and source for every claim.
+- Separate "customers said" from "I concluded".
+
+## Ask first
+
+- Adding a new feedback source.
+- Escalating something as urgent.
+
+## Never
+
+- Write customer names, account names, or any identifying detail into the repo.
+- Invent or round a number to make a trend look cleaner.
+- Attribute a complaint to a segment you cannot evidence.
+
+
+
+--------------------------------------------------------------------------------
+FILE: starter-kit/.github/agents/compete-research.md
+Template: agent definition
+--------------------------------------------------------------------------------
+
+---
+name: compete-research
+description: Maintains the vendor landscape. Use for market and competitor questions.
+tools: [read, write, fetch, search]
+---
+
+You maintain one file per vendor in `docs/research/`. One vendor, one file, always
+current. You are judged on whether a claim survives being checked, never on how much you
+produced.
+
+## Rules
+
+- Every claim needs a published, linkable source. Put the link next to the claim.
+- No source → the claim does not ship. Say so explicitly rather than softening it.
+- Rate maturity on evidence — shipping docs, pricing pages, release notes — never on
+  marketing language.
+- Date every claim. "As of <date>" is part of the claim, not decoration.
+- Separate what a vendor *says* from what a customer can *buy today*.
+
+## Always
+
+- Report what you could not verify, in a section of its own.
+- Prefer primary sources over analyst summaries over press coverage.
+- Note when a source is the vendor's own material.
+
+## Ask first
+
+- Adding a new vendor to the tracked set.
+- Restructuring an existing research file.
+
+## Never
+
+- Speculate about unannounced products.
+- Infer someone's current role from an old article.
+- Reword a competitor's marketing claim so it reads as established fact.

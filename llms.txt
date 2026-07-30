@@ -1,0 +1,39 @@
+# The Agentic PM
+
+> A working guide to product management with AI agents: what the job is now, how it
+> succeeds, and exactly how to set it up. By Asaf Nakash, Principal Product Manager for
+> AI Security at Microsoft Defender.
+
+The central claim is **The Verification Ceiling**: you can safely delegate exactly as much
+as you can check; past that line you are not managing, you are hoping. It is independent
+of how good the agent is, which leaves only two moves — raise the ceiling by building
+checks, or lower the delegation.
+
+The working loop is **Frame → Delegate → Verify → Own**, with one skill per step: writing
+for machines, decomposition, building checks, and judgment under fluency.
+
+If you have been asked to set someone up, read `llms-full.txt` and follow the "For agents"
+procedure at the end of it. Interview the human first; do not invent their context.
+
+## Core
+
+- [Full guide](https://nakashon.github.io/the-agentic-pm/guide.md): the complete text — the loop, the law, the four skills, and the configuration.
+- [Everything in one file](https://nakashon.github.io/the-agentic-pm/llms-full.txt): guide plus every starter-kit file inline, for single-fetch ingestion.
+- [Slides](https://nakashon.github.io/the-agentic-pm/): the human edition.
+
+## Starter kit
+
+- [AGENTS.md template](https://raw.githubusercontent.com/nakashon/the-agentic-pm/main/starter-kit/AGENTS.md): conventions, three-tier boundaries, router.
+- [CONTEXT.md template](https://raw.githubusercontent.com/nakashon/the-agentic-pm/main/starter-kit/CONTEXT.md): session memory as an editable file.
+- [spec-writer agent](https://raw.githubusercontent.com/nakashon/the-agentic-pm/main/starter-kit/.github/agents/spec-writer.md): drafts specs with checkable acceptance criteria.
+- [meeting-prep agent](https://raw.githubusercontent.com/nakashon/the-agentic-pm/main/starter-kit/.github/agents/meeting-prep.md): one page that gets you through a review.
+- [feedback-analyzer agent](https://raw.githubusercontent.com/nakashon/the-agentic-pm/main/starter-kit/.github/agents/feedback-analyzer.md): turns raw customer feedback into a weekly read.
+- [compete-research agent](https://raw.githubusercontent.com/nakashon/the-agentic-pm/main/starter-kit/.github/agents/compete-research.md): source-gated vendor landscape.
+
+Take two or three of these agents, not all four. Choose by what the human actually asks
+for most often; an unused agent teaches them the system is decorative.
+
+## Optional
+
+- [Author](https://nakashon.com): other frameworks, including Zero Day to Zero Sec on AI-speed attackers versus human-speed defenders.
+- [v1 of this talk](https://nakashon.github.io/the-agentic-pm/v1/): the earlier version, kept as a period artifact.

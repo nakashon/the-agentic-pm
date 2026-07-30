@@ -48,10 +48,50 @@ Covered with real (sanitized) snippets:
 - **`AGENTS.md`** — identity, where things live, house style
 - **`CONTEXT.md`** — active work, decisions already made, the expensive learnings
 - **An agent definition** — YAML frontmatter plus rules, and how much of a good one is *prohibition*
-- **Three-tier boundaries** — ✅ always / ⚠️ ask first / 🚫 never, and why the middle tier is where all the value is
+- **Three-tier boundaries** — always / ask first / never, and why the middle tier is where all the value is
 - **Progressive disclosure** — point at files, don't paste; instructions should read like a map, not a briefing pack
 - **The router** — mapping how you actually talk to which agent should answer
 - **Budgeting for demolition** — half of getting good at this is deleting scaffolding the models outgrew
+
+## For agents, not just people
+
+We aren't building only for humans anymore. So this talk ships twice: the slides are the
+human edition, and these are the machine edition.
+
+| Artifact | What it's for |
+|---|---|
+| [`llms.txt`](https://nakashon.github.io/the-agentic-pm/llms.txt) | Index. What this is and where everything lives. |
+| [`guide.md`](https://nakashon.github.io/the-agentic-pm/guide.md) | The complete text of the talk, in markdown. |
+| [`llms-full.txt`](https://nakashon.github.io/the-agentic-pm/llms-full.txt) | Guide plus every starter-kit file inline — one fetch, no scraping. |
+| [`starter-kit/`](starter-kit/) | The actual files, ready to copy. |
+
+The end of `llms-full.txt` contains a **"For agents: how to run this"** procedure — interview
+the human, build the skeleton, hand back with a check rather than a summary.
+
+### Set yourself up in one paste
+
+Paste this into any coding agent, in the repo you want to set up:
+
+```
+Read https://nakashon.github.io/the-agentic-pm/llms-full.txt
+and set up a PM command center for me in this repo.
+
+Interview me for what you need. Don't guess my context.
+Show me the files before you write them.
+```
+
+It will ask what you own, what you ask for most often, and what must never ship. Those
+answers were always the hard part.
+
+Prefer to do it by hand:
+
+```bash
+git clone https://github.com/nakashon/the-agentic-pm.git
+cp -r the-agentic-pm/starter-kit/. my-pm-repo/
+```
+
+`llms-full.txt` is generated — after editing `guide.md` or anything in `starter-kit/`, run
+`python3 scripts/build-llms-full.py`.
 
 ## Usage
 

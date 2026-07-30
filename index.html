@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Agentic PM — What the job is now, and how to set it up</title>
 <meta name="description" content="A working guide to product management with AI agents: the Frame-Delegate-Verify-Own loop, the Verification Ceiling, and the actual config files to set it up.">
+<link rel="alternate" type="text/plain" href="llms.txt" title="Machine-readable index">
+<link rel="alternate" type="text/markdown" href="guide.md" title="Full guide in markdown">
+<link rel="alternate" type="text/plain" href="llms-full.txt" title="Complete edition for machine readers">
 <meta property="og:title" content="The Agentic PM — What the job is now, and how to set it up">
 <meta property="og:description" content="The loop, the Verification Ceiling, and the four markdown files that run it.">
 <meta property="og:type" content="website">
@@ -867,6 +870,84 @@ You maintain one file per vendor in <span class="s">docs/research/</span>.
     <p style="font-size:0.93em;">My repo was literally called <em>vibecoding</em> before it became a command center.
     <strong>That rename is the honest summary of the year.</strong></p>
   </div>
+</section>
+
+<!-- ═══════════════════════ THE SECOND READER ═══════════════════════ -->
+<section data-bg="pink" style="font-size:0.84em;">
+  <div class="tag tag-pink">The part that changes what you ship</div>
+  <h2>You are building for a <span class="highlight">second reader</span></h2>
+  <p style="font-size:0.66em;color:var(--muted);margin:6px 0 0;">
+    Everything above is about how a PM works. This is about what a PM now ships. It is the bigger shift.
+  </p>
+  <div class="compare-container" style="margin:16px 0 0;">
+    <div class="compare-card fragment fade-up">
+      <h4 style="color:var(--muted);">The reader you designed for</h4>
+      <ul style="font-size:0.62em;">
+        <li>A human, with a screen and patience</li>
+        <li>Reads the page, infers the rest</li>
+        <li>Forgives layout, tolerates ambiguity</li>
+      </ul>
+    </div>
+    <div class="compare-vs">vs</div>
+    <div class="compare-card fragment fade-up">
+      <h4 style="color:var(--accent);">The reader who shows up anyway</h4>
+      <ul style="font-size:0.62em;">
+        <li>An agent, acting <em>on behalf of</em> that human</li>
+        <li>Retrieves, summarises, and decides &mdash; often without them</li>
+        <li>Cannot infer. Only ingests what you made ingestible</li>
+      </ul>
+    </div>
+  </div>
+  <p class="fragment fade-up" style="font-size:0.72em;margin-top:16px;">
+    If your product, your docs and your positioning are only legible to humans, you are
+    <span class="highlight" style="font-weight:600;">invisible to the reader who arrives first.</span>
+  </p>
+</section>
+
+<!-- ═══════════════════════ WHAT THAT MEANS ═══════════════════════ -->
+<section data-bg="green" style="font-size:0.84em;">
+  <div class="tag tag-green">So what actually changes</div>
+  <h2>Ship it <span class="highlight">twice</span></h2>
+  <div class="card-grid cols-3" style="margin:14px 0 0;">
+    <div class="card fragment fade-up">
+      <h4 style="font-size:0.8em;">Docs are an interface</h4>
+      <p style="font-size:0.62em;">Not support material. They are the API an agent uses to understand you. Stable URLs, plain text, no content locked in a diagram.</p>
+    </div>
+    <div class="card fragment fade-up">
+      <h4 style="font-size:0.8em;">State it, don't imply it</h4>
+      <p style="font-size:0.62em;">A human infers your positioning from tone. An agent quotes whatever sentence you actually wrote. Write the sentence.</p>
+    </div>
+    <div class="card fragment fade-up">
+      <h4 style="font-size:0.8em;">Add an agent path</h4>
+      <p style="font-size:0.62em;">Every human affordance needs a machine one: a UI needs an API, a doc site needs plain markdown, a deck needs a file.</p>
+    </div>
+  </div>
+  <div class="quote-block fragment fade-up" style="margin-top:16px;">
+    <p style="font-size:0.9em;">"Accessible" used to mean readable by every human.
+    <strong>It now includes the software they sent instead.</strong></p>
+  </div>
+</section>
+
+<!-- ═══════════════════════ THIS DECK, FOR AGENTS ═══════════════════════ -->
+<section data-bg="teal" style="font-size:0.84em;">
+  <div class="tag tag-teal">Practising what this preaches</div>
+  <h2>So this talk has a <span class="highlight">machine edition</span></h2>
+  <p style="font-size:0.66em;color:var(--muted);margin:6px 0 0;">
+    The slides are for you. These are for the thing you delegate to. Same content, one fetch, no scraping.
+  </p>
+  <div class="codeblock" style="margin:14px 0 0;">
+    <div class="cb-bar">paste this into any coding agent</div>
+<pre>Read <span class="s">https://nakashon.github.io/the-agentic-pm/llms-full.txt</span>
+and set up a PM command center for me in this repo.
+
+Interview me for what you need. Don't guess my context.
+Show me the files before you write them.
+</pre>
+  </div>
+  <p class="fragment fade-up" style="font-size:0.7em;margin-top:14px;">
+    It will ask you what you own, what you ask for most, and what must never ship.
+    <span class="highlight" style="font-weight:600;">Those answers were always the hard part.</span>
+  </p>
 </section>
 
 <!-- ═══════════════════════ START HERE ═══════════════════════ -->
