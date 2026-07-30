@@ -34,11 +34,22 @@ Bounded by the Verification Ceiling — the loop only runs as fast as its slowes
 
 ## What's inside
 
-21 slides in three parts:
+27 slides in four parts.
 
-1. **Six field notes** — specific things that happened, including the ones where I was wrong: a strategy that was 80% already-shipped, an agent that was right about the facts and wrong about the question, fluent wrongness, a bug nobody could see, and the time the most valuable output was *"I can't verify this."*
-2. **What it means** — the new economics, the Verification Ceiling, why "orchestration" undersells the problem, and taste as the scarce input.
-3. **What I'd actually do** — four practices, all boring, all load-bearing.
+**1 — Six field notes.** Drawn from a year of running AI security product with agents in the loop:
+
+- One spec, seven versions, seventeen days — and fourteen commits that only rebuild deliverables
+- One column name, five spellings, fourteen days: renaming became free, naming did not
+- 86 documents vs. 30 features — a PM's repo is a prose repo, and prose is where the failure mode hides
+- Competitive research that wrote the most *satisfying* version of the market rather than the truest
+- The document built perfectly on my own misconception, citing my own notes back to me
+- 23 review comments answered flawlessly by something that couldn't read the room
+
+**2 — The system I actually run.** The part usually left out: version-controlled context files, a roster of ten narrow agents behind a router, config-as-source-of-truth, progressive disclosure, three-tier boundaries (✅ always / ⚠️ ask first / 🚫 never), and the two rules I'd never drop.
+
+**3 — What it means.** The new economics, the Verification Ceiling, why "orchestration" undersells the problem, and taste as the scarce input.
+
+**4 — What I'd actually do.** Four practices, all boring, all load-bearing.
 
 ## Usage
 
@@ -46,7 +57,7 @@ Open `index.html` in any browser — no build step, no dependencies, no setup.
 
 Navigate with arrow keys. Press `Esc` for slide overview.
 
-Use it, remix it, present it to your team. If you present it, replace **Note 06** with your own war story — a talk called *notes from the field* is only worth as much as its least verifiable slide.
+Use it, remix it, present it to your team. The field notes are mine — swap in your own. A talk called *notes from the field* is only worth as much as its least verifiable slide.
 
 ## Tech
 
