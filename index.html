@@ -12,669 +12,365 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/theme/black.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;650;700;800;900&family=JetBrains+Mono:wght@400;500;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <style>
 :root {
-  --accent: #6C63FF;
-  --accent2: #FF6584;
-  --accent3: #43E97B;
-  --accent4: #38F9D7;
-  --dark: #0a0a1a;
-  --card: rgba(255,255,255,0.06);
-  --glass: rgba(255,255,255,0.08);
+  --bg:      #08080A;
+  --surface: #101013;
+  --surface2:#16161A;
+  --line:    rgba(255,255,255,0.10);
+  --line2:   rgba(255,255,255,0.055);
+  --fg:      #F4F4F6;
+  --muted:   #8C8C97;
+  --faint:   #5C5C66;
+  --accent:  #C8FF57;
+  --accentd: #93B83A;
+  --warn:    #FFB454;
+  --danger:  #FF7A6B;
+  --info:    #7EA6FF;
 }
 
+/* ══════════ Base ══════════ */
 .reveal {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Inter', system-ui, sans-serif;
   font-weight: 400;
-  color: #e0e0e0;
+  color: var(--fg);
+  -webkit-font-smoothing: antialiased;
+  font-feature-settings: "cv11","ss01";
 }
+.reveal .slide-background { background: var(--bg); }
 
+.reveal .slides section {
+  text-align: left;
+  padding: 0 4px;
+}
+.reveal .slides section[data-bg="hero"] { text-align: center; }
+
+/* ══════════ Type ══════════ */
 .reveal h1, .reveal h2, .reveal h3 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-weight: 700;
+  font-family: 'Inter', system-ui, sans-serif;
   text-transform: none;
-  letter-spacing: -0.02em;
-  line-height: 1.15;
+  letter-spacing: -0.035em;
+  line-height: 1.06;
+  color: var(--fg);
+  margin: 0;
+  text-wrap: balance;
 }
-
-.reveal h1 { font-size: 2em; }
-.reveal h2 { font-size: 1.4em; color: #fff; margin-bottom: 8px; }
-.reveal h3 { font-size: 0.9em; color: rgba(255,255,255,0.7); font-weight: 400; }
-
-.reveal .slide-background { background: var(--dark); }
-
-/* ─── Gradient Backgrounds ─── */
-.reveal .slides section[data-bg="hero"] {
-  background: radial-gradient(ellipse at 30% 50%, rgba(108,99,255,0.25) 0%, transparent 60%),
-              radial-gradient(ellipse at 70% 80%, rgba(255,101,132,0.15) 0%, transparent 50%),
-              var(--dark);
+.reveal h1 { font-size: 2.15em; font-weight: 800; }
+.reveal h2 { font-size: 1.42em; font-weight: 700; margin-bottom: 4px; }
+.reveal h3 {
+  font-size: 0.8em; font-weight: 400; color: var(--muted);
+  letter-spacing: -0.015em; line-height: 1.35;
 }
+.reveal p { line-height: 1.6; }
+.reveal em { color: var(--fg); font-style: italic; }
+.reveal strong { color: var(--fg); font-weight: 650; }
+.reveal a { color: var(--accent); text-decoration: none; border-bottom: 1px solid rgba(200,255,87,0.3); }
+.reveal a:hover { border-bottom-color: var(--accent); }
 
-.reveal .slides section[data-bg="purple"] {
-  background: radial-gradient(ellipse at 50% 30%, rgba(108,99,255,0.2) 0%, transparent 60%), var(--dark);
+.highlight {
+  color: var(--accent);
+  font-weight: inherit;
 }
-
-.reveal .slides section[data-bg="pink"] {
-  background: radial-gradient(ellipse at 60% 40%, rgba(255,101,132,0.2) 0%, transparent 60%), var(--dark);
-}
-
-.reveal .slides section[data-bg="green"] {
-  background: radial-gradient(ellipse at 40% 50%, rgba(67,233,123,0.15) 0%, transparent 60%), var(--dark);
-}
-
-.reveal .slides section[data-bg="teal"] {
-  background: radial-gradient(ellipse at 50% 50%, rgba(56,249,215,0.15) 0%, transparent 60%), var(--dark);
-}
-
-/* ─── Tag / Pill ─── */
-.tag {
+.highlight-green { color: var(--accent); }
+.sq {
   display: inline-block;
-  padding: 4px 14px;
-  border-radius: 50px;
-  font-size: 0.55em;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  margin-bottom: 8px;
+  width: 7px; height: 7px;
+  margin-right: 9px;
+  vertical-align: 0.06em;
+  flex: none;
 }
-.tag-purple { background: rgba(108,99,255,0.25); color: #a29bfe; }
-.tag-pink   { background: rgba(255,101,132,0.25); color: #ff7eb3; }
-.tag-green  { background: rgba(67,233,123,0.2);   color: #43E97B; }
-.tag-teal   { background: rgba(56,249,215,0.2);   color: #38F9D7; }
 
-/* ─── Cards Grid ─── */
-.card-grid {
-  display: grid;
-  gap: 12px;
-  margin-top: 16px;
+.reveal ul { margin-left: 0; }
+.reveal li { margin-bottom: 5px; }
+.reveal li::marker { color: var(--faint); }
+
+/* ══════════ Eyebrow (was .tag) ══════════ */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.36em;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  background: none;
+  border: none;
+  padding: 0;
+  margin-bottom: 16px;
 }
-.card-grid.cols-2 { grid-template-columns: 1fr 1fr; }
-.card-grid.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
-.card-grid.cols-4 { grid-template-columns: 1fr 1fr 1fr 1fr; }
+.tag::before {
+  content: '';
+  width: 16px; height: 2px;
+  background: var(--accent);
+  flex: none;
+}
+.tag-pink::before   { background: var(--accent); }
+.tag-purple::before { background: var(--info); }
+.tag-teal::before   { background: var(--accent); }
+.tag-green::before  { background: var(--warn); }
+section[data-bg="hero"] .tag { justify-content: center; }
+
+/* ══════════ Panels (was .card) ══════════ */
+.card-grid { display: grid; gap: 12px; }
+.card-grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
+.card-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
 
 .card {
-  background: var(--card);
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 14px;
-  padding: 14px 14px;
+  background: var(--surface);
+  border: 1px solid var(--line2);
+  border-radius: 4px;
+  padding: 15px 17px;
   text-align: left;
-  backdrop-filter: blur(10px);
-  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  transition: border-color .25s ease, background .25s ease;
+  position: relative;
 }
-.card:hover {
-  transform: translateY(-4px);
-  border-color: rgba(108,99,255,0.4);
-  box-shadow: 0 8px 32px rgba(108,99,255,0.15);
-}
-
-.card .icon {
-  font-size: 1.2em;
-  margin-bottom: 6px;
-  display: block;
-}
-
+.card:hover { border-color: var(--line); background: var(--surface2); }
 .card h4 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 0.72em;
-  font-weight: 600;
-  color: #fff;
-  margin: 0 0 4px 0;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.6em;
+  font-weight: 650;
+  letter-spacing: -0.018em;
+  color: var(--fg);
+  margin: 0 0 7px 0;
+  line-height: 1.25;
+  text-transform: none;
 }
+.card p { font-size: 0.52em; color: var(--muted); margin: 0; line-height: 1.6; }
+.card ul { font-size: 0.52em; color: var(--muted); margin: 0; padding-left: 16px; }
 
-.card p {
-  font-size: 0.5em;
-  line-height: 1.5;
-  color: rgba(255,255,255,0.6);
-  margin: 0;
-}
+/* border-top overrides in markup become a left rule instead */
+.card[style*="border-top"] { border-top: 1px solid var(--line2) !important; }
+.card[style*="--accent;"],
+.card[style*="var(--accent)"]  { box-shadow: inset 2px 0 0 var(--accent); }
+.card[style*="var(--accent2)"] { box-shadow: inset 2px 0 0 var(--danger); }
+.card[style*="var(--accent3)"] { box-shadow: inset 2px 0 0 var(--accent); }
+.card[style*="var(--accent4)"] { box-shadow: inset 2px 0 0 var(--warn); }
 
-/* ─── Venn / Diagram ─── */
-.venn-container {
-  position: relative;
-  width: 420px;
-  height: 300px;
-  margin: 15px auto 0;
-}
-.venn-circle {
-  position: absolute;
-  width: 180px;
-  height: 180px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 700;
-  font-size: 0.65em;
-  font-family: 'Space Grotesk', sans-serif;
-  transition: transform 0.3s ease;
-  cursor: pointer;
-  text-align: center;
-  line-height: 1.3;
-}
-.venn-circle:hover { transform: scale(1.06); }
-.venn-circle.user  { background: rgba(108,99,255,0.35); border: 2px solid rgba(108,99,255,0.6); top: 0; left: 50%; transform: translateX(-50%); }
-.venn-circle.user:hover { transform: translateX(-50%) scale(1.06); }
-.venn-circle.tech  { background: rgba(67,233,123,0.25); border: 2px solid rgba(67,233,123,0.5); top: 120px; left: 60px; }
-.venn-circle.biz   { background: rgba(255,101,132,0.25); border: 2px solid rgba(255,101,132,0.5); top: 120px; right: 60px; }
-.venn-center {
-  position: absolute;
-  top: 130px;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: rgba(255,255,255,0.15);
-  border: 2px solid rgba(255,255,255,0.4);
-  border-radius: 50%;
-  width: 70px;
-  height: 70px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 800;
-  font-size: 0.7em;
-  font-family: 'Space Grotesk', sans-serif;
-  color: #fff;
-  z-index: 10;
-  text-align: center;
-  line-height: 1.2;
-  backdrop-filter: blur(8px);
-  box-shadow: 0 0 30px rgba(108,99,255,0.3);
-}
+/* Legacy accent vars remapped so inline color= styles stay sane */
+:root { --accent2: #FF7A6B; --accent3: #C8FF57; --accent4: #FFB454; }
 
-/* ─── Timeline ─── */
-.timeline {
-  display: flex;
-  align-items: flex-start;
-  gap: 0;
-  margin-top: 25px;
-  position: relative;
-}
-.timeline::before {
-  content: '';
-  position: absolute;
-  top: 30px;
-  left: 5%;
-  right: 5%;
-  height: 3px;
-  background: linear-gradient(90deg, var(--accent), var(--accent2), var(--accent3), var(--accent4));
-  border-radius: 2px;
-}
-.timeline-step {
-  flex: 1;
-  text-align: center;
-  position: relative;
-  z-index: 2;
-  padding: 0 6px;
-}
-.timeline-dot {
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  margin: 22px auto 12px;
-  border: 3px solid;
-  background: var(--dark);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  cursor: pointer;
-}
-.timeline-dot:hover {
-  transform: scale(1.4);
-  box-shadow: 0 0 20px currentColor;
-}
-.timeline-step h4 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 0.55em;
-  font-weight: 600;
-  color: #fff;
-  margin: 0 0 4px 0;
-}
-.timeline-step p {
-  font-size: 0.42em;
-  color: rgba(255,255,255,0.55);
-  margin: 0;
-  line-height: 1.4;
-}
-
-/* ─── Loop Diagram ─── */
-.loop-flow {
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  gap: 0;
-  margin-top: 20px;
-}
-.loop-flow-item {
-  text-align: center;
-  width: 100px;
-  flex-shrink: 0;
-}
-.loop-flow-icon {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.2em;
-  margin: 0 auto 8px;
-  border: 2px solid;
-}
-.loop-flow-item h4 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 0.5em;
-  font-weight: 600;
-  color: #fff;
-  margin: 0 0 4px;
-}
-.loop-flow-item p {
-  font-size: 0.36em;
-  color: rgba(255,255,255,0.5);
-  margin: 0;
-  line-height: 1.4;
-}
-.loop-flow-arrow {
-  display: flex;
-  align-items: center;
-  padding-top: 14px;
-  color: rgba(255,255,255,0.25);
-  font-size: 1em;
-}
-.loop-flow-return {
-  text-align: center;
-  margin-top: 10px;
-  font-size: 0.4em;
-  color: rgba(255,255,255,0.3);
-}
-
-/* ─── Stakeholder Map ─── */
-.stakeholder-map {
-  position: relative;
-  width: 600px;
-  height: 320px;
-  margin: 15px auto;
-}
-.stakeholder-center {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--accent), var(--accent2));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 800;
-  font-size: 0.65em;
-  font-family: 'Space Grotesk', sans-serif;
-  color: #fff;
-  z-index: 10;
-  box-shadow: 0 0 40px rgba(108,99,255,0.4);
-  text-align: center;
-  line-height: 1.2;
-}
-.stakeholder-node {
-  position: absolute;
-  text-align: center;
-  transition: transform 0.3s ease;
-  cursor: pointer;
-}
-.stakeholder-node:hover { transform: scale(1.12); }
-.stakeholder-icon {
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.2em;
-  margin: 0 auto 8px;
-  border: 2px solid rgba(255,255,255,0.15);
-  background: var(--glass);
-  backdrop-filter: blur(6px);
-}
-.stakeholder-node span {
-  font-size: 0.48em;
-  font-weight: 500;
-  color: rgba(255,255,255,0.8);
-}
-
-/* ─── Comparison Cards ─── */
-.compare-container {
-  display: grid;
-  grid-template-columns: 1fr 60px 1fr;
-  align-items: center;
-  gap: 10px;
-  margin-top: 30px;
-}
-.compare-card {
-  background: var(--card);
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 16px;
-  padding: 22px 20px;
-  text-align: left;
-}
-.compare-card h4 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 0.72em;
-  font-weight: 600;
-  margin: 0 0 10px;
-}
-.compare-card ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-.compare-card li {
-  font-size: 0.5em;
-  color: rgba(255,255,255,0.65);
-  padding: 6px 0;
-  border-bottom: 1px solid rgba(255,255,255,0.05);
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-.compare-card li:last-child { border: none; }
-.compare-card li i { width: 18px; text-align: center; }
-.compare-vs {
-  font-family: 'Space Grotesk', sans-serif;
-  font-weight: 800;
-  font-size: 1em;
-  color: rgba(255,255,255,0.3);
-  text-align: center;
-}
-
-/* ─── Interactive Poll ─── */
-.poll-container {
-  max-width: 600px;
-  margin: 20px auto 0;
-}
-.poll-option {
-  background: var(--card);
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 10px;
-  padding: 10px 16px;
-  margin-bottom: 6px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  font-size: 0.62em;
-}
-.poll-option:hover {
-  border-color: var(--accent);
-  background: rgba(108,99,255,0.1);
-  transform: translateX(6px);
-}
-.poll-option.selected {
-  border-color: var(--accent);
-  background: rgba(108,99,255,0.15);
-}
-.poll-option .letter {
-  width: 28px;
-  height: 28px;
-  border-radius: 6px;
-  background: rgba(255,255,255,0.08);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 700;
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 0.9em;
-  color: var(--accent);
-  flex-shrink: 0;
-}
-.poll-option.selected .letter {
-  background: var(--accent);
-  color: #fff;
-}
-.poll-reveal {
-  margin-top: 12px;
-  padding: 14px;
-  border-radius: 10px;
-  background: rgba(67,233,123,0.1);
-  border: 1px solid rgba(67,233,123,0.3);
-  font-size: 0.55em;
-  color: var(--accent3);
-  display: none;
-  line-height: 1.6;
-}
-.poll-reveal.show { display: block; animation: fadeUp 0.4s ease; }
-
-/* ─── Animations ─── */
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
-}
-
-.float { animation: float 3s ease-in-out infinite; }
-
-/* ─── Big Number ─── */
 .big-number {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 3em;
-  font-weight: 900;
-  background: linear-gradient(135deg, var(--accent), var(--accent2));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  font-family: 'Inter', sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.05em;
+  color: var(--accent);
   line-height: 1;
-  margin: 10px 0;
+  margin-bottom: 4px;
 }
 
-/* ─── Highlight text ─── */
-.highlight {
-  background: linear-gradient(135deg, var(--accent), var(--accent2));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.highlight-green {
-  background: linear-gradient(135deg, var(--accent3), var(--accent4));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* ─── Quote ─── */
+/* ══════════ Pull quote ══════════ */
 .quote-block {
-  border-left: 4px solid var(--accent);
-  padding: 16px 22px;
-  background: var(--card);
-  border-radius: 0 12px 12px 0;
-  margin: 20px auto;
-  max-width: 700px;
+  border: none;
+  border-left: 2px solid var(--accent);
+  background: none;
+  border-radius: 0;
+  padding: 4px 0 4px 20px;
   text-align: left;
 }
 .quote-block p {
-  font-size: 0.7em;
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: 0.95em;
   font-style: italic;
-  color: rgba(255,255,255,0.8);
-  margin: 0 0 10px;
-  line-height: 1.6;
-}
-.quote-block cite {
-  font-size: 0.6em;
-  color: rgba(255,255,255,0.4);
-  font-style: normal;
-}
-
-/* ─── Emoji Bullet List ─── */
-.emoji-list {
-  list-style: none;
-  padding: 0;
-  margin: 12px auto;
-  max-width: 600px;
-  text-align: left;
-}
-.emoji-list li {
-  font-size: 0.58em;
-  padding: 5px 0;
-  border-bottom: 1px solid rgba(255,255,255,0.06);
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  color: rgba(255,255,255,0.8);
-}
-.emoji-list li:last-child { border: none; }
-.emoji-list .em {
-  font-size: 1.3em;
-  width: 32px;
-  text-align: center;
-  flex-shrink: 0;
-}
-
-/* ─── Progress Dots (slide indicator override) ─── */
-.reveal .progress { height: 4px; }
-.reveal .progress span { background: linear-gradient(90deg, var(--accent), var(--accent2)); }
-
-/* ─── Controls ─── */
-.reveal .controls { color: var(--accent); }
-
-/* ─── Fragments ─── */
-.reveal .fragment.fade-up { transition: all 0.4s ease; }
-
-/* ─── Responsive ─── */
-@media (max-width: 800px) {
-  .card-grid.cols-3 { grid-template-columns: 1fr 1fr; }
-  .card-grid.cols-4 { grid-template-columns: 1fr 1fr; }
-}
-
-/* ─── AI Evolution cards ─── */
-.evo-timeline {
-  display: flex;
-  gap: 12px;
-  margin-top: 18px;
-}
-.evo-card {
-  flex: 1;
-  background: var(--card);
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 16px;
-  padding: 20px 16px;
-  text-align: left;
-  transition: all 0.3s ease;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-}
-.evo-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  border-radius: 16px 16px 0 0;
-}
-.evo-card.past::before { background: rgba(255,255,255,0.2); }
-.evo-card.now::before  { background: linear-gradient(90deg, var(--accent), var(--accent2)); }
-.evo-card.future::before { background: linear-gradient(90deg, var(--accent3), var(--accent4)); }
-.evo-card:hover { transform: translateY(-4px); border-color: rgba(108,99,255,0.3); }
-.evo-card .era {
-  font-size: 0.5em;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: rgba(255,255,255,0.4);
-  font-weight: 600;
-  margin-bottom: 8px;
-}
-.evo-card h4 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 0.68em;
-  font-weight: 600;
-  color: #fff;
-  margin: 0 0 10px;
-}
-.evo-card p {
-  font-size: 0.46em;
-  color: rgba(255,255,255,0.55);
-  line-height: 1.6;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  color: var(--fg);
   margin: 0;
 }
-
-/* ─── Slide number ─── */
-.reveal .slide-number {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 14px;
-  color: rgba(255,255,255,0.3);
-  background: transparent;
+.quote-block strong {
+  font-weight: 400;
+  color: var(--accent);
+  font-style: italic;
 }
-/* ─── Code / Config Blocks ─── */
+.quote-block em { font-style: normal; }
+.quote-block cite {
+  display: block;
+  margin-top: 9px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.36em;
+  font-style: normal;
+  letter-spacing: 0.04em;
+  color: var(--faint);
+}
+
+/* ══════════ Compare ══════════ */
+.compare-container {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: stretch;
+  gap: 0;
+  border: 1px solid var(--line2);
+  border-radius: 4px;
+  overflow: hidden;
+  background: var(--surface);
+}
+.compare-card { padding: 16px 20px; text-align: left; background: none; border: none; border-radius: 0; }
+.compare-card h4 {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.4em;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin: 0 0 10px 0;
+}
+.compare-card ul { padding-left: 15px; }
+.compare-card p { font-size: 0.55em; color: var(--muted); }
+.compare-vs {
+  display: flex; align-items: center; justify-content: center;
+  width: 1px; padding: 0;
+  background: var(--line2);
+  font-size: 0; color: transparent;
+}
+
+/* ══════════ Timeline ══════════ */
+.timeline { display: flex; align-items: flex-start; gap: 0; position: relative; margin-top: 26px; }
+.timeline::before {
+  content: '';
+  position: absolute; top: 5px; left: 0; right: 0;
+  height: 1px; background: var(--line);
+}
+.timeline-step { flex: 1; text-align: left; position: relative; z-index: 2; padding-right: 20px; }
+.timeline-dot {
+  width: 9px; height: 9px; border-radius: 0;
+  margin: 0 0 16px 0;
+  border: none;
+  background: var(--accent) !important;
+  transition: transform .25s ease;
+}
+.timeline-step:nth-child(2) .timeline-dot { background: var(--info) !important; }
+.timeline-step:nth-child(3) .timeline-dot { background: var(--warn) !important; }
+.timeline-step:nth-child(4) .timeline-dot { background: var(--danger) !important; }
+.timeline-dot:hover { transform: scale(1.5); }
+.timeline-step h4 {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.6em; font-weight: 650; letter-spacing: -0.02em;
+  color: var(--fg); margin: 0 0 6px 0;
+}
+.timeline-step p { font-size: 0.44em; color: var(--muted); margin: 0; line-height: 1.55; }
+
+/* ══════════ Poll ══════════ */
+.poll-container { margin-top: 20px; max-width: 720px; }
+.poll-option {
+  display: flex; align-items: center; gap: 14px;
+  background: var(--surface);
+  border: 1px solid var(--line2);
+  border-radius: 4px;
+  padding: 11px 15px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  font-size: 0.55em;
+  color: var(--muted);
+  transition: all .2s ease;
+}
+.poll-option:hover { border-color: var(--line); color: var(--fg); }
+.poll-option .letter {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85em; font-weight: 500;
+  color: var(--faint);
+  width: 18px; flex: none;
+}
+.poll-option.selected {
+  border-color: var(--accent);
+  background: rgba(200,255,87,0.06);
+  color: var(--fg);
+}
+.poll-option.selected .letter { color: var(--accent); }
+.poll-reveal {
+  display: none;
+  margin-top: 14px; padding: 14px 18px;
+  border-left: 2px solid var(--accent);
+  font-size: 0.5em; line-height: 1.6; color: var(--muted);
+  text-align: left;
+}
+.poll-reveal.show { display: block; }
+.poll-reveal strong { color: var(--accent); font-weight: 600; }
+
+/* ══════════ Code blocks ══════════ */
 .codeblock {
-  background: rgba(0,0,0,0.45);
-  border: 1px solid rgba(255,255,255,0.12);
-  border-radius: 10px;
+  background: var(--surface);
+  border: 1px solid var(--line2);
+  border-radius: 4px;
   text-align: left;
   overflow: hidden;
   margin: 0;
 }
 .codeblock .cb-bar {
-  background: rgba(255,255,255,0.07);
-  border-bottom: 1px solid rgba(255,255,255,0.1);
-  padding: 5px 12px;
+  background: rgba(255,255,255,0.025);
+  border-bottom: 1px solid var(--line2);
+  padding: 7px 14px;
   font-family: 'JetBrains Mono', monospace;
-  font-size: 0.4em;
-  color: rgba(255,255,255,0.55);
-  letter-spacing: 0.02em;
-  display: flex;
-  align-items: center;
-  gap: 7px;
+  font-size: 0.37em;
+  color: var(--faint);
+  letter-spacing: 0.06em;
+  display: flex; align-items: center; gap: 8px;
 }
 .codeblock .cb-bar::before {
   content: '';
-  width: 8px; height: 8px; border-radius: 50%;
-  background: var(--accent2);
-  box-shadow: 12px 0 0 var(--accent4), 24px 0 0 var(--accent3);
-  margin-right: 22px;
+  width: 5px; height: 5px;
+  background: var(--accent);
   flex: none;
 }
 .codeblock pre {
   margin: 0;
-  padding: 11px 14px;
+  padding: 13px 16px;
   font-family: 'JetBrains Mono', monospace;
-  font-size: 0.4em;
-  line-height: 1.65;
-  color: rgba(255,255,255,0.82);
+  font-size: 0.395em;
+  line-height: 1.72;
+  color: rgba(255,255,255,0.72);
   white-space: pre;
   overflow: visible;
   box-shadow: none;
   background: none;
   width: 100%;
 }
-.codeblock .k  { color: var(--accent4); }
-.codeblock .s  { color: var(--accent3); }
-.codeblock .c  { color: rgba(255,255,255,0.38); font-style: italic; }
-.codeblock .h  { color: var(--accent2); font-weight: 700; }
-.codeblock .d  { color: rgba(255,255,255,0.55); }
+.codeblock .k { color: var(--info); }
+.codeblock .s { color: var(--accent); }
+.codeblock .c { color: var(--faint); font-style: italic; }
+.codeblock .h { color: #fff; font-weight: 700; }
+.codeblock .d { color: var(--faint); }
 
-/* ─── File Tree ─── */
+/* ══════════ File tree ══════════ */
 .filetree {
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.42em;
-  line-height: 1.85;
+  line-height: 1.9;
   text-align: left;
-  color: rgba(255,255,255,0.75);
+  color: rgba(255,255,255,0.7);
 }
-.filetree .dir  { color: var(--accent4); font-weight: 500; }
-.filetree .note { color: rgba(255,255,255,0.4); }
-.filetree .star { color: var(--accent2); }
+.filetree .dir  { color: var(--info); }
+.filetree .note { color: var(--faint); }
+.filetree .star { color: var(--accent); }
 
-/* ─── Do / Don't ─── */
-.dodont { display: flex; gap: 18px; margin-top: 16px; text-align: left; }
-.dodont > div { flex: 1; border-radius: 10px; padding: 13px 16px; }
-.dodont .no  { background: rgba(255,101,132,0.10); border: 1px solid rgba(255,101,132,0.3); }
-.dodont .yes { background: rgba(67,233,123,0.10); border: 1px solid rgba(67,233,123,0.3); }
-.dodont h4 { font-family:'Space Grotesk',sans-serif; font-size:0.6em; margin:0 0 7px 0; }
-.dodont p  { font-size: 0.52em; margin: 0; line-height: 1.55; color: rgba(255,255,255,0.75); }
-.dodont code { font-family:'JetBrains Mono',monospace; font-size:0.9em; color: rgba(255,255,255,0.9); }
+/* ══════════ Do / Don't ══════════ */
+.dodont { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 18px; text-align: left; }
+.dodont > div { border-radius: 4px; padding: 15px 18px; border: 1px solid var(--line2); background: var(--surface); }
+.dodont .no  { box-shadow: inset 2px 0 0 var(--danger); }
+.dodont .yes { box-shadow: inset 2px 0 0 var(--accent); }
+.dodont h4 {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.4em; font-weight: 500; letter-spacing: 0.09em;
+  text-transform: uppercase; margin: 0 0 10px 0;
+}
+.dodont p { font-size: 0.52em; margin: 0; line-height: 1.6; color: var(--muted); }
+.dodont code { font-family: 'JetBrains Mono', monospace; font-size: 0.92em; color: var(--accent); }
+
+/* ══════════ Chrome ══════════ */
+.reveal .progress { height: 2px; color: var(--accent); }
+.reveal .slide-number {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 15px;
+  background: none;
+  color: var(--faint);
+  left: 30px; right: auto; bottom: 22px;
+  letter-spacing: 0.06em;
+}
+.reveal .controls { color: var(--faint); }
+kbd { font-family: 'JetBrains Mono', monospace !important; }
+
+.reveal .slides section:not([data-bg="hero"]) > p { max-width: 940px; }
+.reveal .slides section > *:last-child { margin-bottom: 0; }
 
 </style>
 </head>
@@ -735,7 +431,7 @@
     and become the <strong>author of the system that produces them</strong> &mdash;<br>
     and who remains personally accountable for every one.</p>
   </div>
-  <div class="card-grid cols-3" style="max-width:880px;margin:16px auto 0;">
+  <div class="card-grid cols-3" style="margin:16px 0 0;">
     <div class="card fragment fade-up" style="border-top:3px solid var(--accent);">
       <h4 style="font-size:0.82em;">Not a prompt engineer</h4>
       <p style="font-size:0.62em;">Prompts are disposable. Systems persist.</p>
@@ -755,11 +451,11 @@
 <section data-bg="teal" style="font-size:0.86em;">
   <div class="tag tag-teal">What it looks like in practice</div>
   <h2>My work lives in a repo.<br>It contains almost <span class="highlight">no code</span>.</h2>
-  <p style="font-size:0.7em;color:rgba(255,255,255,0.7);max-width:790px;margin:8px auto 0;">
+  <p style="font-size:0.7em;color:rgba(255,255,255,0.7);max-width:790px;margin:8px 0 0;">
     Specs, research, feature state, meeting notes, drafts &mdash; plus the configuration that lets agents work on all of it.
     One year, by commit type:
   </p>
-  <div class="card-grid cols-3" style="max-width:800px;margin:14px auto 0;">
+  <div class="card-grid cols-3" style="margin:14px 0 0;">
     <div class="card fragment fade-up" style="border-top:3px solid var(--accent);">
       <div class="big-number" style="font-size:1.6em;">86</div><p style="font-size:0.64em;">documents</p>
     </div>
@@ -814,7 +510,7 @@
 <section data-bg="purple" style="font-size:0.84em;">
   <div class="tag tag-purple">Step 1 &mdash; Frame</div>
   <h2>Write it down <span class="highlight">before</span> you ask</h2>
-  <div class="card-grid cols-3" style="max-width:890px;margin:14px auto 0;">
+  <div class="card-grid cols-3" style="margin:14px 0 0;">
     <div class="card fragment fade-up" style="border-top:3px solid var(--accent);">
       <h4 style="font-size:0.82em;">Explain it twice &rarr; file it</h4>
       <p style="font-size:0.62em;">Chat is a session. Files are an asset. Anything you repeat belongs in version control.</p>
@@ -841,14 +537,14 @@
 <section data-bg="green" style="font-size:0.82em;">
   <div class="tag tag-green">Step 2 &mdash; Delegate</div>
   <h2>Narrow, bounded, <span class="highlight">evaluable</span></h2>
-  <div class="card-grid cols-2" style="max-width:880px;margin:14px auto 0;">
+  <div class="card-grid cols-2" style="margin:14px 0 0;">
     <div class="card fragment fade-up" style="border-top:3px solid var(--accent);">
       <h4 style="font-size:0.86em;">Many narrow agents, not one clever one</h4>
       <p style="font-size:0.66em;">A narrow agent can be evaluated. A general one can only be liked.</p>
     </div>
     <div class="card fragment fade-up" style="border-top:3px solid var(--accent3);">
       <h4 style="font-size:0.86em;">Boundaries in three tiers</h4>
-      <p style="font-size:0.66em;">✅ Always &nbsp;/&nbsp; ⚠️ Ask first &nbsp;/&nbsp; 🚫 Never. The middle tier does the work.</p>
+      <p style="font-size:0.66em;"><span class="sq" style="background:var(--accent)"></span>Always &nbsp; <span class="sq" style="background:var(--warn)"></span>Ask first &nbsp; <span class="sq" style="background:var(--danger)"></span>Never. The middle tier does the work.</p>
     </div>
     <div class="card fragment fade-up" style="border-top:3px solid var(--accent4);">
       <h4 style="font-size:0.86em;">Point at files, don't paste</h4>
@@ -868,7 +564,7 @@
 <section data-bg="pink" style="font-size:0.82em;">
   <div class="tag tag-pink">Step 3 &mdash; Verify</div>
   <h2>Build the check.<br>Don't <span class="highlight">perform</span> the review.</h2>
-  <div class="card-grid cols-2" style="max-width:880px;margin:14px auto 0;">
+  <div class="card-grid cols-2" style="margin:14px 0 0;">
     <div class="card fragment fade-up" style="border-top:3px solid var(--accent);">
       <h4 style="font-size:0.86em;">Ask for the harness, not the opinion</h4>
       <p style="font-size:0.66em;">"Review this" returns a tidy list. "Write the check that would catch this" returns the bug.</p>
@@ -892,7 +588,7 @@
 <section data-bg="purple" style="font-size:0.84em;">
   <div class="tag tag-purple">Step 4 &mdash; Own</div>
   <h2>The accountability<br><span class="highlight">never moved</span></h2>
-  <div class="card-grid cols-3" style="max-width:890px;margin:14px auto 0;">
+  <div class="card-grid cols-3" style="margin:14px 0 0;">
     <div class="card fragment fade-up" style="border-top:3px solid var(--accent);">
       <h4 style="font-size:0.82em;">Defend it without the transcript</h4>
       <p style="font-size:0.62em;">If you can't explain why in your own words, you haven't decided. You've forwarded.</p>
@@ -940,7 +636,7 @@
 <section data-bg="teal" style="font-size:0.86em;">
   <div class="tag tag-teal">Therefore</div>
   <h2>There are only <span class="highlight">two moves</span></h2>
-  <div class="card-grid cols-2" style="max-width:840px;margin:18px auto 0;">
+  <div class="card-grid cols-2" style="margin:18px 0 0;">
     <div class="card fragment fade-up" style="border-top:3px solid var(--accent3);">
       <h4 style="color:var(--accent3);">Raise the ceiling</h4>
       <p style="font-size:0.7em;">Build the checks. Evals, harnesses, sourcing rules, acceptance criteria you can actually run. This is PM work now, not an engineering chore.</p>
@@ -960,7 +656,7 @@
 <section data-bg="green" style="font-size:0.82em;">
   <div class="tag tag-green">What to get good at</div>
   <h2>Four skills, one per <span class="highlight">step</span></h2>
-  <div class="card-grid cols-2" style="max-width:880px;margin:14px auto 0;">
+  <div class="card-grid cols-2" style="margin:14px 0 0;">
     <div class="card fragment fade-up" style="border-top:3px solid var(--accent);">
       <h4 style="font-size:0.86em;">Frame &rarr; writing for machines</h4>
       <p style="font-size:0.66em;">Which turns out to be writing for a new hire. Practise by handing your brief to someone with no context and watching what breaks.</p>
@@ -991,7 +687,7 @@
 <section data-bg="purple" style="font-size:0.9em;">
   <div class="tag tag-purple">The shape of it</div>
   <h2>Everything is a <span class="highlight">file</span>, in git</h2>
-  <div class="filetree" style="max-width:660px;margin:18px auto 0;">
+  <div class="filetree" style="margin:18px 0 0;">
 <pre style="margin:0;font-family:inherit;font-size:1em;background:none;box-shadow:none;line-height:1.85;">
 <span class="dir">pm-command/</span>
 ├── <span class="star">AGENTS.md</span>              <span class="note">conventions — how work is done</span>
@@ -1016,8 +712,8 @@
 <section data-bg="teal" style="font-size:0.9em;">
   <div class="tag tag-teal">File 1 of 3</div>
   <h2><span class="highlight">AGENTS.md</span> &mdash; the conventions</h2>
-  <p style="font-size:0.62em;color:rgba(255,255,255,0.6);margin:6px auto 0;">Answers: how is work done here? Written once, read by every agent, every session.</p>
-  <div class="codeblock" style="max-width:760px;margin:12px auto 0;">
+  <p style="font-size:0.62em;color:rgba(255,255,255,0.6);margin:6px 0 0;">Answers: how is work done here? Written once, read by every agent, every session.</p>
+  <div class="codeblock" style="margin:12px 0 0;">
     <div class="cb-bar">AGENTS.md</div>
 <pre><span class="h"># PM Command Center</span>
 
@@ -1041,8 +737,8 @@
 <section data-bg="pink" style="font-size:0.9em;">
   <div class="tag tag-pink">File 2 of 3</div>
   <h2><span class="highlight">CONTEXT.md</span> &mdash; the memory</h2>
-  <p style="font-size:0.62em;color:rgba(255,255,255,0.6);margin:6px auto 0;">Answers: what's going on right now? Memory as a file you can edit &mdash; not a feature you have to trust.</p>
-  <div class="codeblock" style="max-width:760px;margin:12px auto 0;">
+  <p style="font-size:0.62em;color:rgba(255,255,255,0.6);margin:6px 0 0;">Answers: what's going on right now? Memory as a file you can edit &mdash; not a feature you have to trust.</p>
+  <div class="codeblock" style="margin:12px 0 0;">
     <div class="cb-bar">CONTEXT.md</div>
 <pre><span class="c"># Read this at the start of every session.</span>
 
@@ -1065,8 +761,8 @@
 <section data-bg="green" style="font-size:0.9em;">
   <div class="tag tag-green">File 3 of 3</div>
   <h2>An <span class="highlight">agent</span>, in full</h2>
-  <p style="font-size:0.62em;color:rgba(255,255,255,0.6);margin:6px auto 0;">Note how much of it is prohibition. That's the part that makes output trustworthy.</p>
-  <div class="codeblock" style="max-width:790px;margin:12px auto 0;">
+  <p style="font-size:0.62em;color:rgba(255,255,255,0.6);margin:6px 0 0;">Note how much of it is prohibition. That's the part that makes output trustworthy.</p>
+  <div class="codeblock" style="margin:12px 0 0;">
     <div class="cb-bar">.github/agents/compete-research.md</div>
 <pre><span class="d">---</span>
 <span class="k">name</span>: compete-research
@@ -1092,17 +788,17 @@ You maintain one file per vendor in <span class="s">docs/research/</span>.
 <section data-bg="purple" style="font-size:0.84em;">
   <div class="tag tag-purple">The pattern that matters most</div>
   <h2>Three tiers, <span class="highlight">not two</span></h2>
-  <div class="card-grid cols-3" style="max-width:900px;margin:14px auto 0;">
+  <div class="card-grid cols-3" style="margin:14px 0 0;">
     <div class="card fragment fade-up" style="border-top:3px solid var(--accent3);">
-      <h4 style="font-size:0.82em;">✅ Always</h4>
+      <h4 style="font-size:0.82em;"><span class="sq" style="background:var(--accent)"></span>Always</h4>
       <p style="font-size:0.62em;">Cite sources. Keep changes surgical. State assumptions. Run the build before claiming done.</p>
     </div>
     <div class="card fragment fade-up" style="border-top:3px solid var(--accent4);">
-      <h4 style="font-size:0.82em;">⚠️ Ask first</h4>
+      <h4 style="font-size:0.82em;"><span class="sq" style="background:var(--warn)"></span>Ask first</h4>
       <p style="font-size:0.62em;">New dependencies. Schema changes. Anything that touches another team. Anything irreversible.</p>
     </div>
     <div class="card fragment fade-up" style="border-top:3px solid var(--accent2);">
-      <h4 style="font-size:0.82em;">🚫 Never</h4>
+      <h4 style="font-size:0.82em;"><span class="sq" style="background:var(--danger)"></span>Never</h4>
       <p style="font-size:0.62em;">Commit secrets. Publish unverified claims. Speculate about unshipped work.</p>
     </div>
   </div>
@@ -1116,13 +812,13 @@ You maintain one file per vendor in <span class="s">docs/research/</span>.
 <section data-bg="teal" style="font-size:0.86em;">
   <div class="tag tag-teal">The counter-intuitive one</div>
   <h2>Point at files. <span class="highlight">Don't paste.</span></h2>
-  <div class="dodont" style="max-width:850px;margin:16px auto 0;">
+  <div class="dodont" style="margin:16px 0 0;">
     <div class="no fragment fade-up">
-      <h4 style="color:var(--accent2);">🚫 Front-loading</h4>
+      <h4 style="color:var(--accent2);"><span class="sq" style="background:var(--danger)"></span>Front-loading</h4>
       <p>Pasting the whole spec, the whole style guide and the whole history into every prompt. Feels thorough. Buries the actual instruction and goes stale the moment the source changes.</p>
     </div>
     <div class="yes fragment fade-up">
-      <h4 style="color:var(--accent3);">✅ Progressive disclosure</h4>
+      <h4 style="color:var(--accent3);"><span class="sq" style="background:var(--accent)"></span>Progressive disclosure</h4>
       <p><code>See docs/specs/current.md for scope<br>and open questions.</code><br><br>Shorter instructions, better output, and it's never out of date.</p>
     </div>
   </div>
@@ -1135,8 +831,8 @@ You maintain one file per vendor in <span class="s">docs/research/</span>.
 <section data-bg="pink" style="font-size:0.86em;">
   <div class="tag tag-pink">Ten agents, zero menus</div>
   <h2>The <span class="highlight">router</span></h2>
-  <p style="font-size:0.64em;color:rgba(255,255,255,0.6);margin:6px auto 0;">A table in AGENTS.md mapping how I actually talk to which agent should answer.</p>
-  <div class="codeblock" style="max-width:790px;margin:12px auto 0;">
+  <p style="font-size:0.64em;color:rgba(255,255,255,0.6);margin:6px 0 0;">A table in AGENTS.md mapping how I actually talk to which agent should answer.</p>
+  <div class="codeblock" style="margin:12px 0 0;">
     <div class="cb-bar">AGENTS.md — agent router</div>
 <pre><span class="h">| What I say                  | Who handles it   |</span>
 <span class="d">|-----------------------------|------------------|</span>
@@ -1158,7 +854,7 @@ You maintain one file per vendor in <span class="s">docs/research/</span>.
 <section data-bg="green" style="font-size:0.86em;">
   <div class="tag tag-green">The maintenance nobody mentions</div>
   <h2>Budget for <span class="highlight">demolition</span></h2>
-  <p style="font-size:0.72em;color:rgba(255,255,255,0.75);max-width:800px;margin:10px auto 0;">
+  <p style="font-size:0.72em;color:rgba(255,255,255,0.75);max-width:800px;margin:10px 0 0;">
     Custom scrapers, bespoke integrations, hand-built tools. Most were genuinely useful when I built them.
     Most were dead weight within two months &mdash; not because they were badly made, but because
     <span class="highlight" style="font-weight:600;">the models improved past the need for them.</span>
@@ -1177,14 +873,14 @@ You maintain one file per vendor in <span class="s">docs/research/</span>.
 <section data-bg="purple" style="font-size:0.84em;">
   <div class="tag tag-purple">If you do nothing else</div>
   <h2>Start <span class="highlight">here</span></h2>
-  <div class="card-grid cols-3" style="max-width:900px;margin:16px auto 0;">
+  <div class="card-grid cols-3" style="margin:16px 0 0;">
     <div class="card fragment fade-up" style="border-top:3px solid var(--accent);">
       <h4 style="font-size:0.82em;">Today</h4>
       <p style="font-size:0.62em;">Create two files: <code style="font-family:'JetBrains Mono',monospace;font-size:0.9em;">AGENTS.md</code> and <code style="font-family:'JetBrains Mono',monospace;font-size:0.9em;">CONTEXT.md</code>. Put them in git. That's the whole day-one setup.</p>
     </div>
     <div class="card fragment fade-up" style="border-top:3px solid var(--accent3);">
       <h4 style="font-size:0.82em;">This week</h4>
-      <p style="font-size:0.62em;">Take the two things you ask for most often. Make each one a narrow agent with a ✅/⚠️/🚫 block.</p>
+      <p style="font-size:0.62em;">Take the two things you ask for most often. Make each one a narrow agent with an <em>always / ask first / never</em> block.</p>
     </div>
     <div class="card fragment fade-up" style="border-top:3px solid var(--accent2);">
       <h4 style="font-size:0.82em;">This month</h4>
@@ -1201,7 +897,7 @@ You maintain one file per vendor in <span class="s">docs/research/</span>.
 <section data-bg="teal">
   <div class="tag tag-teal">If you remember three things</div>
   <h2>Take<span class="highlight">aways</span></h2>
-  <div class="card-grid cols-3" style="max-width:880px;margin:20px auto 0;">
+  <div class="card-grid cols-3" style="margin:20px 0 0;">
     <div class="card fragment fade-up" style="border-top:3px solid var(--accent);">
       <h4>Delegate to your ceiling.</h4>
       <p style="font-size:0.68em;">You can hand over exactly as much as you can check. Build checks, or hand over less. There is no third option.</p>
@@ -1248,11 +944,11 @@ You maintain one file per vendor in <span class="s">docs/research/</span>.
 document.querySelectorAll('[data-bg]').forEach(el => {
   const bg = el.getAttribute('data-bg');
   const styles = {
-    hero: 'radial-gradient(ellipse at 30% 50%, rgba(108,99,255,0.25) 0%, transparent 60%), radial-gradient(ellipse at 70% 80%, rgba(255,101,132,0.15) 0%, transparent 50%), #0a0a1a',
-    purple: 'radial-gradient(ellipse at 50% 30%, rgba(108,99,255,0.2) 0%, transparent 60%), #0a0a1a',
-    pink: 'radial-gradient(ellipse at 60% 40%, rgba(255,101,132,0.2) 0%, transparent 60%), #0a0a1a',
-    green: 'radial-gradient(ellipse at 40% 50%, rgba(67,233,123,0.15) 0%, transparent 60%), #0a0a1a',
-    teal: 'radial-gradient(ellipse at 50% 50%, rgba(56,249,215,0.15) 0%, transparent 60%), #0a0a1a',
+    hero:   'radial-gradient(ellipse 65% 55% at 50% 42%, rgba(200,255,87,0.07) 0%, transparent 68%), radial-gradient(circle at 1px 1px, rgba(255,255,255,0.032) 1px, transparent 0) 0 0 / 34px 34px, #08080A',
+    purple: 'radial-gradient(ellipse 55% 50% at 12% 8%, rgba(126,166,255,0.06) 0%, transparent 70%), radial-gradient(circle at 1px 1px, rgba(255,255,255,0.032) 1px, transparent 0) 0 0 / 34px 34px, #08080A',
+    pink:   'radial-gradient(ellipse 55% 55% at 92% 30%, rgba(200,255,87,0.055) 0%, transparent 70%), radial-gradient(circle at 1px 1px, rgba(255,255,255,0.032) 1px, transparent 0) 0 0 / 34px 34px, #08080A',
+    green:  'radial-gradient(ellipse 55% 55% at 8% 92%, rgba(255,180,84,0.05) 0%, transparent 70%), radial-gradient(circle at 1px 1px, rgba(255,255,255,0.032) 1px, transparent 0) 0 0 / 34px 34px, #08080A',
+    teal:   'radial-gradient(ellipse 55% 55% at 90% 90%, rgba(126,166,255,0.055) 0%, transparent 70%), radial-gradient(circle at 1px 1px, rgba(255,255,255,0.032) 1px, transparent 0) 0 0 / 34px 34px, #08080A',
   };
   if (styles[bg]) {
     el.setAttribute('data-background', styles[bg]);
