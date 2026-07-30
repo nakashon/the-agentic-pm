@@ -3,16 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Agentic PM v2 — Honest Notes from the Field</title>
-<meta name="description" content="What actually happened when a product manager handed real work to AI agents: six field notes, the Verification Ceiling, and why production got free while judgment did not.">
-<meta property="og:title" content="The Agentic PM v2 — Honest Notes from the Field">
-<meta property="og:description" content="Six field notes from shipping with AI agents, including the ones where I was wrong.">
+<title>The Agentic PM — What the job is now, and how to set it up</title>
+<meta name="description" content="A working guide to product management with AI agents: the Frame-Delegate-Verify-Own loop, the Verification Ceiling, and the actual config files to set it up.">
+<meta property="og:title" content="The Agentic PM — What the job is now, and how to set it up">
+<meta property="og:description" content="The loop, the Verification Ceiling, and the four markdown files that run it.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://nakashon.github.io/the-agentic-pm/">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/theme/black.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 :root {
   --accent: #6C63FF;
@@ -607,6 +607,75 @@
   color: rgba(255,255,255,0.3);
   background: transparent;
 }
+/* ─── Code / Config Blocks ─── */
+.codeblock {
+  background: rgba(0,0,0,0.45);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 10px;
+  text-align: left;
+  overflow: hidden;
+  margin: 0;
+}
+.codeblock .cb-bar {
+  background: rgba(255,255,255,0.07);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  padding: 5px 12px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.4em;
+  color: rgba(255,255,255,0.55);
+  letter-spacing: 0.02em;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.codeblock .cb-bar::before {
+  content: '';
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--accent2);
+  box-shadow: 12px 0 0 var(--accent4), 24px 0 0 var(--accent3);
+  margin-right: 22px;
+  flex: none;
+}
+.codeblock pre {
+  margin: 0;
+  padding: 11px 14px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.4em;
+  line-height: 1.65;
+  color: rgba(255,255,255,0.82);
+  white-space: pre;
+  overflow: visible;
+  box-shadow: none;
+  background: none;
+  width: 100%;
+}
+.codeblock .k  { color: var(--accent4); }
+.codeblock .s  { color: var(--accent3); }
+.codeblock .c  { color: rgba(255,255,255,0.38); font-style: italic; }
+.codeblock .h  { color: var(--accent2); font-weight: 700; }
+.codeblock .d  { color: rgba(255,255,255,0.55); }
+
+/* ─── File Tree ─── */
+.filetree {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.42em;
+  line-height: 1.85;
+  text-align: left;
+  color: rgba(255,255,255,0.75);
+}
+.filetree .dir  { color: var(--accent4); font-weight: 500; }
+.filetree .note { color: rgba(255,255,255,0.4); }
+.filetree .star { color: var(--accent2); }
+
+/* ─── Do / Don't ─── */
+.dodont { display: flex; gap: 18px; margin-top: 16px; text-align: left; }
+.dodont > div { flex: 1; border-radius: 10px; padding: 13px 16px; }
+.dodont .no  { background: rgba(255,101,132,0.10); border: 1px solid rgba(255,101,132,0.3); }
+.dodont .yes { background: rgba(67,233,123,0.10); border: 1px solid rgba(67,233,123,0.3); }
+.dodont h4 { font-family:'Space Grotesk',sans-serif; font-size:0.6em; margin:0 0 7px 0; }
+.dodont p  { font-size: 0.52em; margin: 0; line-height: 1.55; color: rgba(255,255,255,0.75); }
+.dodont code { font-family:'JetBrains Mono',monospace; font-size:0.9em; color: rgba(255,255,255,0.9); }
+
 </style>
 </head>
 <body>
@@ -614,323 +683,27 @@
 <div class="reveal">
 <div class="slides">
 
-
 <!-- ═══════════════════════ TITLE ═══════════════════════ -->
 <section data-bg="hero">
-  <div class="tag tag-pink">v2 &mdash; Revised 2026</div>
+  <div class="tag tag-pink">A working guide</div>
   <h1>The <span class="highlight">Agentic</span> PM</h1>
-  <h3 style="margin-top: 20px; font-size:0.9em;">Honest Notes from the Field</h3>
-  <p style="font-size:0.65em; color:rgba(255,255,255,0.6); margin-top: 30px;">
+  <h3 style="margin-top: 20px; font-size:0.9em;">What the job is now, how it succeeds,<br>and exactly how to set it up.</h3>
+  <p style="font-size:0.65em; color:rgba(255,255,255,0.6); margin-top: 26px;">
     <strong>Asaf Nakash</strong> &nbsp;|&nbsp; Principal Product Manager, AI Security, Microsoft Defender
   </p>
-  <p style="font-size:0.55em; color:rgba(255,255,255,0.35); margin-top: 20px;">
+  <p style="font-size:0.55em; color:rgba(255,255,255,0.35); margin-top: 18px;">
     Use <kbd style="background:rgba(255,255,255,0.1);padding:3px 8px;border-radius:4px;">&rarr;</kbd> to navigate &nbsp;|&nbsp; Press <kbd style="background:rgba(255,255,255,0.1);padding:3px 8px;border-radius:4px;">Esc</kbd> for overview
   </p>
 </section>
 
-<!-- ═══════════════════════ WHY V2 ═══════════════════════ -->
-<section data-bg="pink">
-  <div class="tag tag-pink">Why there's a v2</div>
-  <h2>I gave this talk. Then I<br>went and <span class="highlight">did the work</span>.</h2>
-  <div class="quote-block fragment fade-up" style="margin-top:20px;">
-    <p>Version 1 ended on: <em>"the future isn't AI vs. humans &mdash; it's humans who use AI vs. humans who don't."</em></p>
-    <cite>&mdash; me, being applauded for saying nothing</cite>
-  </div>
-  <p class="fragment fade-up" style="font-size:0.72em; color:rgba(255,255,255,0.65); margin-top:16px;">
-    It's true. It's also unfalsifiable, unactionable, and agreed with by everyone in the room.
-    <span class="highlight" style="font-weight:600;">That's how you know it's not a finding.</span>
-  </p>
-  <p class="fragment fade-up" style="font-size:0.62em; color:rgba(255,255,255,0.4); margin-top:14px;">
-    v1 is still up, unedited &mdash; <a href="./v1/" style="color:var(--accent);text-decoration:none;">/v1</a>. Deleting it would prove the point wrong.
-  </p>
-</section>
-
-<!-- ═══════════════════════ THESIS ═══════════════════════ -->
-<section data-bg="purple">
-  <div class="tag tag-purple">The claim</div>
-  <h2>Agents didn't remove the work.<br>They <span class="highlight">relocated</span> it.</h2>
-  <div class="card-grid cols-2" style="max-width:820px;margin:26px auto 0;">
-    <div class="card fragment fade-up" style="border-top:3px solid var(--accent3);">
-      <h4 style="color:var(--accent3);">Production collapsed to near-zero</h4>
-      <p style="font-size:0.72em;">Drafts, specs, prototypes, research, refactors. The thing we spent a decade optimising is now the cheap part.</p>
-    </div>
-    <div class="card fragment fade-up" style="border-top:3px solid var(--accent2);">
-      <h4 style="color:var(--accent2);">Verification did not</h4>
-      <p style="font-size:0.72em;">Knowing whether the output is <em>right</em> costs exactly what it always did. Sometimes more, because it now arrives fluent.</p>
-    </div>
-  </div>
-  <p class="fragment fade-up" style="font-size:0.75em;margin-top:22px;">
-    Every hard thing in this talk falls out of that one asymmetry.
-  </p>
-</section>
-
-<!-- ═══════════════════════ PART 1 DIVIDER ═══════════════════════ -->
-<section data-bg="hero">
-  <div class="tag tag-purple">Part 1</div>
-  <h2 style="font-size:2em;">Six <span class="highlight">Field Notes</span></h2>
-  <h3 style="font-size:0.85em;">A year of shipping AI security product with agents in the loop.<br>Including the parts where I was the problem.</h3>
-</section>
-
-<!-- ═══════════════════════ NOTE 01 ═══════════════════════ -->
-<section data-bg="purple" style="font-size:0.86em;">
-  <div class="tag tag-purple">Note 01</div>
-  <h2>Seven versions.<br><span class="highlight">Seventeen days.</span></h2>
-  <p style="font-size:0.74em;color:rgba(255,255,255,0.75);max-width:790px;margin:10px auto 0;">
-    One spec. v1.7 through v3.0 in under three weeks &mdash; markdown, Word and PowerPoint regenerated in lockstep every time.
-    Fourteen of those commits contain no new thinking at all. They just rebuild the deliverables.
-  </p>
-  <p class="fragment fade-up" style="font-size:0.8em;margin-top:16px;">
-    Producing a version cost me minutes. <span class="highlight" style="font-weight:600;">Agreeing on one took the seventeen days.</span>
-  </p>
-  <div class="quote-block fragment fade-up" style="margin-top:14px;">
-    <p style="font-size:0.95em;"><strong>The note:</strong> when regeneration is free, the document stops being the bottleneck and the
-    alignment underneath it becomes the whole job. I didn't write a spec seven times. I ran seven rounds of negotiation and let the spec keep up.</p>
-  </div>
-</section>
-
-<!-- ═══════════════════════ NOTE 02 ═══════════════════════ -->
-<section data-bg="teal" style="font-size:0.84em;">
-  <div class="tag tag-teal">Note 02</div>
-  <h2>One column name.<br><span class="highlight">Five spellings.</span> Fourteen days.</h2>
-  <p style="font-size:0.72em;color:rgba(255,255,255,0.75);max-width:800px;margin:10px auto 0;">
-    A single field in a schema proposal changed name five times. Each rename propagated instantly across specs, queries,
-    a Word doc and a deck &mdash; dozens of files, seconds, zero errors. Genuinely superhuman.
-  </p>
-  <p class="fragment fade-up" style="font-size:0.78em;margin-top:14px;">
-    It could not tell me <span class="highlight" style="font-weight:600;">which name was right</span> even once.
-  </p>
-  <p class="fragment fade-up" style="font-size:0.7em;color:rgba(255,255,255,0.65);margin-top:12px;">
-    That came from a reviewer's convention, a naming standard nobody had written down, and a judgment call about what a future
-    reader would assume. None of it was in the repo.
-  </p>
-  <div class="quote-block fragment fade-up" style="margin-top:12px;">
-    <p style="font-size:0.93em;"><strong>The note:</strong> agents made <em>renaming</em> free. They did not make <em>naming</em> easier. Naming was always the job.</p>
-  </div>
-</section>
-
-<!-- ═══════════════════════ NOTE 03 ═══════════════════════ -->
-<section data-bg="pink" style="font-size:0.88em;">
-  <div class="tag tag-pink">Note 03</div>
-  <h2>A PM's repo is not<br>a <span class="highlight">code</span> repo</h2>
-  <p style="font-size:0.74em;color:rgba(255,255,255,0.72);max-width:760px;margin:8px auto 0;">
-    One year of my actual work, by commit type:
-  </p>
-  <div class="card-grid cols-3" style="max-width:820px;margin:14px auto 0;">
-    <div class="card fragment fade-up" style="border-top:3px solid var(--accent);">
-      <div class="big-number" style="font-size:1.7em;">86</div>
-      <p style="font-size:0.68em;">documents</p>
-    </div>
-    <div class="card fragment fade-up" style="border-top:3px solid var(--accent3);">
-      <div class="big-number" style="font-size:1.7em;">30</div>
-      <p style="font-size:0.68em;">features built</p>
-    </div>
-    <div class="card fragment fade-up" style="border-top:3px solid var(--accent2);">
-      <div class="big-number" style="font-size:1.7em;">22</div>
-      <p style="font-size:0.68em;">corrections</p>
-    </div>
-  </div>
-  <div class="quote-block fragment fade-up" style="margin-top:14px;">
-    <p style="font-size:0.92em;"><strong>The note:</strong> the artifact of product management is prose &mdash; and prose is exactly what these models
-    are best at. That's why the leverage is enormous, and why the failure mode is invisible. Bad code crashes. A bad paragraph gets approved.</p>
-  </div>
-</section>
-
-<!-- ═══════════════════════ NOTE 04 ═══════════════════════ -->
-<section data-bg="green" style="font-size:0.84em;">
-  <div class="tag tag-green">Note 04</div>
-  <h2>It wrote the most <span class="highlight">satisfying</span> version<br>of the market, not the truest</h2>
-  <p style="font-size:0.72em;color:rgba(255,255,255,0.75);max-width:800px;margin:8px auto 0;">
-    A competitive landscape refresh across 26 vendor files. What came back was a genuinely compelling narrative &mdash;
-    clean arc, causal, quotable.
-  </p>
-  <div class="card-grid cols-2" style="max-width:810px;margin:14px auto 0;">
-    <div class="card fragment fade-up" style="border-top:3px solid var(--accent2);">
-      <h4 style="color:var(--accent2);">What I had to commit</h4>
-      <p style="font-size:0.68em;">"Remove speculative narrative &mdash; let facts lead." Then: verify every executive's <em>current</em> role. One was simply out of date.</p>
-    </div>
-    <div class="card fragment fade-up" style="border-top:3px solid var(--accent3);">
-      <h4 style="color:var(--accent3);">What fixed it</h4>
-      <p style="font-size:0.68em;">An evidence-based maturity rating on every claim. If it isn't in a published source, it doesn't get a number.</p>
-    </div>
-  </div>
-  <div class="quote-block fragment fade-up" style="margin-top:12px;">
-    <p style="font-size:0.92em;"><strong>The note:</strong> "compelling" is a failure mode when you're briefing leadership. The story was better than the evidence,
-    and I'm the one whose name was on the cover.</p>
-  </div>
-</section>
-
-<!-- ═══════════════════════ NOTE 05 ═══════════════════════ -->
-<section data-bg="teal" style="font-size:0.86em;">
-  <div class="tag tag-teal">Note 05</div>
-  <h2>It handed me my own<br><span class="highlight">misconception</span>, beautifully formatted</h2>
-  <p style="font-size:0.74em;color:rgba(255,255,255,0.75);max-width:800px;margin:10px auto 0;">
-    I had two internal platforms confused &mdash; genuinely, in my own head. I briefed the agent from that confusion.
-  </p>
-  <p class="fragment fade-up" style="font-size:0.76em;margin-top:14px;">
-    It produced a clear, well-structured, internally consistent document built entirely on the error &mdash;
-    <span class="highlight" style="font-weight:600;">and cited my own earlier notes as the source.</span>
-  </p>
-  <p class="fragment fade-up" style="font-size:0.7em;color:rgba(255,255,255,0.6);margin-top:12px;">
-    The commit that fixed it is one line. Finding it took a conversation with someone who actually owned the platform.
-  </p>
-  <div class="quote-block fragment fade-up" style="margin-top:12px;">
-    <p style="font-size:0.92em;"><strong>The note:</strong> agents are mirrors with excellent grammar. Your wrong model of the world comes back
-    laundered as an authoritative document with footnotes. Garbage in &rarr; <em>credible</em> garbage out.</p>
-  </div>
-</section>
-
-<!-- ═══════════════════════ NOTE 06 ═══════════════════════ -->
-<section data-bg="purple" style="font-size:0.86em;">
-  <div class="tag tag-purple">Note 06</div>
-  <h2>It answered all 23 comments.<br>It couldn't <span class="highlight">read the room</span>.</h2>
-  <p style="font-size:0.74em;color:rgba(255,255,255,0.75);max-width:800px;margin:10px auto 0;">
-    A spec review came back with 23 comments. The agent drafted a reply to every one in a single pass &mdash;
-    structurally sound, correctly scoped, politely worded.
-  </p>
-  <div class="card-grid cols-2" style="max-width:810px;margin:14px auto 0;">
-    <div class="card fragment fade-up" style="border-top:3px solid var(--accent3);">
-      <h4 style="color:var(--accent3);">Free</h4>
-      <p style="font-size:0.68em;">Drafting 23 coherent responses. Threading them back into the document. Rebuilding every deliverable.</p>
-    </div>
-    <div class="card fragment fade-up" style="border-top:3px solid var(--accent2);">
-      <h4 style="color:var(--accent2);">Entirely mine</h4>
-      <p style="font-size:0.68em;">Which to accept, which to push back on, and the two that weren't technical comments at all.</p>
-    </div>
-  </div>
-  <div class="quote-block fragment fade-up" style="margin-top:12px;">
-    <p style="font-size:0.92em;"><strong>The note:</strong> a comment is rarely just its text. Some are questions, some are positions, and some are
-    someone telling you they weren't consulted. Only one of those is answerable in a document.</p>
-  </div>
-</section>
-
-<!-- ═══════════════════════ PART 2 DIVIDER — THE SYSTEM ═══════════════════════ -->
-<section data-bg="hero">
-  <div class="tag tag-purple">Part 2</div>
-  <h2 style="font-size:2em;">The <span class="highlight">System</span> I Actually Run</h2>
-  <h3 style="font-size:0.85em;">Because "use AI more" is not an operating model.</h3>
-</section>
-
-<!-- ═══════════════════════ THE COMMAND CENTER ═══════════════════════ -->
-<section data-bg="pink" style="font-size:0.86em;">
-  <div class="tag tag-pink">The setup</div>
-  <h2>One repo. It contains<br>almost <span class="highlight">no code</span>.</h2>
-  <p style="font-size:0.72em;color:rgba(255,255,255,0.72);max-width:800px;margin:8px auto 0;">
-    Specs, competitive research, meeting notes, feature docs, queries, drafts &mdash; and the configuration that lets agents work on all of it.
-    It is a PM operating system kept in version control.
-  </p>
-  <div class="card-grid cols-2" style="max-width:830px;margin:14px auto 0;">
-    <div class="card fragment fade-up" style="border-top:3px solid var(--accent);">
-      <h4>Conventions file</h4>
-      <p style="font-size:0.68em;">How work is structured, where things live, what "done" means. Read by every agent, every session.</p>
-    </div>
-    <div class="card fragment fade-up" style="border-top:3px solid var(--accent3);">
-      <h4>Cross-session context file</h4>
-      <p style="font-size:0.68em;">Active projects, decisions, standing preferences, hard-won learnings. Memory as a file I can edit &mdash; not a feature I have to trust.</p>
-    </div>
-  </div>
-  <p class="fragment fade-up" style="font-size:0.7em;margin-top:14px;color:rgba(255,255,255,0.65);">
-    Version-controlled context is the single highest-leverage thing I did. Everything below depends on it.
-  </p>
-</section>
-
-<!-- ═══════════════════════ TEN AGENTS ═══════════════════════ -->
-<section data-bg="teal" style="font-size:0.8em;">
-  <div class="tag tag-teal">The roster</div>
-  <h2>Ten narrow agents,<br>not one <span class="highlight">clever</span> one</h2>
-  <div class="card-grid cols-3" style="max-width:900px;margin:14px auto 0;">
-    <div class="card fragment fade-up"><h4 style="font-size:0.82em;color:var(--accent);">Feature co-pilot</h4><p style="font-size:0.62em;">Status, decisions, action items per feature</p></div>
-    <div class="card fragment fade-up"><h4 style="font-size:0.82em;color:var(--accent3);">Compete research</h4><p style="font-size:0.62em;">Vendor landscape, refreshed on a cadence</p></div>
-    <div class="card fragment fade-up"><h4 style="font-size:0.82em;color:var(--accent2);">Spec writer</h4><p style="font-size:0.62em;">Structured docs in a fixed house format</p></div>
-    <div class="card fragment fade-up"><h4 style="font-size:0.82em;color:var(--accent4);">Meeting prep</h4><p style="font-size:0.62em;">Briefs pulled from real prior context</p></div>
-    <div class="card fragment fade-up"><h4 style="font-size:0.82em;color:var(--accent);">Weekly recap</h4><p style="font-size:0.62em;">What actually moved, not what was busy</p></div>
-    <div class="card fragment fade-up"><h4 style="font-size:0.82em;color:var(--accent3);">Feedback analyzer</h4><p style="font-size:0.62em;">Customer notes &rarr; themes, with counts</p></div>
-  </div>
-  <p class="fragment fade-up" style="font-size:0.68em;margin-top:12px;color:rgba(255,255,255,0.68);">
-    Plus email, content, profile and UX review. A router maps intent &rarr; agent, so I never pick from a menu.
-  </p>
-  <p class="fragment fade-up" style="font-size:0.72em;margin-top:8px;">
-    The reason to keep them narrow: <span class="highlight" style="font-weight:600;">a narrow agent can be evaluated.</span> A general one can only be liked.
-  </p>
-</section>
-
-<!-- ═══════════════════════ WHAT MADE IT WORK ═══════════════════════ -->
-<section data-bg="green" style="font-size:0.82em;">
-  <div class="tag tag-green">The four that mattered</div>
-  <h2>What actually moved<br>the <span class="highlight">quality</span> needle</h2>
-  <div class="card-grid cols-2" style="max-width:880px;margin:14px auto 0;">
-    <div class="card fragment fade-up" style="border-top:3px solid var(--accent);">
-      <h4 style="font-size:0.86em;">01 &mdash; Config is the source of truth</h4>
-      <p style="font-size:0.66em;">To change what an agent tracks, edit the config file &mdash; never re-explain yourself in chat. Chat doesn't persist. Files do.</p>
-    </div>
-    <div class="card fragment fade-up" style="border-top:3px solid var(--accent3);">
-      <h4 style="font-size:0.86em;">02 &mdash; Progressive disclosure</h4>
-      <p style="font-size:0.66em;">Don't front-load everything into the prompt. Point at files and let the agent go get what it needs. Smaller instructions, better results.</p>
-    </div>
-    <div class="card fragment fade-up" style="border-top:3px solid var(--accent4);">
-      <h4 style="font-size:0.86em;">03 &mdash; Three-tier boundaries</h4>
-      <p style="font-size:0.66em;">✅ Always &nbsp;/&nbsp; ⚠️ Ask first &nbsp;/&nbsp; 🚫 Never. The middle tier is the one that earns its keep &mdash; and the one most people skip.</p>
-    </div>
-    <div class="card fragment fade-up" style="border-top:3px solid var(--accent2);">
-      <h4 style="font-size:0.86em;">04 &mdash; Calibrate on real artifacts</h4>
-      <p style="font-size:0.66em;">First drafts are structurally right and tonally dead. Feed it things you actually sent, and the voice problem disappears.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════ TWO RULES ═══════════════════════ -->
-<section data-bg="purple" style="font-size:0.86em;">
-  <div class="tag tag-pink">Non-negotiable</div>
-  <h2>Two rules I'd never drop</h2>
-  <div class="quote-block fragment fade-up" style="margin-top:16px;">
-    <p><strong>1. Treat every output as if it will be forwarded.</strong></p>
-    <cite>Because eventually one is. Write for the reader you didn't plan for.</cite>
-  </div>
-  <div class="quote-block fragment fade-up" style="margin-top:14px;">
-    <p><strong>2. Never put a credential in a conversation.</strong></p>
-    <cite>Chat history isn't a whiteboard. You cannot un-say it, and you usually can't delete it either.</cite>
-  </div>
-  <p class="fragment fade-up" style="font-size:0.7em;margin-top:16px;color:rgba(255,255,255,0.65);">
-    I work in AI security, so I'll say the quiet part: the context window is an <em>attack surface</em>, and everything you paste
-    into it is now part of your threat model.
-  </p>
-</section>
-
-<!-- ═══════════════════════ WHAT I DELETED ═══════════════════════ -->
-<section data-bg="pink" style="font-size:0.86em;">
-  <div class="tag tag-pink">The unglamorous half</div>
-  <h2>Half of getting good at this<br>was <span class="highlight">deleting things</span></h2>
-  <p style="font-size:0.74em;color:rgba(255,255,255,0.75);max-width:800px;margin:10px auto 0;">
-    Custom scrapers, bespoke integrations, hand-built tools, whole apps. Most were genuinely useful when I built them.
-    Most were dead weight within two months.
-  </p>
-  <p class="fragment fade-up" style="font-size:0.78em;margin-top:14px;">
-    Not because they were badly made &mdash; because
-    <span class="highlight" style="font-weight:600;">the models improved past the need for them.</span>
-  </p>
-  <p class="fragment fade-up" style="font-size:0.68em;color:rgba(255,255,255,0.55);margin-top:14px;">
-    This repo was literally called <em>vibecoding</em> before it became a command center. That rename is the honest summary of the year.
-  </p>
-  <div class="quote-block fragment fade-up" style="margin-top:12px;">
-    <p style="font-size:0.92em;"><strong>The note:</strong> re-examine your scaffolding every few months. Tooling that once added capability
-    starts quietly constraining it. Budget for demolition.</p>
-  </div>
-</section>
-
-<!-- ═══════════════════════ PART 2 DIVIDER ═══════════════════════ -->
-<section data-bg="hero">
-  <div class="tag tag-purple">Part 3</div>
-  <h2 style="font-size:2em;">What It <span class="highlight">Means</span></h2>
-  <h3 style="font-size:0.85em;">If production is free, what exactly is the job?</h3>
-</section>
-
-<!-- ═══════════════════════ CHEAP / EXPENSIVE ═══════════════════════ -->
+<!-- ═══════════════════════ THE SHIFT ═══════════════════════ -->
 <section data-bg="purple" style="font-size:0.9em;">
-  <div class="tag tag-purple">The new economics</div>
-  <h2>What got cheap.<br>What <span class="highlight">didn't</span>.</h2>
-  <div class="compare-container" style="margin-top:20px;">
+  <div class="tag tag-purple">What changed</div>
+  <h2>Agents didn't remove the work.<br>They <span class="highlight">relocated</span> it.</h2>
+  <div class="compare-container" style="margin-top:18px;">
     <div class="compare-card">
-      <h4 style="color:var(--accent3);">Approaching free</h4>
-      <ul style="font-size:0.68em;text-align:left;line-height:1.7;">
+      <h4 style="color:var(--accent3);">Now approaching free</h4>
+      <ul style="font-size:0.66em;text-align:left;line-height:1.65;">
         <li>First drafts of anything</li>
         <li>Research summaries</li>
         <li>Prototypes &amp; refactors</li>
@@ -939,8 +712,8 @@
     </div>
     <div class="compare-vs">vs</div>
     <div class="compare-card">
-      <h4 style="color:var(--accent2);">Unchanged or worse</h4>
-      <ul style="font-size:0.68em;text-align:left;line-height:1.7;">
+      <h4 style="color:var(--accent2);">Unchanged, or worse</h4>
+      <ul style="font-size:0.66em;text-align:left;line-height:1.65;">
         <li>Knowing <em>which</em> option</li>
         <li>Catching plausible-but-wrong</li>
         <li>Context nobody wrote down</li>
@@ -948,170 +721,498 @@
       </ul>
     </div>
   </div>
-  <p class="fragment fade-up" style="font-size:0.72em;margin-top:18px;">
-    Note that the right-hand column is <span class="highlight" style="font-weight:600;">the entire job description</span>.
+  <p class="fragment fade-up" style="font-size:0.72em;margin-top:16px;">
+    The right-hand column is <span class="highlight" style="font-weight:600;">the entire job description</span>.
   </p>
 </section>
 
-<!-- ═══════════════════════ THE VERIFICATION CEILING ═══════════════════════ -->
+<!-- ═══════════════════════ THE DEFINITION ═══════════════════════ -->
+<section data-bg="pink" style="font-size:0.86em;">
+  <div class="tag tag-pink">The role</div>
+  <h2>So what <span class="highlight">is</span> an Agentic PM?</h2>
+  <div class="quote-block" style="margin-top:14px;">
+    <p>A product manager who has stopped being the <strong>producer</strong> of artifacts<br>
+    and become the <strong>author of the system that produces them</strong> &mdash;<br>
+    and who remains personally accountable for every one.</p>
+  </div>
+  <div class="card-grid cols-3" style="max-width:880px;margin:16px auto 0;">
+    <div class="card fragment fade-up" style="border-top:3px solid var(--accent);">
+      <h4 style="font-size:0.82em;">Not a prompt engineer</h4>
+      <p style="font-size:0.62em;">Prompts are disposable. Systems persist.</p>
+    </div>
+    <div class="card fragment fade-up" style="border-top:3px solid var(--accent3);">
+      <h4 style="font-size:0.82em;">Not an AI enthusiast</h4>
+      <p style="font-size:0.62em;">Enthusiasm ships unverified work. This is a discipline.</p>
+    </div>
+    <div class="card fragment fade-up" style="border-top:3px solid var(--accent2);">
+      <h4 style="font-size:0.82em;">Still fully on the hook</h4>
+      <p style="font-size:0.62em;">Delegating production never delegates responsibility.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ WHAT IT LOOKS LIKE ═══════════════════════ -->
+<section data-bg="teal" style="font-size:0.86em;">
+  <div class="tag tag-teal">What it looks like in practice</div>
+  <h2>My work lives in a repo.<br>It contains almost <span class="highlight">no code</span>.</h2>
+  <p style="font-size:0.7em;color:rgba(255,255,255,0.7);max-width:790px;margin:8px auto 0;">
+    Specs, research, feature state, meeting notes, drafts &mdash; plus the configuration that lets agents work on all of it.
+    One year, by commit type:
+  </p>
+  <div class="card-grid cols-3" style="max-width:800px;margin:14px auto 0;">
+    <div class="card fragment fade-up" style="border-top:3px solid var(--accent);">
+      <div class="big-number" style="font-size:1.6em;">86</div><p style="font-size:0.64em;">documents</p>
+    </div>
+    <div class="card fragment fade-up" style="border-top:3px solid var(--accent3);">
+      <div class="big-number" style="font-size:1.6em;">30</div><p style="font-size:0.64em;">things built</p>
+    </div>
+    <div class="card fragment fade-up" style="border-top:3px solid var(--accent2);">
+      <div class="big-number" style="font-size:1.6em;">22</div><p style="font-size:0.64em;">corrections</p>
+    </div>
+  </div>
+  <p class="fragment fade-up" style="font-size:0.72em;margin-top:14px;">
+    The artifact of product management is <span class="highlight" style="font-weight:600;">prose</span> &mdash;
+    which is exactly what these models are best at, and exactly where a confident error survives review.
+  </p>
+</section>
+
+<!-- ═══════════════════════ PART 1 DIVIDER ═══════════════════════ -->
+<section data-bg="hero">
+  <div class="tag tag-purple">Part 1</div>
+  <h2 style="font-size:2em;">What He <span class="highlight">Does</span></h2>
+  <h3 style="font-size:0.85em;">One loop. Four steps. Every failure I've had was a step I skipped.</h3>
+</section>
+
+<!-- ═══════════════════════ THE LOOP ═══════════════════════ -->
+<section data-bg="purple">
+  <div class="tag tag-purple">The loop</div>
+  <h2>Frame &rarr; Delegate &rarr;<br>Verify &rarr; <span class="highlight">Own</span></h2>
+  <div class="timeline" style="margin-top:20px;">
+    <div class="timeline-step fragment fade-up">
+      <div class="timeline-dot" style="border-color: var(--accent); color: var(--accent);"></div>
+      <h4>Frame</h4><p>Write the context<br>down before you<br>ask for anything.</p>
+    </div>
+    <div class="timeline-step fragment fade-up">
+      <div class="timeline-dot" style="border-color: #a29bfe; color: #a29bfe;"></div>
+      <h4>Delegate</h4><p>Narrow scope,<br>explicit bounds,<br>evaluable output.</p>
+    </div>
+    <div class="timeline-step fragment fade-up">
+      <div class="timeline-dot" style="border-color: var(--accent3); color: var(--accent3);"></div>
+      <h4>Verify</h4><p>Run a check you<br>built, not a review<br>you performed.</p>
+    </div>
+    <div class="timeline-step fragment fade-up">
+      <div class="timeline-dot" style="border-color: var(--accent2); color: var(--accent2);"></div>
+      <h4>Own</h4><p>Defend it in your<br>own words, or<br>you haven't shipped.</p>
+    </div>
+  </div>
+  <p class="fragment fade-up" style="font-size:0.7em;margin-top:20px;color:rgba(255,255,255,0.65);">
+    It's a loop, not a pipeline. What you learn in Verify goes straight back into Frame.
+  </p>
+</section>
+
+<!-- ═══════════════════════ FRAME ═══════════════════════ -->
+<section data-bg="purple" style="font-size:0.84em;">
+  <div class="tag tag-purple">Step 1 &mdash; Frame</div>
+  <h2>Write it down <span class="highlight">before</span> you ask</h2>
+  <div class="card-grid cols-3" style="max-width:890px;margin:14px auto 0;">
+    <div class="card fragment fade-up" style="border-top:3px solid var(--accent);">
+      <h4 style="font-size:0.82em;">Explain it twice &rarr; file it</h4>
+      <p style="font-size:0.62em;">Chat is a session. Files are an asset. Anything you repeat belongs in version control.</p>
+    </div>
+    <div class="card fragment fade-up" style="border-top:3px solid var(--accent3);">
+      <h4 style="font-size:0.82em;">Lead with the tacit rule</h4>
+      <p style="font-size:0.62em;">The convention nobody documented is the only input the model can't get anywhere else.</p>
+    </div>
+    <div class="card fragment fade-up" style="border-top:3px solid var(--accent2);">
+      <h4 style="font-size:0.82em;">Define done, checkably</h4>
+      <p style="font-size:0.62em;">Not "good." Something a stranger could test without you in the room.</p>
+    </div>
+  </div>
+  <p class="fragment fade-up" style="font-size:0.72em;margin-top:14px;">
+    <span class="highlight" style="font-weight:600;">The test: could a competent new hire do this from what you just wrote?</span>
+    If not, you're not framing. You're hinting.
+  </p>
+  <p class="fragment fade-up" style="font-size:0.64em;margin-top:10px;color:rgba(255,255,255,0.55);">
+    Skip this step and you don't get bad output. You get <em>polished</em> wrong output, citing your own notes back to you.
+  </p>
+</section>
+
+<!-- ═══════════════════════ DELEGATE ═══════════════════════ -->
+<section data-bg="green" style="font-size:0.82em;">
+  <div class="tag tag-green">Step 2 &mdash; Delegate</div>
+  <h2>Narrow, bounded, <span class="highlight">evaluable</span></h2>
+  <div class="card-grid cols-2" style="max-width:880px;margin:14px auto 0;">
+    <div class="card fragment fade-up" style="border-top:3px solid var(--accent);">
+      <h4 style="font-size:0.86em;">Many narrow agents, not one clever one</h4>
+      <p style="font-size:0.66em;">A narrow agent can be evaluated. A general one can only be liked.</p>
+    </div>
+    <div class="card fragment fade-up" style="border-top:3px solid var(--accent3);">
+      <h4 style="font-size:0.86em;">Boundaries in three tiers</h4>
+      <p style="font-size:0.66em;">✅ Always &nbsp;/&nbsp; ⚠️ Ask first &nbsp;/&nbsp; 🚫 Never. The middle tier does the work.</p>
+    </div>
+    <div class="card fragment fade-up" style="border-top:3px solid var(--accent4);">
+      <h4 style="font-size:0.86em;">Point at files, don't paste</h4>
+      <p style="font-size:0.66em;">Let it fetch what it needs. Smaller instructions, better output.</p>
+    </div>
+    <div class="card fragment fade-up" style="border-top:3px solid var(--accent2);">
+      <h4 style="font-size:0.86em;">Config is the source of truth</h4>
+      <p style="font-size:0.66em;">To change behaviour, edit the file &mdash; never re-explain yourself in chat.</p>
+    </div>
+  </div>
+  <p class="fragment fade-up" style="font-size:0.7em;margin-top:12px;">
+    Delegation is a <span class="highlight" style="font-weight:600;">hiring problem</span>, not a prompting one.
+  </p>
+</section>
+
+<!-- ═══════════════════════ VERIFY ═══════════════════════ -->
+<section data-bg="pink" style="font-size:0.82em;">
+  <div class="tag tag-pink">Step 3 &mdash; Verify</div>
+  <h2>Build the check.<br>Don't <span class="highlight">perform</span> the review.</h2>
+  <div class="card-grid cols-2" style="max-width:880px;margin:14px auto 0;">
+    <div class="card fragment fade-up" style="border-top:3px solid var(--accent);">
+      <h4 style="font-size:0.86em;">Ask for the harness, not the opinion</h4>
+      <p style="font-size:0.66em;">"Review this" returns a tidy list. "Write the check that would catch this" returns the bug.</p>
+    </div>
+    <div class="card fragment fade-up" style="border-top:3px solid var(--accent3);">
+      <h4 style="font-size:0.86em;">No published source &rarr; no claim</h4>
+      <p style="font-size:0.66em;">If you can't link to it, it doesn't ship. Enforce this in the agent, not in your head.</p>
+    </div>
+    <div class="card fragment fade-up" style="border-top:3px solid var(--accent4);">
+      <h4 style="font-size:0.86em;">Make "I don't know" safe</h4>
+      <p style="font-size:0.66em;">Ask what it couldn't verify, and reward the flag. The unflagged guess is the expensive one.</p>
+    </div>
+    <div class="card fragment fade-up" style="border-top:3px solid var(--accent2);">
+      <h4 style="font-size:0.86em;">Check the question, not just the answer</h4>
+      <p style="font-size:0.66em;">Most bad output is a correct answer to a question you didn't mean to ask.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ OWN ═══════════════════════ -->
+<section data-bg="purple" style="font-size:0.84em;">
+  <div class="tag tag-purple">Step 4 &mdash; Own</div>
+  <h2>The accountability<br><span class="highlight">never moved</span></h2>
+  <div class="card-grid cols-3" style="max-width:890px;margin:14px auto 0;">
+    <div class="card fragment fade-up" style="border-top:3px solid var(--accent);">
+      <h4 style="font-size:0.82em;">Defend it without the transcript</h4>
+      <p style="font-size:0.62em;">If you can't explain why in your own words, you haven't decided. You've forwarded.</p>
+    </div>
+    <div class="card fragment fade-up" style="border-top:3px solid var(--accent3);">
+      <h4 style="font-size:0.82em;">Assume it gets forwarded</h4>
+      <p style="font-size:0.62em;">Because eventually one does. Write for the reader you didn't plan for.</p>
+    </div>
+    <div class="card fragment fade-up" style="border-top:3px solid var(--accent2);">
+      <h4 style="font-size:0.82em;">Read the room</h4>
+      <p style="font-size:0.62em;">Not every comment is technical. Some are positions. Some mean "you didn't ask me."</p>
+    </div>
+  </div>
+  <p class="fragment fade-up" style="font-size:0.68em;margin-top:14px;color:rgba(255,255,255,0.65);">
+    I work in AI security, so I'll say the quiet part: the context window is an <em>attack surface</em>.
+    Never put a credential in a conversation &mdash; you cannot un-say it.
+  </p>
+</section>
+
+<!-- ═══════════════════════ PART 2 DIVIDER ═══════════════════════ -->
+<section data-bg="hero">
+  <div class="tag tag-purple">Part 2</div>
+  <h2 style="font-size:2em;">How He <span class="highlight">Succeeds</span></h2>
+  <h3 style="font-size:0.85em;">There's one law, and it decides everything else.</h3>
+</section>
+
+<!-- ═══════════════════════ THE CEILING ═══════════════════════ -->
 <section data-bg="pink" style="font-size:0.88em;">
-  <div class="tag tag-pink">The one idea worth stealing</div>
+  <div class="tag tag-pink">The law</div>
   <h2>The <span class="highlight">Verification Ceiling</span></h2>
-  <div class="quote-block" style="margin-top:12px;">
+  <div class="quote-block" style="margin-top:14px;">
     <p>You can safely delegate <strong>exactly as much as you can check</strong>.<br>
     Past that line you are not managing. You are hoping.</p>
   </div>
-  <div class="card-grid cols-2" style="max-width:800px;margin:14px auto 0;">
+  <p class="fragment fade-up" style="font-size:0.74em;margin-top:16px;color:rgba(255,255,255,0.75);">
+    Not a metaphor &mdash; a hard limit. It caps how much leverage you can take from an agent,
+    and it is <em>independent of how good the agent is</em>.
+  </p>
+  <p class="fragment fade-up" style="font-size:0.7em;margin-top:12px;color:rgba(255,255,255,0.6);">
+    Most teams delegate past it, ship anyway, and call the gap <em>velocity</em>.
+  </p>
+</section>
+
+<!-- ═══════════════════════ TWO MOVES ═══════════════════════ -->
+<section data-bg="teal" style="font-size:0.86em;">
+  <div class="tag tag-teal">Therefore</div>
+  <h2>There are only <span class="highlight">two moves</span></h2>
+  <div class="card-grid cols-2" style="max-width:840px;margin:18px auto 0;">
     <div class="card fragment fade-up" style="border-top:3px solid var(--accent3);">
       <h4 style="color:var(--accent3);">Raise the ceiling</h4>
-      <p style="font-size:0.68em;">Evals, harnesses, tests, checkable acceptance criteria. Core PM work now &mdash; not an engineering chore.</p>
+      <p style="font-size:0.7em;">Build the checks. Evals, harnesses, sourcing rules, acceptance criteria you can actually run. This is PM work now, not an engineering chore.</p>
     </div>
     <div class="card fragment fade-up" style="border-top:3px solid var(--accent2);">
-      <h4 style="color:var(--accent2);">Or lower the delegation</h4>
-      <p style="font-size:0.68em;">Hand over less until you can check more. Unglamorous. Correct.</p>
+      <h4 style="color:var(--accent2);">Lower the delegation</h4>
+      <p style="font-size:0.7em;">Hand over less until you can check more. Unglamorous, unpopular, and correct.</p>
     </div>
   </div>
-  <p class="fragment fade-up" style="font-size:0.68em;margin-top:12px;color:rgba(255,255,255,0.65);">
-    Most teams do neither, and call the gap <em>velocity</em>.
+  <p class="fragment fade-up" style="font-size:0.75em;margin-top:18px;">
+    Success is not "used AI more." It is
+    <span class="highlight" style="font-weight:600;">raised the ceiling faster than you raised the delegation</span>.
   </p>
 </section>
 
-<!-- ═══════════════════════ ORCHESTRATION UNDERSELLS ═══════════════════════ -->
-<section data-bg="teal">
-  <div class="tag tag-teal">A word I'd retire</div>
-  <h2>"Orchestration" makes it sound like<br>a <span class="highlight">scheduling problem</span></h2>
-  <p style="font-size:0.78em;color:rgba(255,255,255,0.75);max-width:780px;margin:16px auto 0;">
-    v1 of this talk leaned on it heavily. It implies the hard part is coordinating the agents &mdash; who runs what, in what order.
-  </p>
-  <p class="fragment fade-up" style="font-size:0.82em;margin-top:16px;">
-    In practice, coordination was <span class="highlight" style="font-weight:600;">the easy part</span>.
-    The hard part was judgment, applied to output that arrives sounding certain.
-  </p>
-  <p class="fragment fade-up" style="font-size:0.72em;color:rgba(255,255,255,0.6);margin-top:16px;">
-    A conductor whose orchestra plays confidently out of tune doesn't need better scheduling. They need an ear.
-  </p>
-</section>
-
-<!-- ═══════════════════════ TASTE ═══════════════════════ -->
-<section data-bg="green">
-  <div class="tag tag-green">The scarce input</div>
-  <h2>Taste stopped being<br>a <span class="highlight">soft skill</span></h2>
-  <div class="card-grid cols-3" style="max-width:840px;margin:20px auto 0;">
-    <div class="card fragment fade-up">
-      <h4 style="color:var(--accent);">Knowing what's good</h4>
-      <p style="font-size:0.68em;">When ten plausible options cost nothing, choosing is the whole value-add.</p>
-    </div>
-    <div class="card fragment fade-up">
-      <h4 style="color:var(--accent3);">Knowing what's missing</h4>
-      <p style="font-size:0.68em;">Models can't tell you about the constraint nobody wrote down. You can.</p>
-    </div>
-    <div class="card fragment fade-up">
-      <h4 style="color:var(--accent2);">Knowing when to stop</h4>
-      <p style="font-size:0.68em;">Infinite cheap iteration has no natural stopping point. That has to come from you.</p>
-    </div>
-  </div>
-  <p class="fragment fade-up" style="font-size:0.72em;margin-top:20px;">
-    None of this is new to PM. It's just that everything <em>else</em> got automated out from under it.
-  </p>
-</section>
-
-<!-- ═══════════════════════ PART 4 DIVIDER ═══════════════════════ -->
-<section data-bg="hero">
-  <div class="tag tag-purple">Part 4</div>
-  <h2 style="font-size:2em;">What I'd Actually <span class="highlight">Do</span></h2>
-  <h3 style="font-size:0.85em;">Four practices. All of them boring. All of them load-bearing.</h3>
-</section>
-
-<!-- ═══════════════════════ PRACTICES ═══════════════════════ -->
-<section data-bg="purple" style="font-size:0.86em;">
-  <div class="tag tag-purple">Practices</div>
-  <h2>Four things that <span class="highlight">actually worked</span></h2>
-  <div class="card-grid cols-2" style="max-width:880px;margin:20px auto 0;">
+<!-- ═══════════════════════ FOUR SKILLS ═══════════════════════ -->
+<section data-bg="green" style="font-size:0.82em;">
+  <div class="tag tag-green">What to get good at</div>
+  <h2>Four skills, one per <span class="highlight">step</span></h2>
+  <div class="card-grid cols-2" style="max-width:880px;margin:14px auto 0;">
     <div class="card fragment fade-up" style="border-top:3px solid var(--accent);">
-      <h4>01 &mdash; Put the context in a file, not a chat</h4>
-      <p style="font-size:0.7em;">Anything you explain twice belongs in a conventions file. Chat is a session; files are an asset.</p>
+      <h4 style="font-size:0.86em;">Frame &rarr; writing for machines</h4>
+      <p style="font-size:0.66em;">Which turns out to be writing for a new hire. Practise by handing your brief to someone with no context and watching what breaks.</p>
     </div>
     <div class="card fragment fade-up" style="border-top:3px solid var(--accent3);">
-      <h4>02 &mdash; Supply the tacit knowledge early</h4>
-      <p style="font-size:0.7em;">The convention nobody wrote down is the only input the model can't get elsewhere. Lead with it, or fix it five renames later.</p>
+      <h4 style="font-size:0.86em;">Delegate &rarr; decomposition</h4>
+      <p style="font-size:0.66em;">Splitting a job into roles narrow enough to judge. Same muscle as writing a good job description, and it fails the same way.</p>
     </div>
     <div class="card fragment fade-up" style="border-top:3px solid var(--accent4);">
-      <h4>03 &mdash; Make "I don't know" safe</h4>
-      <p style="font-size:0.7em;">Ask explicitly what it couldn't verify, and reward the flag. An unflagged guess in a leadership doc is the expensive failure.</p>
+      <h4 style="font-size:0.86em;">Verify &rarr; building checks</h4>
+      <p style="font-size:0.66em;">The genuinely new skill, and the one PMs keep outsourcing. If you learn one thing here, learn this.</p>
     </div>
     <div class="card fragment fade-up" style="border-top:3px solid var(--accent2);">
-      <h4>04 &mdash; Never ship what you can't defend</h4>
-      <p style="font-size:0.7em;">If you can't explain why, in your own words, without the transcript &mdash; you haven't decided. You've forwarded.</p>
+      <h4 style="font-size:0.86em;">Own &rarr; judgment under fluency</h4>
+      <p style="font-size:0.66em;">Staying suspicious of output that sounds certain. Taste stopped being a soft skill the moment ten plausible options became free.</p>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════ REVISED FRAMEWORK ═══════════════════════ -->
-<section data-bg="pink">
-  <div class="tag tag-pink">The framework, revised</div>
-  <h2>v1 had five steps.<br>It needed <span class="highlight">a limit</span>.</h2>
-  <p style="font-size:0.68em;color:rgba(255,255,255,0.45);margin-top:14px;">
-    <s>Orchestrate &rarr; Review &rarr; Decide &rarr; Ship &rarr; Learn</s>
-  </p>
-  <div class="loop-flow fragment fade-up" style="margin-top:16px;">
-    <div class="loop-flow-item"><div class="loop-flow-icon"><i class="fa-solid fa-crosshairs"></i></div><span>Frame</span></div>
-    <div class="loop-flow-arrow">&rarr;</div>
-    <div class="loop-flow-item"><div class="loop-flow-icon"><i class="fa-solid fa-robot"></i></div><span>Delegate</span></div>
-    <div class="loop-flow-arrow">&rarr;</div>
-    <div class="loop-flow-item"><div class="loop-flow-icon"><i class="fa-solid fa-magnifying-glass-chart"></i></div><span>Verify</span></div>
-    <div class="loop-flow-arrow">&rarr;</div>
-    <div class="loop-flow-item"><div class="loop-flow-icon"><i class="fa-solid fa-signature"></i></div><span>Own</span></div>
+<!-- ═══════════════════════ PART 3 DIVIDER ═══════════════════════ -->
+<section data-bg="hero">
+  <div class="tag tag-purple">Part 3</div>
+  <h2 style="font-size:2em;">Under the <span class="highlight">Hood</span></h2>
+  <h3 style="font-size:0.85em;">The actual files. Steal all of it.</h3>
+</section>
+
+<!-- ═══════════════════════ THE LAYOUT ═══════════════════════ -->
+<section data-bg="purple" style="font-size:0.9em;">
+  <div class="tag tag-purple">The shape of it</div>
+  <h2>Everything is a <span class="highlight">file</span>, in git</h2>
+  <div class="filetree" style="max-width:660px;margin:18px auto 0;">
+<pre style="margin:0;font-family:inherit;font-size:1em;background:none;box-shadow:none;line-height:1.85;">
+<span class="dir">pm-command/</span>
+├── <span class="star">AGENTS.md</span>              <span class="note">conventions — how work is done</span>
+├── <span class="star">CONTEXT.md</span>             <span class="note">memory — read every session</span>
+├── <span class="dir">.github/agents/</span>        <span class="note">one file per agent</span>
+│     ├── spec-writer.md
+│     ├── compete-research.md
+│     └── meeting-prep.md
+└── <span class="dir">docs/</span>
+      ├── <span class="dir">features/</span>&lt;slug&gt;/  <span class="note">durable feature state</span>
+      ├── <span class="dir">research/</span>         <span class="note">one file per vendor</span>
+      └── <span class="dir">specs/</span>            <span class="note">specs + review responses</span>
+</pre>
   </div>
-  <p class="fragment fade-up" style="font-size:0.75em;margin-top:20px;">
-    Bounded by the <span class="highlight" style="font-weight:600;">Verification Ceiling</span> &mdash;
-    the loop only runs as fast as its slowest check.
+  <p class="fragment fade-up" style="font-size:0.68em;margin-top:16px;color:rgba(255,255,255,0.65);">
+    No database, no platform, no subscription. Version-controlled context was the
+    <span class="highlight" style="font-weight:600;">single highest-leverage thing I did.</span>
   </p>
 </section>
 
-<!-- ═══════════════════════ POLL ═══════════════════════ -->
-<section data-bg="teal">
-  <div class="tag tag-teal">Your turn</div>
-  <h2>Which of these have you<br>actually <span class="highlight">measured</span>?</h2>
-  <div class="poll-container" id="poll1">
-    <div class="poll-option" onclick="selectPoll(this, 'poll1')">
-      <div class="letter">A</div>
-      <span>How often our agents are confidently wrong</span>
+<!-- ═══════════════════════ AGENTS.MD ═══════════════════════ -->
+<section data-bg="teal" style="font-size:0.9em;">
+  <div class="tag tag-teal">File 1 of 3</div>
+  <h2><span class="highlight">AGENTS.md</span> &mdash; the conventions</h2>
+  <p style="font-size:0.62em;color:rgba(255,255,255,0.6);margin:6px auto 0;">Answers: how is work done here? Written once, read by every agent, every session.</p>
+  <div class="codeblock" style="max-width:760px;margin:12px auto 0;">
+    <div class="cb-bar">AGENTS.md</div>
+<pre><span class="h"># PM Command Center</span>
+
+<span class="h">## Identity</span>
+<span class="d">-</span> Owner: &lt;name&gt; — &lt;role, and the 3 things you actually own&gt;
+
+<span class="h">## Where things live</span>
+<span class="d">-</span> Feature state  → <span class="s">docs/features/&lt;slug&gt;/README.md</span>
+<span class="d">-</span> Vendor research → <span class="s">docs/research/&lt;vendor&gt;.md</span>
+<span class="d">-</span> Specs + reviews → <span class="s">docs/specs/</span>
+
+<span class="h">## House style</span>
+<span class="d">-</span> Narrative prose. No emoji, no bullet pyramids.
+<span class="d">-</span> Verify before speed. Never publish an unverified claim.
+<span class="d">-</span> Surgical changes only — don't refactor what I didn't ask about.
+</pre>
+  </div>
+</section>
+
+<!-- ═══════════════════════ CONTEXT.MD ═══════════════════════ -->
+<section data-bg="pink" style="font-size:0.9em;">
+  <div class="tag tag-pink">File 2 of 3</div>
+  <h2><span class="highlight">CONTEXT.md</span> &mdash; the memory</h2>
+  <p style="font-size:0.62em;color:rgba(255,255,255,0.6);margin:6px auto 0;">Answers: what's going on right now? Memory as a file you can edit &mdash; not a feature you have to trust.</p>
+  <div class="codeblock" style="max-width:760px;margin:12px auto 0;">
+    <div class="cb-bar">CONTEXT.md</div>
+<pre><span class="c"># Read this at the start of every session.</span>
+
+<span class="h">## Active work</span>
+<span class="d">1.</span> &lt;feature&gt; — status, current blocker, next decision owed
+<span class="d">2.</span> &lt;feature&gt; — status, current blocker, next decision owed
+
+<span class="h">## Decisions already made</span>  <span class="c">(so nobody re-litigates them)</span>
+<span class="d">-</span> Chose X over Y because &lt;reason&gt;. Revisit if &lt;condition&gt;.
+
+<span class="h">## Learnings</span>  <span class="c">(the expensive ones)</span>
+<span class="d">-</span> HTTP 403 ≠ broken link — some sites block bots, not humans.
+<span class="d">-</span> First drafts are structurally right and tonally dead.
+  Feed it things I actually sent, and the voice problem goes away.
+</pre>
+  </div>
+</section>
+
+<!-- ═══════════════════════ AGENT DEFINITION ═══════════════════════ -->
+<section data-bg="green" style="font-size:0.9em;">
+  <div class="tag tag-green">File 3 of 3</div>
+  <h2>An <span class="highlight">agent</span>, in full</h2>
+  <p style="font-size:0.62em;color:rgba(255,255,255,0.6);margin:6px auto 0;">Note how much of it is prohibition. That's the part that makes output trustworthy.</p>
+  <div class="codeblock" style="max-width:790px;margin:12px auto 0;">
+    <div class="cb-bar">.github/agents/compete-research.md</div>
+<pre><span class="d">---</span>
+<span class="k">name</span>: compete-research
+<span class="k">description</span>: Maintains the vendor landscape. Use for market questions.
+<span class="k">tools</span>: [read, write, fetch, search]
+<span class="d">---</span>
+
+You maintain one file per vendor in <span class="s">docs/research/</span>.
+
+<span class="h">## Rules</span>
+<span class="d">-</span> Every claim needs a published, linkable source.
+<span class="d">-</span> No source → the claim does not ship. Say so explicitly.
+<span class="d">-</span> Rate maturity on evidence, never on marketing language.
+
+<span class="h">## Never</span>
+<span class="d">-</span> Speculate about unannounced products.
+<span class="d">-</span> Infer someone's <span class="k">current</span> role from an old article.  <span class="c"># cost me once</span>
+</pre>
+  </div>
+</section>
+
+<!-- ═══════════════════════ BOUNDARIES ═══════════════════════ -->
+<section data-bg="purple" style="font-size:0.84em;">
+  <div class="tag tag-purple">The pattern that matters most</div>
+  <h2>Three tiers, <span class="highlight">not two</span></h2>
+  <div class="card-grid cols-3" style="max-width:900px;margin:14px auto 0;">
+    <div class="card fragment fade-up" style="border-top:3px solid var(--accent3);">
+      <h4 style="font-size:0.82em;">✅ Always</h4>
+      <p style="font-size:0.62em;">Cite sources. Keep changes surgical. State assumptions. Run the build before claiming done.</p>
     </div>
-    <div class="poll-option" onclick="selectPoll(this, 'poll1')">
-      <div class="letter">B</div>
-      <span>How long verification takes vs. generation</span>
+    <div class="card fragment fade-up" style="border-top:3px solid var(--accent4);">
+      <h4 style="font-size:0.82em;">⚠️ Ask first</h4>
+      <p style="font-size:0.62em;">New dependencies. Schema changes. Anything that touches another team. Anything irreversible.</p>
     </div>
-    <div class="poll-option" onclick="selectPoll(this, 'poll1')">
-      <div class="letter">C</div>
-      <span>What we shipped without checking</span>
-    </div>
-    <div class="poll-option" onclick="selectPoll(this, 'poll1')">
-      <div class="letter">D</div>
-      <span>None of the above &mdash; but we track velocity closely</span>
-    </div>
-    <div class="poll-reveal" id="poll1-reveal">
-      <strong>D is the honest answer for most teams &mdash; including mine, until recently.</strong>
-      We instrumented the half that got cheap and left the half that decides outcomes unmeasured.
+    <div class="card fragment fade-up" style="border-top:3px solid var(--accent2);">
+      <h4 style="font-size:0.82em;">🚫 Never</h4>
+      <p style="font-size:0.62em;">Commit secrets. Publish unverified claims. Speculate about unshipped work.</p>
     </div>
   </div>
+  <p class="fragment fade-up" style="font-size:0.74em;margin-top:16px;">
+    Most people write two tiers. <span class="highlight" style="font-weight:600;">The middle one is where all the value is</span> &mdash;
+    it's how an agent moves fast on the safe 90% without quietly deciding the other 10% for you.
+  </p>
+</section>
+
+<!-- ═══════════════════════ PROGRESSIVE DISCLOSURE ═══════════════════════ -->
+<section data-bg="teal" style="font-size:0.86em;">
+  <div class="tag tag-teal">The counter-intuitive one</div>
+  <h2>Point at files. <span class="highlight">Don't paste.</span></h2>
+  <div class="dodont" style="max-width:850px;margin:16px auto 0;">
+    <div class="no fragment fade-up">
+      <h4 style="color:var(--accent2);">🚫 Front-loading</h4>
+      <p>Pasting the whole spec, the whole style guide and the whole history into every prompt. Feels thorough. Buries the actual instruction and goes stale the moment the source changes.</p>
+    </div>
+    <div class="yes fragment fade-up">
+      <h4 style="color:var(--accent3);">✅ Progressive disclosure</h4>
+      <p><code>See docs/specs/current.md for scope<br>and open questions.</code><br><br>Shorter instructions, better output, and it's never out of date.</p>
+    </div>
+  </div>
+  <p class="fragment fade-up" style="font-size:0.7em;margin-top:14px;color:rgba(255,255,255,0.7);">
+    Your instructions should read like a <span class="highlight" style="font-weight:600;">map</span>, not a briefing pack.
+  </p>
+</section>
+
+<!-- ═══════════════════════ THE ROSTER + ROUTER ═══════════════════════ -->
+<section data-bg="pink" style="font-size:0.86em;">
+  <div class="tag tag-pink">Ten agents, zero menus</div>
+  <h2>The <span class="highlight">router</span></h2>
+  <p style="font-size:0.64em;color:rgba(255,255,255,0.6);margin:6px auto 0;">A table in AGENTS.md mapping how I actually talk to which agent should answer.</p>
+  <div class="codeblock" style="max-width:790px;margin:12px auto 0;">
+    <div class="cb-bar">AGENTS.md — agent router</div>
+<pre><span class="h">| What I say                  | Who handles it   |</span>
+<span class="d">|-----------------------------|------------------|</span>
+| <span class="s">"status of &lt;feature&gt;"</span>       | feature-copilot  |
+| <span class="s">"prep me for the review"</span>    | meeting-prep     |
+| <span class="s">"update &lt;vendor&gt;"</span>           | compete-research |
+| <span class="s">"draft the follow-up"</span>       | email-drafter    |
+| <span class="s">"recap this week"</span>           | weekly-recap     |
+| <span class="s">"spec for &lt;thing&gt;"</span>          | spec-writer      |
+| <span class="s">"what are customers saying"</span> | feedback-analyzer|
+</pre>
+  </div>
+  <p class="fragment fade-up" style="font-size:0.68em;margin-top:12px;">
+    Ten job descriptions, not one assistant. <span class="highlight" style="font-weight:600;">Narrow enough to evaluate</span> is the only design rule that matters.
+  </p>
+</section>
+
+<!-- ═══════════════════════ MAINTENANCE ═══════════════════════ -->
+<section data-bg="green" style="font-size:0.86em;">
+  <div class="tag tag-green">The maintenance nobody mentions</div>
+  <h2>Budget for <span class="highlight">demolition</span></h2>
+  <p style="font-size:0.72em;color:rgba(255,255,255,0.75);max-width:800px;margin:10px auto 0;">
+    Custom scrapers, bespoke integrations, hand-built tools. Most were genuinely useful when I built them.
+    Most were dead weight within two months &mdash; not because they were badly made, but because
+    <span class="highlight" style="font-weight:600;">the models improved past the need for them.</span>
+  </p>
+  <p class="fragment fade-up" style="font-size:0.7em;color:rgba(255,255,255,0.6);margin-top:14px;">
+    Re-read your own config every couple of months and delete what the model now does natively.
+    Tooling that once added capability starts quietly constraining it.
+  </p>
+  <div class="quote-block fragment fade-up" style="margin-top:12px;">
+    <p style="font-size:0.93em;">My repo was literally called <em>vibecoding</em> before it became a command center.
+    <strong>That rename is the honest summary of the year.</strong></p>
+  </div>
+</section>
+
+<!-- ═══════════════════════ START HERE ═══════════════════════ -->
+<section data-bg="purple" style="font-size:0.84em;">
+  <div class="tag tag-purple">If you do nothing else</div>
+  <h2>Start <span class="highlight">here</span></h2>
+  <div class="card-grid cols-3" style="max-width:900px;margin:16px auto 0;">
+    <div class="card fragment fade-up" style="border-top:3px solid var(--accent);">
+      <h4 style="font-size:0.82em;">Today</h4>
+      <p style="font-size:0.62em;">Create two files: <code style="font-family:'JetBrains Mono',monospace;font-size:0.9em;">AGENTS.md</code> and <code style="font-family:'JetBrains Mono',monospace;font-size:0.9em;">CONTEXT.md</code>. Put them in git. That's the whole day-one setup.</p>
+    </div>
+    <div class="card fragment fade-up" style="border-top:3px solid var(--accent3);">
+      <h4 style="font-size:0.82em;">This week</h4>
+      <p style="font-size:0.62em;">Take the two things you ask for most often. Make each one a narrow agent with a ✅/⚠️/🚫 block.</p>
+    </div>
+    <div class="card fragment fade-up" style="border-top:3px solid var(--accent2);">
+      <h4 style="font-size:0.82em;">This month</h4>
+      <p style="font-size:0.62em;">Build one real check you can run. Then delete one tool you built that the model no longer needs.</p>
+    </div>
+  </div>
+  <p class="fragment fade-up" style="font-size:0.72em;margin-top:16px;">
+    None of this requires a platform, a budget, or permission.
+    <span class="highlight" style="font-weight:600;">It's four markdown files and a habit.</span>
+  </p>
 </section>
 
 <!-- ═══════════════════════ TAKEAWAYS ═══════════════════════ -->
-<section data-bg="green">
-  <div class="tag tag-green">If you remember three things</div>
+<section data-bg="teal">
+  <div class="tag tag-teal">If you remember three things</div>
   <h2>Take<span class="highlight">aways</span></h2>
-  <div class="card-grid cols-3" style="max-width:880px;margin:22px auto 0;">
+  <div class="card-grid cols-3" style="max-width:880px;margin:20px auto 0;">
     <div class="card fragment fade-up" style="border-top:3px solid var(--accent);">
-      <h4>Production is free.<br>Judgment isn't.</h4>
-      <p style="font-size:0.68em;">The constraint moved. Most orgs are still optimising the half that stopped being the bottleneck.</p>
+      <h4>Delegate to your ceiling.</h4>
+      <p style="font-size:0.68em;">You can hand over exactly as much as you can check. Build checks, or hand over less. There is no third option.</p>
     </div>
     <div class="card fragment fade-up" style="border-top:3px solid var(--accent3);">
-      <h4>Delegate to your ceiling.</h4>
-      <p style="font-size:0.68em;">You can hand over exactly as much as you can check. Build checks or hand over less.</p>
+      <h4>Run the loop.</h4>
+      <p style="font-size:0.68em;">Frame, Delegate, Verify, Own. Every failure I've had was a step I skipped &mdash; and I could name which one afterwards, every time.</p>
     </div>
     <div class="card fragment fade-up" style="border-top:3px solid var(--accent2);">
-      <h4>Fluent &ne; correct.</h4>
-      <p style="font-size:0.68em;">The dangerous output isn't the refusal. It's the confident, well-cited, plausible answer to the wrong question.</p>
+      <h4>Put it in files.</h4>
+      <p style="font-size:0.68em;">Context in version control is the difference between a clever session and a system that compounds.</p>
     </div>
   </div>
 </section>
@@ -1122,21 +1223,20 @@
   <h3 style="font-size:1em; margin-top:16px;">
     It made the easy parts free &mdash; and left me<br>with <span class="highlight" style="font-weight:600;">only the hard parts</span>.
   </h3>
-  <p style="font-size:0.7em; margin-top:24px; color:rgba(255,255,255,0.55);">
+  <p style="font-size:0.7em; margin-top:22px; color:rgba(255,255,255,0.55);">
     That's a better job. It is not a lighter one.
   </p>
-  <p style="font-size:0.6em; margin-top:26px; color:rgba(255,255,255,0.45);">
+  <p style="font-size:0.6em; margin-top:24px; color:rgba(255,255,255,0.45);">
     <strong>Asaf Nakash</strong> &nbsp;|&nbsp;
     <a href="https://nakashon.com" style="color:var(--accent); text-decoration:none;">nakashon.com</a> &nbsp;|&nbsp;
     <a href="https://www.linkedin.com/in/nakash/" style="color:var(--accent); text-decoration:none;">LinkedIn</a> &nbsp;|&nbsp;
     <a href="https://x.com/nakashon" style="color:var(--accent); text-decoration:none;">X</a> &nbsp;|&nbsp;
     <a href="https://github.com/nakashon" style="color:var(--accent); text-decoration:none;">GitHub</a>
   </p>
-  <div style="margin-top:22px;">
+  <div style="margin-top:20px;">
     <div class="tag tag-purple" style="font-size:0.5em;">Press <kbd style="background:rgba(255,255,255,0.15);padding:2px 6px;border-radius:3px;">Esc</kbd> for slide overview</div>
   </div>
 </section>
-
 </div><!-- /slides -->
 </div><!-- /reveal -->
 

@@ -1,63 +1,65 @@
 # The Agentic PM
 
-**v2 — Honest Notes from the Field.** A talk by [Asaf Nakash](https://nakashon.com).
+What product management actually looks like when agents do the producing — the loop, the one law that governs it, and the exact files to set it up.
+
+By [Asaf Nakash](https://nakashon.com).
 
 ## [→ View the Presentation](https://nakashon.github.io/the-agentic-pm/)
-
-## Why there's a v2
-
-Version 1 was a teaching deck. It explained what a PM does, argued that AI changes the job, and closed on *"the future isn't AI vs. humans — it's humans who use AI vs. humans who don't."*
-
-That line is true. It's also unfalsifiable, unactionable, and agreed with by everyone in the room. Which is how you know it isn't a finding.
-
-Then I spent a year actually handing real work to agents. v2 is what I'd say instead.
-
-**v1 is still here, unedited, at [`/v1`](https://nakashon.github.io/the-agentic-pm/v1/).** Deleting it would rather undermine the point.
 
 ## The argument
 
 > Agents didn't remove the work. They relocated it.
 
-Production collapsed to near-zero — drafts, specs, prototypes, research, refactors. Verification didn't get cheaper at all. Every hard thing in the talk falls out of that one asymmetry.
+Production collapsed to near-zero — drafts, specs, prototypes, research, refactors. Verification didn't get cheaper at all. Everything else follows from that asymmetry.
 
-### The Verification Ceiling
+### The law
 
-> You can safely delegate **exactly as much as you can check**. Past that line you are not managing — you are hoping.
+> **The Verification Ceiling** — you can safely delegate exactly as much as you can check. Past that line you are not managing, you are hoping.
 
-Two moves follow: raise the ceiling (evals, harnesses, checkable acceptance criteria) or lower the delegation. Most teams do neither and call the gap *velocity*.
+It's a hard limit, and it's independent of how good the agent is. Which leaves two moves: raise the ceiling (build checks) or lower the delegation. Most teams do neither and call the gap *velocity*.
 
-### The revised loop
+### The loop
 
 > **Frame → Delegate → Verify → Own**
 
-Bounded by the Verification Ceiling — the loop only runs as fast as its slowest check.
+Four steps. Every failure I've had was a step I skipped, and I could name which one afterwards every time.
 
-## What's inside
+| Step | The work | The skill it builds |
+|---|---|---|
+| **Frame** | Write the context down before you ask for anything | Writing for machines — which is writing for a new hire |
+| **Delegate** | Narrow scope, explicit bounds, evaluable output | Decomposition |
+| **Verify** | Run a check you built, not a review you performed | Building checks — the genuinely new skill |
+| **Own** | Defend it in your own words, or you haven't shipped | Judgment under fluency |
 
-27 slides in four parts.
+## Under the hood
 
-**1 — Six field notes.** Drawn from a year of running AI security product with agents in the loop:
+Part 3 is the configuration, in full. No platform, no budget, no permission required — four markdown files and a habit.
 
-- One spec, seven versions, seventeen days — and fourteen commits that only rebuild deliverables
-- One column name, five spellings, fourteen days: renaming became free, naming did not
-- 86 documents vs. 30 features — a PM's repo is a prose repo, and prose is where the failure mode hides
-- Competitive research that wrote the most *satisfying* version of the market rather than the truest
-- The document built perfectly on my own misconception, citing my own notes back to me
-- 23 review comments answered flawlessly by something that couldn't read the room
+```
+pm-command/
+├── AGENTS.md              conventions — how work is done
+├── CONTEXT.md             memory — read every session
+├── .github/agents/        one file per agent
+└── docs/                  features, research, specs
+```
 
-**2 — The system I actually run.** The part usually left out: version-controlled context files, a roster of ten narrow agents behind a router, config-as-source-of-truth, progressive disclosure, three-tier boundaries (✅ always / ⚠️ ask first / 🚫 never), and the two rules I'd never drop.
+Covered with real (sanitized) snippets:
 
-**3 — What it means.** The new economics, the Verification Ceiling, why "orchestration" undersells the problem, and taste as the scarce input.
-
-**4 — What I'd actually do.** Four practices, all boring, all load-bearing.
+- **`AGENTS.md`** — identity, where things live, house style
+- **`CONTEXT.md`** — active work, decisions already made, the expensive learnings
+- **An agent definition** — YAML frontmatter plus rules, and how much of a good one is *prohibition*
+- **Three-tier boundaries** — ✅ always / ⚠️ ask first / 🚫 never, and why the middle tier is where all the value is
+- **Progressive disclosure** — point at files, don't paste; instructions should read like a map, not a briefing pack
+- **The router** — mapping how you actually talk to which agent should answer
+- **Budgeting for demolition** — half of getting good at this is deleting scaffolding the models outgrew
 
 ## Usage
 
 Open `index.html` in any browser — no build step, no dependencies, no setup.
 
-Navigate with arrow keys. Press `Esc` for slide overview.
+Arrow keys to navigate, `Esc` for slide overview. Use it, remix it, present it to your team.
 
-Use it, remix it, present it to your team. The field notes are mine — swap in your own. A talk called *notes from the field* is only worth as much as its least verifiable slide.
+An earlier, quite different version of this talk is preserved at [`/v1`](https://nakashon.github.io/the-agentic-pm/v1/).
 
 ## Tech
 
