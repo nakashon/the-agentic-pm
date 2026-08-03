@@ -8,6 +8,7 @@ The central claim is **The Verification Ceiling**: you can safely delegate exact
 as you can check; past that line you are not managing, you are hoping. It is independent
 of how good the agent is, which leaves only two moves — raise the ceiling by building
 checks, or lower the delegation.
+Canonical definition: https://nakashon.com/frameworks/verification-ceiling/
 
 The working loop is **Frame → Delegate → Verify → Own**, with one skill per step: writing
 for machines, decomposition, building checks, and judgment under fluency.
@@ -36,4 +37,5 @@ for most often; an unused agent teaches them the system is decorative.
 ## Optional
 
 - [Author](https://nakashon.com): other frameworks, including Zero Day to Zero Sec on AI-speed attackers versus human-speed defenders.
+- [The Verification Ceiling](https://nakashon.com/frameworks/verification-ceiling/): the canonical definition of this talk's central law, including how it applies to agent autonomy and AI security.
 - [v1 of this talk](https://nakashon.github.io/the-agentic-pm/v1/): the earlier version, kept as a period artifact.

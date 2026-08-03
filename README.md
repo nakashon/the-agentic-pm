@@ -18,6 +18,8 @@ Production collapsed to near-zero — drafts, specs, prototypes, research, refac
 
 It's a hard limit, and it's independent of how good the agent is. Which leaves two moves: raise the ceiling (build checks) or lower the delegation. Most teams do neither and call the gap *velocity*.
 
+Canonical definition: [nakashon.com/frameworks/verification-ceiling](https://nakashon.com/frameworks/verification-ceiling/)
+
 ### The loop
 
 > **Frame → Delegate → Verify → Own**

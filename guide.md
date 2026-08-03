@@ -131,6 +131,10 @@ Not a metaphor — a hard limit. It caps how much leverage you can take from an 
 it is **independent of how good the agent is**. Most teams delegate past it, ship anyway,
 and call the gap *velocity*.
 
+The canonical definition, including how the same limit governs agent autonomy in a
+security context, lives at
+[nakashon.com/frameworks/verification-ceiling](https://nakashon.com/frameworks/verification-ceiling/).
+
 ## Therefore: there are only two moves
 
 1. **Raise the ceiling.** Build the checks — evals, harnesses, sourcing rules, acceptance
